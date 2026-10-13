@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { HomepageData, PlacesData, AboutData, ContactData, GuidesData } from "@/lib/cms";
+import { HomepageData, PlacesData, AboutData, ContactData, GuidesData, BlogDetailData, getDefaultBlogDetail } from "@/lib/cms";
 
 const dataFilePath = path.join(process.cwd(), "data", "homepage.json");
 const placesFilePath = path.join(process.cwd(), "data", "places.json");
@@ -8,6 +8,7 @@ const famousPlacesFilePath = path.join(process.cwd(), "data", "famous-places.jso
 const aboutFilePath = path.join(process.cwd(), "data", "about.json");
 const contactFilePath = path.join(process.cwd(), "data", "contact.json");
 const guidesFilePath = path.join(process.cwd(), "data", "guides.json");
+const blogDetailsFilePath = path.join(process.cwd(), "data", "blog-details.json");
 
 export async function getHomepageData(): Promise<HomepageData> {
   try {
@@ -163,3 +164,42 @@ export async function getGuidesData(): Promise<GuidesData> {
 export async function saveGuidesData(data: GuidesData): Promise<void> {
   await fs.writeFile(guidesFilePath, JSON.stringify(data, null, 2), "utf8");
 }
+
+export async function getBlogDetailsData(): Promise<Record<string, BlogDetailData>> {
+  try {
+    const raw = await fs.readFile(blogDetailsFilePath, "utf8");
+    return JSON.parse(raw) as Record<string, BlogDetailData>;
+  } catch (error) {
+    console.error("Error reading blog details data:", error);
+    return {};
+  }
+}
+
+export async function getBlogDetailBySlug(slug: string): Promise<BlogDetailData | null> {
+  try {
+    const details = await getBlogDetailsData();
+    if (details[slug]) {
+      return details[slug];
+    }
+
+    // Try finding in guides.json articles list as fallback
+    const guidesData = await getGuidesData();
+    const matchedArticle = guidesData.articlesSection?.articles.find(
+      (a) => a.slug === slug || a.id === slug
+    );
+
+    if (matchedArticle) {
+      return getDefaultBlogDetail(slug, matchedArticle);
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Error fetching blog detail for slug:", slug, error);
+    return null;
+  }
+}
+
+export async function saveBlogDetailsData(data: Record<string, BlogDetailData>): Promise<void> {
+  await fs.writeFile(blogDetailsFilePath, JSON.stringify(data, null, 2), "utf8");
+}
+

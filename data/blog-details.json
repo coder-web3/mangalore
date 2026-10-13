@@ -1,0 +1,455 @@
+{
+  "top-10-beautiful-beaches-in-mangalore": {
+    "slug": "top-10-beautiful-beaches-in-mangalore",
+    "title": "Top 10 Beautiful Beaches in Mangalore",
+    "subtitle": "Golden sands, Arabian Sea sunsets, thrilling water sports, and tranquil coastal escapes.",
+    "category": "beaches",
+    "categoryLabel": "Beaches",
+    "categoryIcon": "beach",
+    "date": "October 12, 2025",
+    "readingTime": "7 min read",
+    "heroImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+    "heroImageCaption": "Pristine golden sands and gentle waves along the Mangalore Arabian coastline",
+    "intro": "Stretching along the Arabian Sea in coastal Karnataka, Mangalore is blessed with miles of uninterrupted golden beaches. Whether you're seeking lively family spots with jet-skiing, quiet coastal strips shaded by casuarina groves, or prime sunset vantage points, here is your definitive insider's guide to the top 10 beaches in Mangalore.",
+    "author": {
+      "name": "Pratheek Shetty",
+      "role": "Coastal Travel Writer & Surf Enthusiast",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "bio": "Born and raised in Mangalore, Pratheek has explored every kilometer of the coastal Konkan belt. He writes about surfing, coastal conservation, and hidden beach trails."
+    },
+    "tags": ["Panambur Beach", "Tannirbhavi", "Surathkal Lighthouse", "Sasihithlu", "Beach Tourism", "Water Sports"],
+    "keyFacts": [
+      { "label": "Best Time to Visit", "value": "October to March (Warm sunny days & cool breeze)" },
+      { "label": "Top Water Sports Beach", "value": "Panambur Beach (Jet ski, parasailing, camel rides)" },
+      { "label": "Best Surfing Spot", "value": "Sasihithlu & Mulki Estuary" },
+      { "label": "Sunset Recommendation", "value": "Tannirbhavi Beach & Surathkal Lighthouse cliff" }
+    ],
+    "sections": [
+      {
+        "id": "panambur-tannirbhavi",
+        "title": "1. Panambur Beach & Tannirbhavi Beach: The Iconic Duo",
+        "paragraphs": [
+          "Panambur Beach is Mangalore's premier coastal hotspot, managed with dedicated certified lifeguards, paved walking promenades, and exciting watersports including jet skis, banana boat rides, and parasailing. It also hosts the internationally acclaimed Mangalore Kite Festival.",
+          "Just 6 km south lies Tannirbhavi Beach, accessible either by road or a picturesque ferry across the Gurupura River from Sultan Battery. Tannirbhavi offers a more peaceful ambience surrounded by dense pine and casuarina plantations with comfortable wooden park benches to watch majestic container ships glide past."
+        ],
+        "image": "https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1000&q=80",
+        "imageCaption": "Vibrant evenings and evening sun rays on Tannirbhavi shoreline",
+        "proTip": "Take the ferry ride from Sultan Battery to Tannirbhavi around 4:30 PM. The 5-minute boat crossing across Gurupura river offers incredible harbor views for just ₹10 per ticket.",
+        "bulletPoints": [
+          "Panambur: Jet ski, ATV rides, camel rides, safe swimming zones",
+          "Tannirbhavi: Tree-lined nature walk, food shacks with spicy fish fry, less crowded shoreline",
+          "Clean restrooms, ample car parking, and active coast guard patrol"
+        ]
+      },
+      {
+        "id": "surathkal-someshwara",
+        "title": "2. Surathkal Lighthouse & Someshwara Beach: Rocky Coastal Dramatics",
+        "paragraphs": [
+          "Surathkal Beach, located near NITK, is dominated by its towering black-and-white striped lighthouse perched high on a natural rocky promontory. Climbing to the top during open hours (4:00 PM – 5:30 PM) rewards you with a breathtaking 360-degree panorama of the coastline.",
+          "Further south near Ullal, Someshwara Beach is famous for 'Rudra Shile' — immense ancient rock formations rising dramatically out of the surf. The beach borders the revered centuries-old Somanatha Temple."
+        ],
+        "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
+        "imageCaption": "Waves crashing onto the rocky cliffs of coastal Karnataka",
+        "proTip": "Due to steep underwater gradients and strong rip currents around Rudra Shile, swimming is prohibited at Someshwara Beach. Admire the ferocious waves safely from the rocks.",
+        "bulletPoints": [
+          "Surathkal Lighthouse entry: Open 4:00 PM to 5:30 PM daily",
+          "Someshwara Beach: Spectacular evening photography and temple darshan",
+          "Ullal Beach nearby: Golden sands, summer beach resorts, and secluded dunes"
+        ]
+      },
+      {
+        "id": "sasihithlu-mulki",
+        "title": "3. Sasihithlu Beach & Mulki: The Indian Surfing Capital",
+        "paragraphs": [
+          "Located where the Pavanje and Shambhavi rivers meet the Arabian Sea, Sasihithlu is an untouched paradise of fine white sand, sandspits, and crystalline blue water. It regularly hosts the Indian Open of Surfing.",
+          "Neighbouring Mulki is India's most celebrated surf hub, offering surf schools, kayak expeditions into tranquil mangrove estuaries, and stand-up paddleboarding (SUP) trips."
+        ],
+        "proTip": "Book a sunrise kayaking session through the Mulki river mangroves followed by fresh Neer Dosa at a local riverside homestay.",
+        "bulletPoints": [
+          "Ideal for surf lessons from beginner to advanced surfers",
+          "Ecologically clean river-sea confluence",
+          "Unspoiled shores with almost zero commercial stalls"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which beach is the safest for swimming in Mangalore?",
+        "answer": "Panambur Beach is widely regarded as the safest beach due to full-time stationed lifeguards and marked swimming boundaries."
+      },
+      {
+        "question": "How far are the beaches from Mangalore city center?",
+        "answer": "Panambur and Tannirbhavi are roughly 8 to 11 km from the city center (approx. 20–25 minutes by taxi or city bus). Surathkal is around 18 km north."
+      },
+      {
+        "question": "Are water sports open during the monsoon season?",
+        "answer": "No. Water sports and boat ferries remain closed from June through September due to rough monsoon tides and reopen in October."
+      }
+    ],
+    "relatedSlugs": [
+      "must-try-mangalore-seafood-dishes",
+      "mangalore-travel-guide-for-first-time-visitors",
+      "famous-temples-in-mangalore"
+    ]
+  },
+  "must-try-mangalore-seafood-dishes": {
+    "slug": "must-try-mangalore-seafood-dishes",
+    "title": "Must-Try Mangalore Seafood Dishes",
+    "subtitle": "From fiery Anjal Ghee Roast to tangy Fish Pulimunchi, savor the undisputed culinary soul of Kudla.",
+    "category": "food",
+    "categoryLabel": "Food & Dining",
+    "categoryIcon": "food",
+    "date": "October 10, 2025",
+    "readingTime": "6 min read",
+    "heroImage": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=1200&q=80",
+    "heroImageCaption": "Crispy pan-fried coastal fresh fish with aromatic Byadgi chili masala",
+    "intro": "Mangalorean cuisine is world-famous for its masterclass in balancing fiery Byadgi chilies, rich clarified ghee, fresh coconut milk, and sour kokum or teppal pepper. No journey to coastal Karnataka is complete without indulging in its legendary seafood heritage.",
+    "author": {
+      "name": "Divya Rai",
+      "role": "Culinary Journalist & Food Tour Host",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+      "bio": "Divya has spent the last decade documenting generational coastal recipes and running secret street food tasting trails in Mangalore."
+    },
+    "tags": ["Ghee Roast", "Anjal Masala Fry", "Fish Curry Meals", "Kori Rotti", "Mangalore Seafood", "Food Guide"],
+    "keyFacts": [
+      { "label": "Signature Spice Blend", "value": "Byadgi red chili, coriander seeds, peppercorn & ghee" },
+      { "label": "King Fish Local Name", "value": "Anjal (Seer Fish) — Highest prized catch" },
+      { "label": "Best Accompaniment", "value": "Neer Dosa, Kori Rotti, or Boiled Red Rice" },
+      { "label": "Average Meal Cost", "value": "₹350 – ₹700 per person at top seafood joints" }
+    ],
+    "sections": [
+      {
+        "id": "ghee-roast-fame",
+        "title": "1. The Legendary Mangalorean Ghee Roast",
+        "paragraphs": [
+          "Originating from the small heritage restaurant Shetty Lunch Home in Kundapura, Ghee Roast has achieved legendary status across India. Fresh prawns, squid, or king fish steaks are simmered slow in generous ladles of pure desi ghee with a thick, velvety paste of roasted Byadgi chilies and whole spices.",
+          "The dish hits the palate with a rich smoky warmth rather than raw burn, best scooped up with delicate, lace-like Neer Dosas."
+        ],
+        "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=1000&q=80",
+        "imageCaption": "Authentic coastal seafood preparation glistening with spiced ghee",
+        "proTip": "Order Prawn Ghee Roast paired with Neer Dosa. The softness of the rice crepe balances the bold, buttery chili glaze perfectly.",
+        "bulletPoints": [
+          "Available in Anjal (Seer Fish), Yeti (Prawns), and Marwai (Clams)",
+          "Slow cooked in pure ghee without tomato or onions in the base paste",
+          "Iconic eateries: Giri Manja's, Machali, Gajalee, Narayana"
+        ]
+      },
+      {
+        "id": "fish-meals-pulimunchi",
+        "title": "2. Authentic Fish Curry Thali & Fish Pulimunchi",
+        "paragraphs": [
+          "For lunch, head to iconic hole-in-the-wall institutions like Giri Manja's or Hotel Narayana at the Bunder old port. The experience begins with a banana leaf laden with red parboiled rice (kuchlakki), spicy sour fish curry (meen saaru), cabbage sukka, and pickle.",
+          "Another pillar of Tuluva gastronomy is Fish Pulimunchi ('Puli' meaning sour and 'Munchi' meaning chili). Prepared with kokum or wild tamarind and whole spices, this dark, tangy gravy has zero coconut, delivering sharp, appetizing coastal zing."
+        ],
+        "proTip": "Reach Hotel Narayana or Giri Manja's before 12:45 PM. The catch of the day (Pomfret, Kane/Lady Fish, Anjal) sells out fast, and queues wrap around the street by 1:15 PM.",
+        "bulletPoints": [
+          "Kane Masala Fry (Ladyfish): Pan fried with crispy semolina (rava) crust",
+          "Marwai Sukka: Clams cooked in freshly grated coconut and dry spices",
+          "Crab Ghee Roast: Sweet succulent meat drenched in fiery coastal masala"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Which are the best seafood restaurants in Mangalore?",
+        "answer": "Giri Manja's (for traditional home-style lunch), Machali (for pristine fish meals), Narayana at Bunder (for fresh catch tava fry), and Gajalee (for fine dining ambiance)."
+      },
+      {
+        "question": "Is Mangalorean food too spicy for foreign travelers?",
+        "answer": "The famous Byadgi chili gives intense deep red color and smoky aroma without overpowering heat. You can always ask for 'medium spice' or order coconut-based curries which are mild and creamy."
+      }
+    ],
+    "relatedSlugs": [
+      "top-10-beautiful-beaches-in-mangalore",
+      "mangalore-travel-guide-for-first-time-visitors",
+      "festivals-of-mangalore-you-should-experience"
+    ]
+  },
+  "famous-temples-in-mangalore": {
+    "slug": "famous-temples-in-mangalore",
+    "title": "Famous Temples in Mangalore: Heritage & Devotion",
+    "subtitle": "Discover thousand-year-old sanctums, exquisite bronze sculptures, and living spiritual traditions.",
+    "category": "temples",
+    "categoryLabel": "Temples & Heritage",
+    "categoryIcon": "temple",
+    "date": "October 8, 2025",
+    "readingTime": "8 min read",
+    "heroImage": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=1200&q=80",
+    "heroImageCaption": "Historic Dravidian and Kerala-style temple gopuram architecture in Mangalore",
+    "intro": "Mangalore holds immense spiritual significance across Karnataka. Known historically as Tulunadu, the region blends classical Vedic Hinduism with vibrant local Daiva Aradhane (spirit worship). Here are the grandest and most revered temples you must include on your Mangalore pilgrimage.",
+    "author": {
+      "name": "Karthik Bhat",
+      "role": "Heritage Researcher & Temple Guide",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "bio": "Karthik is a Sanskrit scholar and historical guide specializing in coastal Karnataka's Kadamba, Alupa, and Vijayanagara architectural heritage."
+    },
+    "tags": ["Kudroli Gokarnanatha", "Kadri Manjunatha", "Mangaladevi Temple", "Kateel Durgaparameshwari", "Temple Architecture"],
+    "keyFacts": [
+      { "label": "City's Namesake", "value": "Mangaladevi Temple (named after Queen Mangaladevi)" },
+      { "label": "Oldest Sanctum", "value": "Kadri Manjunatha Temple (dating back to the 10th century)" },
+      { "label": "Grandest Festival", "value": "Mangalore Dasara at Kudroli Gokarnanatheshwara Temple" },
+      { "label": "Dress Code", "value": "Traditional modest attire (men remove shirts at inner sanctums)" }
+    ],
+    "sections": [
+      {
+        "id": "kadri-mangaladevi",
+        "title": "1. Kadri Manjunatha & Mangaladevi Temples",
+        "paragraphs": [
+          "Perched upon Kadri Hills, the Kadri Manjunatha Temple dates back to the 10th–11th century CE. It houses one of the finest bronze statues in all of India — a 1.5-meter seated Lokeshwara statue cast during King Kundavarma's reign. Natural perennial freshwater springs flow into nine stepped bathing tanks (Gomukha) on the hillside.",
+          "Built in the 9th century by the Alupa King Kundavarma, the Mangaladevi Temple in Bolar is the historical mother of the city, which took its name 'Mangaluru' from the presiding deity."
+        ],
+        "image": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1000&q=80",
+        "imageCaption": "Traditional stone pillars and sacred courtyards of coastal temples",
+        "proTip": "Visit Kadri Manjunatha in the early morning at 6:30 AM to witness the natural spring water cascading into the seven sacred ponds in tranquil peace.",
+        "bulletPoints": [
+          "Kadri Caves: Ancient rock-cut caves linked to the Pandavas and Buddhist monks",
+          "Mangaladevi: Auspicious for marital blessings and Navaratri festivities",
+          "Peaceful courtyards with age-old brass lamps (deepastambhas)"
+        ]
+      },
+      {
+        "id": "kudroli-kateel",
+        "title": "2. Kudroli Gokarnanatheshwara & Kateel Durgaparameshwari",
+        "paragraphs": [
+          "Consecrated in 1912 under the guidance of social reformer Narayana Guru, Kudroli Temple is an architectural marvel built in glittering Chola-Dravidian style. During Navaratri, it hosts the world-famous 'Mangalore Dasara' with millions of fairy lights and vibrant tableaux.",
+          "Situated 26 km north on an island in the middle of the holy Nandini River, Kateel Sri Durgaparameshwari Temple is surrounded by scenic river rapids and lush forest groves, famous for its daily temple Annadana (sacred free lunch feast)."
+        ],
+        "proTip": "If visiting Kateel Temple around 12:30 PM, do not miss the temple Mahaprasada meal served to thousands on traditional leaves. It is remarkably delicious and spiritually fulfilling.",
+        "bulletPoints": [
+          "Kudroli: Magnificent golden gopuram and air-conditioned Navadurga gallery",
+          "Kateel: Unique river island location with sacred fish feeding spots",
+          "Easily accessible with regular direct KSRTC and private bus connections"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the dress code for Mangalore temples?",
+        "answer": "Traditional modest clothing is required. Men are requested to wear dhotis or trousers and remove shirts before entering the inner sanctum. Women should wear sarees, salwar kameez, or modest dresses covering shoulders and knees."
+      },
+      {
+        "question": "Can non-Hindus enter the temples?",
+        "answer": "Kudroli Temple warmly welcomes visitors of all religions, castes, and backgrounds. Most temples welcome respectful travelers into their outer courtyards and architecture zones."
+      }
+    ],
+    "relatedSlugs": [
+      "top-10-beautiful-beaches-in-mangalore",
+      "festivals-of-mangalore-you-should-experience",
+      "mangalore-travel-guide-for-first-time-visitors"
+    ]
+  },
+  "mangalore-travel-guide-for-first-time-visitors": {
+    "slug": "mangalore-travel-guide-for-first-time-visitors",
+    "title": "Mangalore Travel Guide for First-Time Visitors",
+    "subtitle": "How to plan, where to stay, what to eat, and how to get around Karnataka's coastal crown jewel.",
+    "category": "tips",
+    "categoryLabel": "Travel Tips",
+    "categoryIcon": "tips",
+    "date": "October 5, 2025",
+    "readingTime": "9 min read",
+    "heroImage": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1200&q=80",
+    "heroImageCaption": "Scenic roads winding between the Western Ghats and the Arabian Sea in Mangalore",
+    "intro": "Nestled between the rolling misty heights of the Western Ghats and the warm waves of the Arabian Sea, Mangalore (Mangaluru) is a relaxed yet culturally vibrant city that defies quick categorization. Here is everything you need to plan an effortless, unforgettable trip for your first visit.",
+    "author": {
+      "name": "Mangalore Tours Team",
+      "role": "Official Travel Curators",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "bio": "Our team of local tour guides and logistics planners have curated thousands of trips across Dakshina Kannada."
+    },
+    "tags": ["Itinerary", "Budget", "First Time Tips", "Mangalore Airport", "Local Buses", "Weather"],
+    "keyFacts": [
+      { "label": "Ideal Trip Length", "value": "3 Days / 2 Nights" },
+      { "label": "Nearest Airport", "value": "Mangalore International Airport (IXE), 12 km" },
+      { "label": "Local Currency", "value": "Indian Rupee (₹) — UPI & Cards widely accepted" },
+      { "label": "Official Language", "value": "Tulu & Kannada (English and Hindi widely understood)" }
+    ],
+    "sections": [
+      {
+        "id": "best-time-weather",
+        "title": "1. When to Go & Weather Overview",
+        "paragraphs": [
+          "The best time to visit Mangalore is between October and March. During these months, the intense monsoon rains have receded, leaves are lush green, and temperatures hover comfortably between 22°C and 30°C with soothing coastal breezes.",
+          "Summers (March to May) can be hot and humid, making early mornings and evenings best for sightseeing. The monsoon (June to September) transforms the region into an emerald-green wonderland, perfect for nature lovers and waterfall chasers."
+        ],
+        "bulletPoints": [
+          "October – February: Peak tourism season, clear skies, pleasant evenings",
+          "March – May: Great for water sports and evening beach strolls",
+          "June – September: Lush landscapes, roaring rivers, vibrant green Western Ghats"
+        ]
+      },
+      {
+        "id": "ideal-3-day-itinerary",
+        "title": "2. Perfect 3-Day Itinerary for First-Timers",
+        "paragraphs": [
+          "Day 1: Heritage & Temples. Start with breakfast of Goli Baje and Mangalore buns at Taj Mahal Cafe. Visit Kadri Manjunatha Temple, St. Aloysius Chapel with its world-famous Italian frescoes, and watch sunset at Tannirbhavi Beach.",
+          "Day 2: Coastal Adventure & Food. Head north to Mulki for morning kayaking or surfing, then stop at Giri Manja's for a seafood feast. Spend the late afternoon at Panambur Beach.",
+          "Day 3: Nature & Souvenirs. Explore Pilikula Heritage Village, shop for GI-tagged Mangalore cashews and halwa at Hampankatta market, and wrap up with sunset at Surathkal Lighthouse."
+        ],
+        "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+        "imageCaption": "Tranquil coastal waterways and palm-fringed estuaries near Mangalore",
+        "proTip": "Don't miss tasting 'Gadbad Ice Cream' at the iconic Pabbas / Ideal Ice Cream parlor in Bharat Mall. It is a legendary multi-layered dessert invented right here in Mangalore."
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How do I get around within Mangalore?",
+        "answer": "Auto-rickshaws in Mangalore run on strictly metered rates and are among the most honest and polite in India. Private city buses are extremely frequent, fast, and cheap."
+      },
+      {
+        "question": "What souvenirs should I buy in Mangalore?",
+        "answer": "Premium plain and roasted Cashews from local factories, Banana Halwa, Ghee Roast spice paste, Jackfruit chips, and traditional wooden handicrafts from Pilikula."
+      }
+    ],
+    "relatedSlugs": [
+      "top-10-beautiful-beaches-in-mangalore",
+      "must-try-mangalore-seafood-dishes",
+      "famous-temples-in-mangalore"
+    ]
+  },
+  "festivals-of-mangalore-you-should-experience": {
+    "slug": "festivals-of-mangalore-you-should-experience",
+    "title": "Festivals of Mangalore You Should Experience",
+    "subtitle": "Kambala buffalo races, tiger dance (Pili Vesha), Yakshagana, and the glittering Mangalore Dasara.",
+    "category": "culture",
+    "categoryLabel": "Culture & Festivals",
+    "categoryIcon": "culture",
+    "date": "October 2, 2025",
+    "readingTime": "7 min read",
+    "heroImage": "https://images.unsplash.com/photo-1609137144822-094186536545?auto=format&fit=crop&w=1200&q=80",
+    "heroImageCaption": "Vibrant festive lights and temple celebrations during Mangalore Dasara",
+    "intro": "The cultural calendar of coastal Tulunadu is electric. From thunderous muddy buffalo sprints through paddy fields to gravity-defying acrobatic tiger dancers, Mangalore offers festival experiences unlike anywhere else on the Indian subcontinent.",
+    "author": {
+      "name": "Ananya Acharya",
+      "role": "Folk Traditions Curator & Artiste",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "bio": "Ananya is a performing Yakshagana artist and ethnographer documenting Tuluva folk arts and seasonal agrarian festivals."
+    },
+    "tags": ["Pili Vesha", "Kambala", "Yakshagana", "Mangalore Dasara", "Daiva Aradhane", "Folk Dance"],
+    "keyFacts": [
+      { "label": "Tiger Dance Local Name", "value": "Pili Vesha (Huli Vesha)" },
+      { "label": "Buffalo Race Season", "value": "November to March (Winter agrarian harvest)" },
+      { "label": "Signature Performance", "value": "Yakshagana all-night theater with elaborate costumes" },
+      { "label": "Biggest City Celebration", "value": "Mangalore Dasara (Navaratri festival, Kudroli)" }
+    ],
+    "sections": [
+      {
+        "id": "pili-vesha-kambala",
+        "title": "1. Pili Vesha (Tiger Dance) & Kambala Buffalo Races",
+        "paragraphs": [
+          "During Navaratri and Krishna Janmashtami, the streets of Mangalore reverberate with the rapid, hypnotic beats of the 'Tashe' drum. Troupes of young dancers, body-painted meticulously from head to toe in black and yellow stripes, perform Pili Vesha. Their performances include backflips, picking up coins with their teeth, and simulating tiger hunts.",
+          "Kambala is the historic buffalo race held in twin muddy tracks across rural Dakshina Kannada. Farmers guide pairs of muscular, conditioned water buffaloes at breathtaking speed, kicking up mud sprays illuminated by night floodlights."
+        ],
+        "image": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=1000&q=80",
+        "imageCaption": "Traditional drum rhythms and folk performers celebrating coastal festivals",
+        "proTip": "Check local weekend schedules for the annual 'Mangalore City Kambala' held at Pilikula Nisargadhama in December/January for the most spectator-friendly viewing.",
+        "bulletPoints": [
+          "Pili Vesha: Best witnessed around Car Street and Kudroli during Dasara evenings",
+          "Kambala: Winter season (Nov-Mar), free admission for spectators",
+          "Electrifying atmosphere with local commentary and cheering crowds"
+        ]
+      },
+      {
+        "id": "yakshagana-theatre",
+        "title": "2. Yakshagana: The Grand Classical Folk Theatre",
+        "paragraphs": [
+          "Yakshagana is coastal Karnataka's ancient folk-theatre tradition, combining operatic music, dialogic prose, improvised wit, and acrobatic dance. Artistes spend up to 4 hours getting transformed with elaborate face paint, large wooden headgear (kireeta), and heavy silver ornaments.",
+          "Traditional 'Mela' troupes tour from village to village performing stories from the Mahabharata and Ramayana throughout the dry winter months, often running from dusk until the crack of dawn."
+        ],
+        "proTip": "Attend an abridged 2-hour English-narrated Yakshagana demonstration at Pilikula Heritage Village if you are short on time.",
+        "bulletPoints": [
+          "Tenku Tittu: Southern style famous for vigorous spins and high-energy drumming",
+          "Badagu Tittu: Northern style characterized by elegant gestures and majestic crowns",
+          "Spectacular backstage makeup process that is mesmerizing to photograph"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "When does Mangalore Dasara take place?",
+        "answer": "It takes place during the 10 days of Navaratri (usually September or October). The grand final procession on Vijayadashami features hundreds of decorated tableaux and marching bands."
+      },
+      {
+        "question": "Are tourists allowed to photograph Kambala races?",
+        "answer": "Yes, photographers are warmly welcomed along the spectator stands. Always obey track safety stewards and maintain safe distance from running buffalo pairs."
+      }
+    ],
+    "relatedSlugs": [
+      "famous-temples-in-mangalore",
+      "mangalore-travel-guide-for-first-time-visitors",
+      "must-try-mangalore-seafood-dishes"
+    ]
+  },
+  "beautiful-rivers-and-backwaters-near-mangalore": {
+    "slug": "beautiful-rivers-and-backwaters-near-mangalore",
+    "title": "Beautiful Rivers and Backwaters Near Mangalore",
+    "subtitle": "Serene boat cruises, mangrove trails, and tranquil backwaters where the Western Ghats meet the sea.",
+    "category": "nature",
+    "categoryLabel": "Nature & Outdoors",
+    "categoryIcon": "nature",
+    "date": "September 28, 2025",
+    "readingTime": "6 min read",
+    "heroImage": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    "heroImageCaption": "Tranquil emerald waters and coconut groves along the Netravati and Gurupura river basins",
+    "intro": "While the beaches grab headlines, Mangalore's twin lifelines — the Netravati and Gurupura (Phalguni) rivers — carve out breathtaking estuarine backwaters and mangrove ecosystems before joining in a dramatic confluence at Bengre. Here is your guide to tranquil river adventures near the city.",
+    "author": {
+      "name": "Roshan D'Souza",
+      "role": "Eco-Naturalist & River Guide",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+      "bio": "Roshan leads eco-kayaking expeditions, mangrove reforestation walks, and estuarine birdwatching tours along coastal rivers."
+    },
+    "tags": ["Gurupura River", "Netravati", "Bengre Confluence", "Mulki Kayaking", "Mangroves", "Backwaters"],
+    "keyFacts": [
+      { "label": "Key Rivers", "value": "Netravati River & Gurupura (Phalguni) River" },
+      { "label": "Best Activity", "value": "Sunrise Stand-Up Paddling (SUP) & Kayaking" },
+      { "label": "Unique Confluence", "value": "Sultan Battery to Alive Dhook (River Meets Sea)" },
+      { "label": "Birdwatching Season", "value": "November to February (Brahminy kites, Kingfishers, Herons)" }
+    ],
+    "sections": [
+      {
+        "id": "gurupura-sultan-battery",
+        "title": "1. Sultan Battery & The Gurupura Riverfront",
+        "paragraphs": [
+          "Built in 1784 by Tipu Sultan as a miniature black-stone naval watchtower, Sultan Battery guards the Gurupura River mouth. Today, it serves as the launching point for government passenger ferries and evening sunset boat rides.",
+          "The boat ride takes you along the serene riverbanks lined with rustic boat-building yards (uru builders), local fishing canoes casting cast-nets, and dense clusters of green mangroves."
+        ],
+        "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+        "imageCaption": "Traditional wooden boats anchored along calm coastal backwaters",
+        "proTip": "Climb up the stone steps of Sultan Battery watchtower at 5:30 PM for a serene view of the river waters turning golden amber in the sunset.",
+        "bulletPoints": [
+          "Sultan Battery watchtower: Free entry, great photographic backdrop",
+          "Ferry to Tannirbhavi: Runs every 15 minutes until dusk",
+          "Scenic waterfront walkways with fresh coconut stalls"
+        ]
+      },
+      {
+        "id": "mulki-mangrove-kayaking",
+        "title": "2. Shambhavi River & Mangrove Kayaking in Mulki",
+        "paragraphs": [
+          "Just 28 km north of Mangalore, the Shambhavi River flows through an untouched labyrinth of dense mangrove tunnels, tiny river islands, and coconut groves. It is one of the cleanest river systems in southern India.",
+          "Paddlers of all skill levels can take guided sea kayaking tours through shaded green canopy tunnels where kingfishers dart across the water and otters occasionally surface."
+        ],
+        "proTip": "Book the 6:00 AM dawn kayaking session when river waters are glass-calm and the forest air is refreshingly cool.",
+        "bulletPoints": [
+          "No prior kayaking experience needed; lifejackets and guides provided",
+          "Visit secluded river sandbars accessible only by paddle",
+          "Delicious local home-cooked breakfast included at most surf schools"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is river boating available year-round?",
+        "answer": "Yes! Unlike rough sea sports, river boating and mangrove kayaking continue throughout most of the year (with short safety breaks only during extreme monsoon river swells)."
+      },
+      {
+        "question": "Are there houseboats in Mangalore like Kerala?",
+        "answer": "There are occasional private luxury day-cruises and motorboats operating near Bengre estuary and Gurupura river, providing serene 2 to 3 hour leisure sails."
+      }
+    ],
+    "relatedSlugs": [
+      "top-10-beautiful-beaches-in-mangalore",
+      "mangalore-travel-guide-for-first-time-visitors",
+      "festivals-of-mangalore-you-should-experience"
+    ]
+  }
+}

@@ -41,7 +41,7 @@ export default function Footer() {
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
     { name: "Submit a Business", href: "#submit-business" },
-    { name: "Blog", href: "#blog" },
+    { name: "Blog", href: "/blog" },
     { name: "Advertise With Us", href: "#advertise" },
     { name: "Privacy Policy", href: "#privacy" },
   ];

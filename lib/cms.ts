@@ -831,3 +831,147 @@ export interface GuidesData {
   listingCatalog: GuidesListingCatalogData;
   articlesSection?: GuidesArticlesSectionData;
 }
+
+export interface BlogSectionItem {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  image?: string;
+  imageCaption?: string;
+  proTip?: string;
+  bulletPoints?: string[];
+}
+
+export interface BlogAuthor {
+  name: string;
+  role: string;
+  avatar: string;
+  bio: string;
+}
+
+export interface BlogKeyFact {
+  label: string;
+  value: string;
+}
+
+export interface BlogFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface BlogDetailData {
+  slug: string;
+  title: string;
+  subtitle?: string;
+  category: string;
+  categoryLabel: string;
+  categoryIcon: string;
+  date: string;
+  readingTime: string;
+  heroImage: string;
+  heroImageCaption?: string;
+  intro: string;
+  author: BlogAuthor;
+  tags: string[];
+  keyFacts: BlogKeyFact[];
+  sections: BlogSectionItem[];
+  faqs: BlogFaqItem[];
+  relatedSlugs: string[];
+}
+
+export function getDefaultBlogDetail(slug: string, article?: Partial<GuideArticleItem>): BlogDetailData {
+  const title = article?.title || slug.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+  const category = article?.category || "tips";
+  const categoryLabel = article?.categoryLabel || "Travel Tips";
+  const categoryIcon = article?.categoryIcon || "tips";
+  const heroImage = article?.image || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80";
+  const date = article?.date || "October 2025";
+  const excerpt = article?.excerpt || "Discover the best experiences, hidden spots and authentic culture of Mangalore with our comprehensive travel guide.";
+
+  return {
+    slug,
+    title,
+    subtitle: `An in-depth traveler's guide to discovering ${title.toLowerCase()} in coastal Karnataka.`,
+    category,
+    categoryLabel,
+    categoryIcon,
+    date,
+    readingTime: "5 min read",
+    heroImage,
+    heroImageCaption: `${title} - Beautiful coastal wonders of Mangalore`,
+    intro: excerpt,
+    author: {
+      name: "Mangalore Travel Editorial",
+      role: "Certified Local Travel Curators",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      bio: "Our local editorial team consists of coastal Karnataka natives, food writers, and cultural historians passionate about sharing the authentic soul of Kudla."
+    },
+    tags: ["Mangalore", "Travel Guide", "Coastal Karnataka", "Tourism", categoryLabel],
+    keyFacts: [
+      { label: "Best Time to Visit", value: "October to March (Pleasant coastal breezes)" },
+      { label: "Suggested Duration", value: "Half Day to Full Day" },
+      { label: "Primary Category", value: categoryLabel },
+      { label: "Local Transport", value: "Auto rickshaw, City buses & Taxis" }
+    ],
+    sections: [
+      {
+        id: "section-overview",
+        title: "1. Overview & Cultural Significance",
+        paragraphs: [
+          `Mangalore (Kudla in Tulu) is renowned for its harmonious blend of pristine Arabian Sea coastlines, historic Dravidian and Portuguese-era architecture, and an unforgettable culinary legacy.`,
+          `Whether you are a solo backpacker, a family on holiday, or a food connoisseur, this guide helps you navigate the highlights with firsthand local insights.`
+        ],
+        proTip: "Start your exploration early in the morning around 7:00 AM to avoid the coastal midday sun and witness local life at its most vibrant.",
+        bulletPoints: [
+          "Breathtaking vistas and photo opportunities",
+          "Clean and accessible public facilities nearby",
+          "Rich cultural heritage deeply tied to coastal Karnataka traditions"
+        ]
+      },
+      {
+        id: "section-what-to-expect",
+        title: "2. What to Expect & Top Experiences",
+        paragraphs: [
+          `Visitors can immerse themselves in the genuine warmth of coastal hospitality. The atmosphere is relaxed yet bustling with color, aromas of roasting coastal spices, and soothing sea breezes.`,
+          `Make sure to converse with local vendors and artisans to uncover stories that travel brochures often overlook.`
+        ],
+        image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1000&q=80",
+        imageCaption: "Scenic beauty and tranquil waterways of coastal Mangalore",
+        bulletPoints: [
+          "Try authentic coastal snacks and fresh coconut water on the way",
+          "Carry a light cotton wardrobe, sunglasses, and comfortable walking footwear",
+          "Photography is permitted in most outdoor areas; always check local guidelines"
+        ]
+      },
+      {
+        id: "section-practical-tips",
+        title: "3. Practical Tips & How to Reach",
+        paragraphs: [
+          `Reaching here is straightforward from Mangalore Central or Mangalore Junction railway stations, as well as the Mangalore International Airport (IXE) located at Bajpe.`,
+          `City buses operate with high frequency, and prepaid auto-rickshaws are metered, reliable, and courteous.`
+        ],
+        proTip: "Keep some local currency cash handy for small vendors, tender coconut stalls, and local transport, although UPI is widely accepted."
+      }
+    ],
+    faqs: [
+      {
+        question: "What is the best time of day to visit?",
+        answer: "Early mornings (7:00 AM - 10:00 AM) and late afternoons (4:30 PM - 7:00 PM) offer the most comfortable temperatures and gorgeous natural lighting."
+      },
+      {
+        question: "Is it suitable for families and seniors?",
+        answer: "Yes, this experience is family-friendly with good accessibility, comfortable walking paths, and plenty of shaded resting spots."
+      },
+      {
+        question: "Are guide services recommended?",
+        answer: "Hiring a certified local guide from Mangalore Tours enriches your visit with historical context, folklore stories, and insider food recommendations."
+      }
+    ],
+    relatedSlugs: [
+      "top-10-beautiful-beaches-in-mangalore",
+      "must-try-mangalore-seafood-dishes",
+      "famous-temples-in-mangalore"
+    ]
+  };
+}
+
