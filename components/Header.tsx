@@ -29,7 +29,7 @@ export default function Header() {
     { name: "Blog", href: "/#guides", active: false },
     { name: "Gallery", href: "/#gallery", active: false },
     { name: "About", href: "/#about", active: false },
-    { name: "Contact", href: "/#contact", active: false },
+    { name: "Contact", href: "/contact", active: pathname === "/contact" },
   ];
 
   return (

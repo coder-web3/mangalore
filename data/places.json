@@ -136,72 +136,72 @@
     "quickFacts": [
       {
         "label": "Entry Fee",
-        "value": "Free Entry"
+        "value": "Generally Free"
       },
       {
         "label": "Timings",
-        "value": "Open 24 Hours (Best till 8 PM)"
+        "value": "Best visited during daylight hours"
       },
       {
         "label": "Lifeguard Support",
-        "value": "Available on site"
+        "value": "Availability may vary"
       },
       {
         "label": "Distance from City",
-        "value": "10 km (approx. 20 mins)"
+        "value": "Approx. 10–12 km from Mangalore city centre"
       },
       {
         "label": "Nearest Airport",
-        "value": "Mangaluru Intl Airport (IXE) - 15 km"
+        "value": "Mangaluru International Airport (IXE)"
       },
       {
         "label": "Ideal Visit Duration",
-        "value": "2 to 3 Hours"
+        "value": "1–2 Hours"
       }
     ],
     "gallery": [
       {
         "id": "1",
-        "image": "/panambur.avif",
+        "image": "/uploads/1791866333238-new1.png",
         "caption": "Panambur Beach Golden Coast",
-        "tag": "Sunset & Waves"
+        "tag": "Golden Sands"
       },
       {
         "id": "2",
-        "image": "/ref-card-panambur.jpg",
-        "caption": "Panambur Beach Waves & Lifeguards",
+        "image": "/uploads/1791866351654-new2.png",
+        "caption": "Panambur Beach Waves & Shoreline",
         "tag": "Coastline"
       },
       {
         "id": "3",
-        "image": "/panambur-sunset-scenery.jpg",
+        "image": "/uploads/1791866429833-new3.png",
         "caption": "Panambur Beach Spectacular Sunset",
-        "tag": "Sunset"
+        "tag": "Sunset Views"
       }
     ],
     "thingsToDo": [
       {
         "id": "1",
         "title": "Water Sports",
-        "description": "Jet skis, speedboats, banana rides and parasailing.",
+        "description": "Enjoy jet skiing, speedboat rides and exciting beach activities.",
         "icon": "waves"
       },
       {
         "id": "2",
         "title": "Sunset Walks",
-        "description": "Stroll along golden beaches watching ships enter the port.",
+        "description": "Stroll along golden sands and enjoy beautiful Arabian Sea sunsets.",
         "icon": "sun"
       },
       {
         "id": "3",
         "title": "Camel & ATV Rides",
-        "description": "Fun beach rides enjoyable for families and kids.",
+        "description": "Explore seasonal beach rides and family-friendly activities.",
         "icon": "car"
       },
       {
         "id": "4",
         "title": "Kite Flying",
-        "description": "Breezy coastal winds ideal for flying vibrant kites.",
+        "description": "Fly colorful kites and enjoy the refreshing coastal breeze.",
         "icon": "sparkles"
       }
     ]
@@ -235,72 +235,72 @@
       "quickFacts": [
         {
           "label": "Entry Fee",
-          "value": "Free Entry"
+          "value": "Generally Free"
         },
         {
           "label": "Timings",
-          "value": "Open 24 Hours (Best till 8 PM)"
+          "value": "Best visited during daylight hours"
         },
         {
           "label": "Lifeguard Support",
-          "value": "Available on site"
+          "value": "Availability may vary"
         },
         {
           "label": "Distance from City",
-          "value": "10 km (approx. 20 mins)"
+          "value": "Approx. 10–12 km from Mangalore city centre"
         },
         {
           "label": "Nearest Airport",
-          "value": "Mangaluru Intl Airport (IXE) - 15 km"
+          "value": "Mangaluru International Airport (IXE)"
         },
         {
           "label": "Ideal Visit Duration",
-          "value": "2 to 3 Hours"
+          "value": "1–2 Hours"
         }
       ],
       "gallery": [
         {
           "id": "1",
-          "image": "/panambur.avif",
+          "image": "/uploads/1791866333238-new1.png",
           "caption": "Panambur Beach Golden Coast",
-          "tag": "Sunset & Waves"
+          "tag": "Golden Sands"
         },
         {
           "id": "2",
-          "image": "/ref-card-panambur.jpg",
-          "caption": "Panambur Beach Waves & Lifeguards",
+          "image": "/uploads/1791866351654-new2.png",
+          "caption": "Panambur Beach Waves & Shoreline",
           "tag": "Coastline"
         },
         {
           "id": "3",
-          "image": "/panambur-sunset-scenery.jpg",
+          "image": "/uploads/1791866429833-new3.png",
           "caption": "Panambur Beach Spectacular Sunset",
-          "tag": "Sunset"
+          "tag": "Sunset Views"
         }
       ],
       "thingsToDo": [
         {
           "id": "1",
           "title": "Water Sports",
-          "description": "Jet skis, speedboats, banana rides and parasailing.",
+          "description": "Enjoy jet skiing, speedboat rides and exciting beach activities.",
           "icon": "waves"
         },
         {
           "id": "2",
           "title": "Sunset Walks",
-          "description": "Stroll along golden beaches watching ships enter the port.",
+          "description": "Stroll along golden sands and enjoy beautiful Arabian Sea sunsets.",
           "icon": "sun"
         },
         {
           "id": "3",
           "title": "Camel & ATV Rides",
-          "description": "Fun beach rides enjoyable for families and kids.",
+          "description": "Explore seasonal beach rides and family-friendly activities.",
           "icon": "car"
         },
         {
           "id": "4",
           "title": "Kite Flying",
-          "description": "Breezy coastal winds ideal for flying vibrant kites.",
+          "description": "Fly colorful kites and enjoy the refreshing coastal breeze.",
           "icon": "sparkles"
         }
       ]
