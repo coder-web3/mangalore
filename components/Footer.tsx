@@ -19,12 +19,12 @@ export default function Footer() {
   };
 
   const exploreLinks = [
-    { name: "Places", href: "#places" },
-    { name: "Food & Dining", href: "#food" },
-    { name: "Things to Do", href: "#activities" },
-    { name: "Events", href: "#events" },
-    { name: "Local Businesses", href: "#businesses" },
-    { name: "Guides", href: "#guides" },
+    { name: "Places to Visit", href: "/places-to-visit" },
+    { name: "Famous Tourist Places", href: "/famous-tourist-places" },
+    { name: "Food & Dining", href: "/#food" },
+    { name: "Things to Do", href: "/places-to-visit" },
+    { name: "Events", href: "/#events" },
+    { name: "Gallery", href: "/#gallery" },
   ];
 
   const popularLinks = [

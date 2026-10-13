@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import {
   getHomepageData,
   getPlacesData,
+  getFamousPlacesData,
   getAboutData,
   getContactData,
 } from "@/lib/cms-server";
@@ -18,17 +19,20 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
-  const [homepageData, placesData, aboutData, contactData] = await Promise.all([
-    getHomepageData(),
-    getPlacesData(),
-    getAboutData(),
-    getContactData(),
-  ]);
+  const [homepageData, placesData, famousPlacesData, aboutData, contactData] =
+    await Promise.all([
+      getHomepageData(),
+      getPlacesData(),
+      getFamousPlacesData(),
+      getAboutData(),
+      getContactData(),
+    ]);
 
   return (
     <AdminClient
       initialHomepageData={homepageData}
       initialPlacesData={placesData}
+      initialFamousPlacesData={famousPlacesData}
       initialAboutData={aboutData}
       initialContactData={contactData}
     />

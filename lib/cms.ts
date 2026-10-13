@@ -349,6 +349,8 @@ export interface PlacesData {
   placeDetails: Record<string, PanamburDetailData>;
 }
 
+export type FamousPlacesData = PlacesData;
+
 export function getDefaultPlaceDetail(place: {
   name: string;
   categoryLabel?: string;

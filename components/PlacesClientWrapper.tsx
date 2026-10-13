@@ -7,10 +7,12 @@ import { PlacesData } from "@/lib/cms";
 
 interface PlacesClientWrapperProps {
   placesData: PlacesData;
+  breadcrumbLabel?: string;
 }
 
 export default function PlacesClientWrapper({
   placesData,
+  breadcrumbLabel,
 }: PlacesClientWrapperProps) {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -21,6 +23,7 @@ export default function PlacesClientWrapper({
         activeTab={selectedCategory}
         onSelectTab={(cat) => setSelectedCategory(cat)}
         heroData={placesData.listingHero}
+        breadcrumbLabel={breadcrumbLabel}
       />
 
       {/* Popular Tourist Places in Mangalore Section matching design */}

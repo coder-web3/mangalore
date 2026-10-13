@@ -61,12 +61,14 @@ interface PlacesHeroSectionProps {
   activeTab?: string;
   onSelectTab?: (tabId: string) => void;
   heroData?: ListingHeroData;
+  breadcrumbLabel?: string;
 }
 
 export default function PlacesHeroSection({
   activeTab = "all",
   onSelectTab,
   heroData,
+  breadcrumbLabel = "Places to Visit",
 }: PlacesHeroSectionProps) {
   const [internalTab, setInternalTab] = useState("all");
   const [selectedImage, setSelectedImage] = useState<{
@@ -154,7 +156,7 @@ export default function PlacesHeroSection({
                   Home
                 </Link>
                 <ChevronRight className="h-3.5 w-3.5 text-white/50" />
-                <span className="text-white font-semibold">Places to Visit</span>
+                <span className="text-white font-semibold">{breadcrumbLabel}</span>
               </nav>
 
               {/* Eyebrow / Tagline */}

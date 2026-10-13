@@ -4,6 +4,7 @@ import { HomepageData, PlacesData, AboutData, ContactData } from "@/lib/cms";
 
 const dataFilePath = path.join(process.cwd(), "data", "homepage.json");
 const placesFilePath = path.join(process.cwd(), "data", "places.json");
+const famousPlacesFilePath = path.join(process.cwd(), "data", "famous-places.json");
 const aboutFilePath = path.join(process.cwd(), "data", "about.json");
 const contactFilePath = path.join(process.cwd(), "data", "contact.json");
 
@@ -99,6 +100,25 @@ export async function getPlacesData(): Promise<PlacesData> {
 
 export async function savePlacesData(data: PlacesData): Promise<void> {
   await fs.writeFile(placesFilePath, JSON.stringify(data, null, 2), "utf8");
+}
+
+export async function getFamousPlacesData(): Promise<PlacesData> {
+  try {
+    const raw = await fs.readFile(famousPlacesFilePath, "utf8");
+    const parsed = JSON.parse(raw) as PlacesData;
+    // Ensure placeDetails exists
+    if (!parsed.placeDetails) {
+      parsed.placeDetails = {};
+    }
+    return parsed;
+  } catch (error) {
+    console.error("Error reading famous places data:", error);
+    return getPlacesData();
+  }
+}
+
+export async function saveFamousPlacesData(data: PlacesData): Promise<void> {
+  await fs.writeFile(famousPlacesFilePath, JSON.stringify(data, null, 2), "utf8");
 }
 
 export async function getAboutData(): Promise<AboutData> {

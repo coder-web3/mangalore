@@ -24,9 +24,9 @@ export default function Header() {
   const navLinks = [
     { name: "Home", href: "/", active: pathname === "/" },
     { name: "Places to Visit", href: "/places-to-visit", active: pathname === "/places-to-visit" },
+    { name: "Famous Places", href: "/famous-tourist-places", active: pathname === "/famous-tourist-places" },
     { name: "Tours", href: "/#tour-enquiry", active: false },
     { name: "Experiences", href: "/#destinations", active: false },
-    { name: "Blog", href: "/#guides", active: false },
     { name: "Gallery", href: "/#gallery", active: false },
     { name: "About", href: "/about", active: pathname === "/about" },
     { name: "Contact", href: "/contact", active: pathname === "/contact" },

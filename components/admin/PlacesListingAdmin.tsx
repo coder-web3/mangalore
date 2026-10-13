@@ -23,6 +23,8 @@ interface PlacesListingAdminProps {
   onEditDetailPage?: (slug: string) => void;
   activeSubTab?: "hero" | "cards";
   onSubTabChange?: (tab: "hero" | "cards") => void;
+  title?: string;
+  description?: string;
 }
 
 export default function PlacesListingAdmin({
@@ -31,6 +33,8 @@ export default function PlacesListingAdmin({
   onEditDetailPage,
   activeSubTab,
   onSubTabChange,
+  title,
+  description,
 }: PlacesListingAdminProps) {
   const [internalSubTab, setInternalSubTab] = useState<"hero" | "cards">("hero");
 
@@ -151,10 +155,10 @@ export default function PlacesListingAdmin({
         <div>
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <Compass className="h-5 w-5 text-orange-500" />
-            Places to Visit — Listing Page
+            {title || "Places to Visit — Listing Page"}
           </h2>
           <p className="text-xs text-slate-400 mt-0.5">
-            Manage the hero banner, polaroid tilt cards, and tourist destination catalog cards.
+            {description || "Manage the hero banner, polaroid tilt cards, and tourist destination catalog cards."}
           </p>
         </div>
 

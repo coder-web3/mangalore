@@ -1,0 +1,137 @@
+{
+  "listingHero": {
+    "badge": "ICONIC SIGHTS • HISTORIC GEMS",
+    "titleLine1": "Famous Tourist Places in",
+    "titleHighlight": "Mangalore",
+    "description": "Discover the most celebrated landmarks, historic temples, sun-kissed coasts, and scenic backwaters that make Mangalore a world-renowned destination.",
+    "backdropImage": "/places-backdrop-clean-right.jpg",
+    "galleryCards": [
+      {
+        "id": "famous-panambur",
+        "title": "Panambur Beach Coast",
+        "subtitle": "Arabian Sea • Mangalore",
+        "image": "/uploads/1791865355543-backwaters_1200x800.jpg",
+        "link": "/places-to-visit/panambur-beach"
+      },
+      {
+        "id": "famous-kudroli",
+        "title": "Kudroli Gokarnanatha Temple",
+        "subtitle": "Golden Heritage • Kudroli",
+        "image": "/uploads/1791865359374-temple_1200x800.jpg",
+        "link": "/places-to-visit/kudroli-gokarnanatha-temple"
+      }
+    ]
+  },
+  "listingCatalog": {
+    "tag": "MANGALORE TRAVEL GUIDE",
+    "title": "Famous Tourist Places in",
+    "titleHighlight": "Mangalore",
+    "description": "Explore the most famous and must-visit attractions in and around Mangalore with practical travel timings, location info, and visitor ratings.",
+    "places": [
+      {
+        "id": "famous-panambur",
+        "name": "Panambur Beach",
+        "slug": "panambur-beach",
+        "category": "beaches",
+        "categoryLabel": "Beaches",
+        "categoryIcon": "beach",
+        "description": "Mangalore's most visited beach with pristine golden sand, safe swimming zones, water sports, and magnificent twilight sunsets.",
+        "image": "/ref-card-panambur.jpg",
+        "location": "10 km from Mangalore City",
+        "rating": "4.9",
+        "timings": "Open 24 Hours (Best 6 AM - 8 PM)"
+      },
+      {
+        "id": "famous-kudroli",
+        "name": "Kudroli Gokarnanatha Temple",
+        "slug": "kudroli-gokarnanatha-temple",
+        "category": "temples",
+        "categoryLabel": "Temples",
+        "categoryIcon": "temple",
+        "description": "World-famous spiritual landmark consecrated by Sri Narayana Guru, renowned for its glittering gold gopuram and grand Mangalore Dasara.",
+        "image": "/kudroli.avif",
+        "location": "Kudroli, Central Mangalore",
+        "rating": "4.9",
+        "timings": "6:00 AM - 1:00 PM, 4:00 PM - 8:30 PM"
+      },
+      {
+        "id": "famous-kadri",
+        "name": "Kadri Manjunath Temple",
+        "slug": "kadri-manjunath-temple",
+        "category": "temples",
+        "categoryLabel": "Temples",
+        "categoryIcon": "temple",
+        "description": "Historic 10th-century shrine atop Kadri hill featuring ancient bronze Lokeshwara statue and natural mountain spring water ponds.",
+        "image": "/ref-card-kadri.jpg",
+        "location": "Kadri Hills, Mangalore",
+        "rating": "4.8",
+        "timings": "6:00 AM - 1:00 PM, 4:00 PM - 8:30 PM"
+      },
+      {
+        "id": "famous-tannirbhavi",
+        "name": "Tannirbhavi Beach & Tree Park",
+        "slug": "tannirbhavi-beach",
+        "category": "beaches",
+        "categoryLabel": "Beaches",
+        "categoryIcon": "beach",
+        "description": "Tranquil shoreline bordered by lush coastal pine woods, reached by scenic Gurupura river boat ferry or coastal road.",
+        "image": "/ref-card-tannirbhavi.jpg",
+        "location": "12 km from Mangalore City",
+        "rating": "4.7",
+        "timings": "6:00 AM - 7:30 PM"
+      },
+      {
+        "id": "famous-sultan-battery",
+        "name": "Sultan Battery Watchtower",
+        "slug": "sultan-battery",
+        "category": "cultural",
+        "categoryLabel": "Cultural",
+        "categoryIcon": "temple",
+        "description": "Black stone mini-fortress built by Tipu Sultan in 1784 guarding the river mouth, offering sweeping panoramic backwater vistas.",
+        "image": "/sulthan.avif",
+        "location": "Boloor, 4 km from City Centre",
+        "rating": "4.6",
+        "timings": "9:00 AM - 7:00 PM"
+      },
+      {
+        "id": "famous-pilikula",
+        "name": "Pilikula Nisargadhama",
+        "slug": "pilikula-nisargadhama",
+        "category": "nature",
+        "categoryLabel": "Nature",
+        "categoryIcon": "hill",
+        "description": "Premier eco-tourism sanctuary encompassing a biological wildlife safari, artisan heritage village, planetarium, and botanical gardens.",
+        "image": "/pilikula.avif",
+        "location": "Moodushedde, 12 km from City",
+        "rating": "4.8",
+        "timings": "10:00 AM - 5:30 PM (Closed Mondays)"
+      },
+      {
+        "id": "famous-someshwar",
+        "name": "Someshwar Beach & Rudra Shila",
+        "slug": "someshwar-beach",
+        "category": "beaches",
+        "categoryLabel": "Beaches",
+        "categoryIcon": "beach",
+        "description": "Dramatic coastal seascape marked by massive ancient black rocks called Rudra Shila overlooking crashing Arabian Sea waves.",
+        "image": "/someshwar.avif",
+        "location": "Ullal, 9 km South of Mangalore",
+        "rating": "4.7",
+        "timings": "6:00 AM - 7:00 PM"
+      },
+      {
+        "id": "famous-lighthouse",
+        "name": "Light House Hill & Tagor Park",
+        "slug": "light-house-hill",
+        "category": "hills",
+        "categoryLabel": "Viewpoints",
+        "categoryIcon": "viewpoint",
+        "description": "18th-century maritime lighthouse on a panoramic ridge offering sea breezes, shaded garden trails, and bird-eye harbor outlooks.",
+        "image": "/ref-card-lighthouse.jpg",
+        "location": "Hampankatta, Central Mangalore",
+        "rating": "4.5",
+        "timings": "6:00 AM - 8:30 PM"
+      }
+    ]
+  }
+}

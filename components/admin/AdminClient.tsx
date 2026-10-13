@@ -46,21 +46,30 @@ import ContactAdmin from "@/components/admin/ContactAdmin";
 interface AdminClientProps {
   initialHomepageData: HomepageData;
   initialPlacesData: PlacesData;
+  initialFamousPlacesData: PlacesData;
   initialAboutData: AboutData;
   initialContactData: ContactData;
 }
 
-export type AdminSection = "homepage" | "places" | "detail" | "about" | "contact";
+export type AdminSection =
+  | "homepage"
+  | "places"
+  | "famousPlaces"
+  | "detail"
+  | "about"
+  | "contact";
 
 export default function AdminClient({
   initialHomepageData,
   initialPlacesData,
+  initialFamousPlacesData,
   initialAboutData,
   initialContactData,
 }: AdminClientProps) {
   // CMS Data States
   const [data, setData] = useState<HomepageData>(initialHomepageData);
   const [placesData, setPlacesData] = useState<PlacesData>(initialPlacesData);
+  const [famousPlacesData, setFamousPlacesData] = useState<PlacesData>(initialFamousPlacesData);
   const [aboutData, setAboutData] = useState<AboutData>(initialAboutData);
   const [contactData, setContactData] = useState<ContactData>(initialContactData);
 
@@ -82,6 +91,7 @@ export default function AdminClient({
   // Subtab synchronization
   const [homepageTab, setHomepageTab] = useState<HomepageTab>("hero");
   const [placesTab, setPlacesTab] = useState<"hero" | "cards">("hero");
+  const [famousPlacesTab, setFamousPlacesTab] = useState<"hero" | "cards">("hero");
   const [aboutSubTab, setAboutSubTab] = useState<
     "hero" | "story" | "different" | "vision" | "team"
   >("hero");
@@ -97,6 +107,7 @@ export default function AdminClient({
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({
     homepage: true,
     places: true,
+    famousPlaces: true,
     detail: false,
     about: true,
     contact: true,
@@ -137,7 +148,7 @@ export default function AdminClient({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeSection, data, placesData, aboutData, contactData]);
+  }, [activeSection, data, placesData, famousPlacesData, aboutData, contactData]);
 
   const placesList = placesData.listingCatalog?.places || [];
 
@@ -145,6 +156,8 @@ export default function AdminClient({
     switch (activeSection) {
       case "places":
         return "/places-to-visit";
+      case "famousPlaces":
+        return "/famous-tourist-places";
       case "detail":
         return `/places-to-visit/${selectedDetailSlug}`;
       case "about":
@@ -160,6 +173,8 @@ export default function AdminClient({
     switch (activeSection) {
       case "places":
         return "Places to Visit Listing";
+      case "famousPlaces":
+        return "Famous Tourist Places";
       case "detail": {
         const place = placesList.find((p) => p.slug === selectedDetailSlug);
         return place ? `${place.name} Detail Page` : "Place Detail Pages";
@@ -177,6 +192,8 @@ export default function AdminClient({
     switch (activeSection) {
       case "places":
         return "Manage page hero, polaroid photos, badges, search tags and destination cards.";
+      case "famousPlaces":
+        return "Manage hero banner, polaroid showcase, and famous tourist destination catalog cards.";
       case "detail":
         return "Customize overview story, facts, gallery photos and things to do for this destination.";
       case "about":
@@ -202,6 +219,17 @@ export default function AdminClient({
         setMessage({
           type: "success",
           text: "Homepage changes & device images saved and published live!",
+        });
+      } else if (activeSection === "famousPlaces") {
+        const res = await fetch("/api/admin/famous-places", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(famousPlacesData),
+        });
+        if (!res.ok) throw new Error("Failed to save famous places");
+        setMessage({
+          type: "success",
+          text: "Famous Tourist Places listing & cards saved and published live!",
         });
       } else if (activeSection === "about") {
         const res = await fetch("/api/admin/about", {
@@ -547,7 +575,7 @@ export default function AdminClient({
                 )}
               </div>
 
-              {/* 2. PLACES LISTING */}
+                {/* 2. PLACES LISTING */}
               <div className="space-y-1">
                 <button
                   type="button"
@@ -571,9 +599,25 @@ export default function AdminClient({
                     )}
                   </div>
                   {!isSidebarCollapsed && (
-                    <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                      8 Cards
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        {placesData?.listingCatalog?.places?.length || 8} Cards
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubmenu("places");
+                        }}
+                        className="p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/10"
+                      >
+                        {expandedMenus.places ? (
+                          <ChevronUp className="h-3 w-3" />
+                        ) : (
+                          <ChevronDown className="h-3 w-3" />
+                        )}
+                      </button>
+                    </div>
                   )}
                 </button>
 
@@ -593,6 +637,79 @@ export default function AdminClient({
                         }}
                         className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
                           activeSection === "places" && placesTab === item.id
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 3. FAMOUS TOURIST PLACES LISTING */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("famousPlaces");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "famousPlaces"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Famous Tourist Places Listing"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Sparkles className="h-4 w-4 shrink-0 text-amber-500" />
+                    {!isSidebarCollapsed && (
+                      <span className="truncate">Famous Tourist Places</span>
+                    )}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-amber-500/15 text-amber-600 dark:text-amber-400 font-bold">
+                        {famousPlacesData?.listingCatalog?.places?.length || 8} Cards
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubmenu("famousPlaces");
+                        }}
+                        className="p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/10"
+                      >
+                        {expandedMenus.famousPlaces ? (
+                          <ChevronUp className="h-3 w-3" />
+                        ) : (
+                          <ChevronDown className="h-3 w-3" />
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </button>
+
+                {!isSidebarCollapsed && expandedMenus.famousPlaces && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5">
+                    {[
+                      { id: "hero", label: "Hero & Polaroids" },
+                      { id: "cards", label: "Famous Places Cards" },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("famousPlaces");
+                          setFamousPlacesTab(item.id as "hero" | "cards");
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
+                          activeSection === "famousPlaces" && famousPlacesTab === item.id
                             ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
                             : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         }`}
@@ -927,6 +1044,23 @@ export default function AdminClient({
                 onChange={setPlacesData}
                 activeSubTab={placesTab}
                 onSubTabChange={setPlacesTab}
+                title="Places to Visit — Listing Page"
+                description="Manage the hero banner, polaroid tilt cards, and places catalog cards for /places-to-visit."
+                onEditDetailPage={(slug) => {
+                  setSelectedDetailSlug(slug);
+                  setActiveSection("detail");
+                }}
+              />
+            )}
+
+            {activeSection === "famousPlaces" && (
+              <PlacesListingAdmin
+                data={famousPlacesData}
+                onChange={setFamousPlacesData}
+                activeSubTab={famousPlacesTab}
+                onSubTabChange={setFamousPlacesTab}
+                title="Famous Tourist Places — Listing Page"
+                description="Manage the hero banner, polaroid tilt cards, and famous tourist destination catalog cards for /famous-tourist-places."
                 onEditDetailPage={(slug) => {
                   setSelectedDetailSlug(slug);
                   setActiveSection("detail");

@@ -409,7 +409,7 @@
         "titleHighlight": "Temple",
         "category": "Temples",
         "description": "A peaceful coastal escape in Mangaluru, Thannirbhavi Beach is known for its golden sands, Arabian Sea views, gentle waves, and beautiful sunsets.",
-        "backdropImage": "/ref-card-kadri.jpg",
+        "backdropImage": "/uploads/1791872433751-kadri-12.heif",
         "location": "Kadri, Mangalore",
         "bestTime": "October to March",
         "popularFor": "Golden Sunsets & Coastal Views",
@@ -457,46 +457,46 @@
       "gallery": [
         {
           "id": "1",
-          "image": "/ref-card-kadri.jpg",
-          "caption": "Kadri Temple Sanctum & Courtyard",
+          "image": "/uploads/1791872341791-kadri-12.heif",
+          "caption": "Historic Kadri Manjunath Temple Exterior",
           "tag": "Temple"
         },
         {
           "id": "2",
-          "image": "/kadri.avif",
-          "caption": "Ancient Stone Architecture of Kadri",
+          "image": "/uploads/1791872392944-kadri13.heif",
+          "caption": "Traditional Architecture of Kadri Temple",
           "tag": "Architecture"
         },
         {
           "id": "3",
-          "image": "/milagrees.avif",
-          "caption": "Sacred Ponds & Kadri Hills Backdrop",
+          "image": "/uploads/1791872362247-kadri14.heif",
+          "caption": "Sacred Water Ponds at Kadri Temple",
           "tag": "Heritage"
         }
       ],
       "thingsToDo": [
         {
           "id": "1",
-          "title": "Gomukha Holy Bath",
-          "description": "Wash in the natural mountain spring waters streaming through Gomukha.",
+          "title": "Explore the Sacred Gomukha Ponds",
+          "description": "Discover the sacred water ponds and traditional Gomukha water sources within the temple complex.",
           "icon": "waves"
         },
         {
           "id": "2",
-          "title": "Darshan of Bronze Lokeshwara",
-          "description": "Admire the world-renowned 10th-century bronze sculpture of Lord Manjunatha.",
+          "title": "Darshan of Lord Manjunatha",
+          "description": "Offer prayers to Lord Manjunatha and admire the temple's revered bronze deity and spiritual heritage.",
           "icon": "sparkles"
         },
         {
           "id": "3",
-          "title": "Explore Pandava Caves",
-          "description": "Walk up Kadri hill to visit the prehistoric stone-carved caves.",
+          "title": "Explore Kadri Hill and Pandava Caves",
+          "description": "Enjoy the peaceful green surroundings of Kadri Hill and explore the area's historic cave traditions.",
           "icon": "sun"
         },
         {
           "id": "4",
           "title": "Visit Kadri Hill Park",
-          "description": "Enjoy the musical fountain, animal exhibits, and lush botanical park.",
+          "description": "Relax in the nearby park, enjoy its greenery, and spend time exploring one of Mangaluru's popular outdoor spaces.",
           "icon": "car"
         }
       ]
