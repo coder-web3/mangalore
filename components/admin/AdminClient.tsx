@@ -56,6 +56,7 @@ export type AdminSection =
   | "places"
   | "famousPlaces"
   | "detail"
+  | "famousDetail"
   | "about"
   | "contact";
 
@@ -87,6 +88,7 @@ export default function AdminClient({
   // Navigation State
   const [activeSection, setActiveSection] = useState<AdminSection>("homepage");
   const [selectedDetailSlug, setSelectedDetailSlug] = useState<string>("panambur-beach");
+  const [selectedFamousDetailSlug, setSelectedFamousDetailSlug] = useState<string>("panambur-beach");
 
   // Subtab synchronization
   const [homepageTab, setHomepageTab] = useState<HomepageTab>("hero");
@@ -109,6 +111,7 @@ export default function AdminClient({
     places: true,
     famousPlaces: true,
     detail: false,
+    famousDetail: false,
     about: true,
     contact: true,
   });
@@ -151,6 +154,7 @@ export default function AdminClient({
   }, [activeSection, data, placesData, famousPlacesData, aboutData, contactData]);
 
   const placesList = placesData.listingCatalog?.places || [];
+  const famousPlacesList = famousPlacesData.listingCatalog?.places || [];
 
   const getPublicLink = () => {
     switch (activeSection) {
@@ -160,6 +164,8 @@ export default function AdminClient({
         return "/famous-tourist-places";
       case "detail":
         return `/places-to-visit/${selectedDetailSlug}`;
+      case "famousDetail":
+        return `/famous-tourist-places/${selectedFamousDetailSlug}`;
       case "about":
         return "/about";
       case "contact":
@@ -179,6 +185,10 @@ export default function AdminClient({
         const place = placesList.find((p) => p.slug === selectedDetailSlug);
         return place ? `${place.name} Detail Page` : "Place Detail Pages";
       }
+      case "famousDetail": {
+        const place = famousPlacesList.find((p) => p.slug === selectedFamousDetailSlug);
+        return place ? `${place.name} (Famous Place) Detail Page` : "Famous Place Detail Pages";
+      }
       case "about":
         return "About Us Page";
       case "contact":
@@ -195,7 +205,9 @@ export default function AdminClient({
       case "famousPlaces":
         return "Manage hero banner, polaroid showcase, and famous tourist destination catalog cards.";
       case "detail":
-        return "Customize overview story, facts, gallery photos and things to do for this destination.";
+        return "Customize overview story, facts, gallery photos and things to do for this destination (/places-to-visit).";
+      case "famousDetail":
+        return "Customize dedicated overview story, facts, gallery photos and tips for this famous tourist destination (/famous-tourist-places).";
       case "about":
         return "Edit hero metrics, story collage, difference pillars, vision statement, and team.";
       case "contact":
@@ -220,7 +232,7 @@ export default function AdminClient({
           type: "success",
           text: "Homepage changes & device images saved and published live!",
         });
-      } else if (activeSection === "famousPlaces") {
+      } else if (activeSection === "famousPlaces" || activeSection === "famousDetail") {
         const res = await fetch("/api/admin/famous-places", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -229,7 +241,10 @@ export default function AdminClient({
         if (!res.ok) throw new Error("Failed to save famous places");
         setMessage({
           type: "success",
-          text: "Famous Tourist Places listing & cards saved and published live!",
+          text:
+            activeSection === "famousPlaces"
+              ? "Famous Tourist Places listing & cards saved and published live!"
+              : "Famous Place detail page changes & gallery saved and published live!",
         });
       } else if (activeSection === "about") {
         const res = await fetch("/api/admin/about", {
@@ -736,12 +751,12 @@ export default function AdminClient({
                       ? "text-slate-700 hover:bg-slate-100"
                       : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
                   } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
-                  title="Place Detail Pages"
+                  title="Places to Visit Detail Pages"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <Palmtree className="h-4 w-4 shrink-0" />
                     {!isSidebarCollapsed && (
-                      <span className="truncate">Detail Pages</span>
+                      <span className="truncate">Places Detail Pages</span>
                     )}
                   </div>
                   {!isSidebarCollapsed && (
@@ -762,9 +777,9 @@ export default function AdminClient({
                   )}
                 </button>
 
-                {/* Place Detail Submenu with all 8 places */}
+                {/* Place Detail Submenu with places */}
                 {!isSidebarCollapsed && (expandedMenus.detail || activeSection === "detail") && (
-                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5 max-h-48 overflow-y-auto">
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5 max-h-44 overflow-y-auto">
                     {placesList.map((place) => (
                       <button
                         key={place.id}
@@ -776,6 +791,72 @@ export default function AdminClient({
                         }}
                         className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer truncate ${
                           activeSection === "detail" && selectedDetailSlug === place.slug
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {place.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 4. FAMOUS PLACES DETAIL PAGES */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("famousDetail");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "famousDetail"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Famous Tourist Places Detail Pages"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Sparkles className="h-4 w-4 shrink-0 text-amber-500" />
+                    {!isSidebarCollapsed && (
+                      <span className="truncate">Famous Detail Pages</span>
+                    )}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSubmenu("famousDetail");
+                      }}
+                      className="p-1 rounded-md opacity-70 hover:opacity-100"
+                    >
+                      {expandedMenus.famousDetail ? (
+                        <ChevronUp className="h-3.5 w-3.5" />
+                      ) : (
+                        <ChevronDown className="h-3.5 w-3.5" />
+                      )}
+                    </button>
+                  )}
+                </button>
+
+                {/* Famous Place Detail Submenu with famous places */}
+                {!isSidebarCollapsed && (expandedMenus.famousDetail || activeSection === "famousDetail") && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5 max-h-44 overflow-y-auto">
+                    {famousPlacesList.map((place) => (
+                      <button
+                        key={place.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("famousDetail");
+                          setSelectedFamousDetailSlug(place.slug || "panambur-beach");
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer truncate ${
+                          activeSection === "famousDetail" && selectedFamousDetailSlug === place.slug
                             ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
                             : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         }`}
@@ -1061,9 +1142,10 @@ export default function AdminClient({
                 onSubTabChange={setFamousPlacesTab}
                 title="Famous Tourist Places — Listing Page"
                 description="Manage the hero banner, polaroid tilt cards, and famous tourist destination catalog cards for /famous-tourist-places."
+                basePath="/famous-tourist-places"
                 onEditDetailPage={(slug) => {
-                  setSelectedDetailSlug(slug);
-                  setActiveSection("detail");
+                  setSelectedFamousDetailSlug(slug);
+                  setActiveSection("famousDetail");
                 }}
               />
             )}
@@ -1074,6 +1156,21 @@ export default function AdminClient({
                 onChange={setPlacesData}
                 selectedSlug={selectedDetailSlug}
                 onSelectSlug={setSelectedDetailSlug}
+                title="Places to Visit — Detail Page Editor"
+                description="Customize overview story, facts, gallery photos and things to do for this destination (/places-to-visit)."
+                basePath="/places-to-visit"
+              />
+            )}
+
+            {activeSection === "famousDetail" && (
+              <PlaceDetailAdmin
+                data={famousPlacesData}
+                onChange={setFamousPlacesData}
+                selectedSlug={selectedFamousDetailSlug}
+                onSelectSlug={setSelectedFamousDetailSlug}
+                title="Famous Tourist Places — Detail Page Editor"
+                description="Customize dedicated overview story, facts, gallery photos and things to do for this famous destination (/famous-tourist-places)."
+                basePath="/famous-tourist-places"
               />
             )}
 

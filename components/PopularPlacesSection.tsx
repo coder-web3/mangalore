@@ -108,6 +108,7 @@ interface PopularPlacesSectionProps {
   onSelectCategory?: (cat: string) => void;
   placesList?: PlaceItemData[];
   catalogHeader?: ListingCatalogData;
+  basePath?: string;
 }
 
 export default function PopularPlacesSection({
@@ -115,6 +116,7 @@ export default function PopularPlacesSection({
   onSelectCategory,
   placesList,
   catalogHeader,
+  basePath = "/places-to-visit",
 }: PopularPlacesSectionProps) {
   const [internalCategory, setInternalCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -238,7 +240,7 @@ export default function PopularPlacesSection({
                     <div className="absolute inset-x-0 bottom-0 z-20 p-4 sm:p-5">
                       {/* Place Title */}
                       {(() => {
-                        const placeHref = `/places-to-visit/${place.slug || (place.id === "panambur" ? "panambur-beach" : place.id)}`;
+                        const placeHref = `${basePath}/${place.slug || (place.id === "panambur" ? "panambur-beach" : place.id)}`;
 
                         return (
                           <>

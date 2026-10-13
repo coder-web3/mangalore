@@ -36,6 +36,9 @@ interface PlaceDetailAdminProps {
   onChange: (updated: PlacesData) => void;
   selectedSlug?: string;
   onSelectSlug?: (slug: string) => void;
+  title?: string;
+  description?: string;
+  basePath?: string;
 }
 
 export default function PlaceDetailAdmin({
@@ -43,6 +46,9 @@ export default function PlaceDetailAdmin({
   onChange,
   selectedSlug: externalSelectedSlug,
   onSelectSlug,
+  title = "Place Detail Page Editor",
+  description = "Select which attraction detail page to customize. Every place uses the exact Panambur design layout.",
+  basePath = "/places-to-visit",
 }: PlaceDetailAdminProps) {
   const placesList = data.listingCatalog?.places || [];
 
@@ -423,17 +429,17 @@ export default function PlaceDetailAdmin({
             <div className="flex items-center gap-2">
               <span className="text-xl">🏖️</span>
               <h2 className="text-lg sm:text-xl font-bold text-white">
-                Place Detail Page Editor
+                {title}
               </h2>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
-              Select which attraction detail page to customize. Every place uses the exact Panambur design layout.
+              {description}
             </p>
           </div>
 
           <div className="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
             <a
-              href={`/places-to-visit/${activeSlug}`}
+              href={`${basePath}/${activeSlug}`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-700 bg-slate-800 text-xs font-semibold text-slate-200 hover:text-white hover:bg-slate-700 transition"

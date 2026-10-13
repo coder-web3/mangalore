@@ -11,14 +11,14 @@
         "title": "Panambur Beach Coast",
         "subtitle": "Arabian Sea • Mangalore",
         "image": "/uploads/1791865355543-backwaters_1200x800.jpg",
-        "link": "/places-to-visit/panambur-beach"
+        "link": "/famous-tourist-places/panambur-beach"
       },
       {
         "id": "famous-kudroli",
         "title": "Kudroli Gokarnanatha Temple",
         "subtitle": "Golden Heritage • Kudroli",
         "image": "/uploads/1791865359374-temple_1200x800.jpg",
-        "link": "/places-to-visit/kudroli-gokarnanatha-temple"
+        "link": "/famous-tourist-places/kudroli-gokarnanatha-temple"
       }
     ]
   },
@@ -133,5 +133,81 @@
         "timings": "6:00 AM - 8:30 PM"
       }
     ]
+  },
+  "placeDetails": {
+    "panambur-beach": {
+      "hero": {
+        "title": "Panambur Beach",
+        "titleHighlight": "Coast",
+        "category": "BEACHES",
+        "description": "Panambur Beach is Mangalore's premier coastal hotspot, celebrated worldwide for golden sands, sunset celebrations, vibrant seasonal kite festivals, and trained lifeguard surveillance.",
+        "backdropImage": "/uploads/1791865355543-backwaters_1200x800.jpg",
+        "location": "Panambur, Mangalore, Karnataka 575010",
+        "bestTime": "October to March",
+        "popularFor": "Golden Sunsets, Watersports, Kite Festival",
+        "idealDuration": "2 - 3 Hours",
+        "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+      },
+      "overview": {
+        "badge": "DISCOVER FAMOUS SIGHT",
+        "title": "About Famous Panambur Beach",
+        "p1": "Panambur Beach stands as the most famous seashore in Mangalore. Situated near the New Mangalore Port, it is recognized for its pristine golden shoreline, lively coastal promenade, and warm Arabian Sea tides.",
+        "p2": "Renowned for its clean environment, dedicated safety personnel, and thrilling adventure sports like jet-skiing and ATV rides, Panambur attracts travellers from across the globe.",
+        "highlights": [
+          "Award-Winning Clean Shoreline",
+          "International Kite Festival Arena",
+          "Professional Lifeguard Safety Patrol",
+          "Sunset Promenade & Street Food Shacks"
+        ]
+      },
+      "quickFacts": [
+        { "label": "Entry Fee", "value": "Free Public Access" },
+        { "label": "Timings", "value": "Open 24 Hours (Best 6 AM - 8 PM)" },
+        { "label": "Lifeguard Support", "value": "On Duty Daily" },
+        { "label": "Distance from City", "value": "Approx. 10 km from Hampankatta" },
+        { "label": "Nearest Airport", "value": "Mangaluru International Airport (IXE) - 16 km" },
+        { "label": "Ideal Visit Duration", "value": "2–3 Hours" }
+      ],
+      "gallery": [
+        {
+          "id": "famous-gal-1",
+          "image": "/uploads/1791865355543-backwaters_1200x800.jpg",
+          "caption": "Golden Sunset Across the Arabian Shore",
+          "tag": "Sunset"
+        },
+        {
+          "id": "famous-gal-2",
+          "image": "/uploads/1791865359374-temple_1200x800.jpg",
+          "caption": "Cultural Panorama of Coastal Mangalore",
+          "tag": "Culture"
+        },
+        {
+          "id": "famous-gal-3",
+          "image": "/ref-card-panambur.jpg",
+          "caption": "Beachfront Waves and Golden Sands",
+          "tag": "Coast"
+        }
+      ],
+      "thingsToDo": [
+        {
+          "id": "famous-act-1",
+          "title": "Jet Skiing & Banana Boat Rides",
+          "description": "Experience heart-pounding water sports managed by certified coastal adventure instructors.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "famous-act-2",
+          "title": "Sunset Beach Walk & Shell Hunting",
+          "description": "Stroll down the golden shoreline as the sky transforms into hues of crimson and gold.",
+          "icon": "sun"
+        },
+        {
+          "id": "famous-act-3",
+          "title": "Taste Mangalorean Coastal Street Food",
+          "description": "Relish fresh fried fish, churmuri, tender coconut water, and local ice creams along the promenade.",
+          "icon": "car"
+        }
+      ]
+    }
   }
 }

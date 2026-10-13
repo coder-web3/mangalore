@@ -60,11 +60,19 @@ const detailTabs: DetailNavTab[] = [
 interface PlaceDetailPageViewProps {
   detail: PanamburDetailData;
   slug?: string;
+  parentBreadcrumb?: {
+    label: string;
+    href: string;
+  };
 }
 
 export default function PlaceDetailPageView({
   detail,
   slug,
+  parentBreadcrumb = {
+    label: "Places to Visit",
+    href: "/places-to-visit",
+  },
 }: PlaceDetailPageViewProps) {
   const [currentTab, setCurrentTab] = useState("overview");
   const [videoModalOpen, setVideoModalOpen] = useState(false);
@@ -165,10 +173,10 @@ export default function PlaceDetailPageView({
                   <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
 
                   <Link
-                    href="/places-to-visit"
+                    href={parentBreadcrumb.href}
                     className="hover:text-[#ff5e15] transition-colors"
                   >
-                    Places to Visit
+                    {parentBreadcrumb.label}
                   </Link>
                   <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
 

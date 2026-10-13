@@ -8,11 +8,13 @@ import { PlacesData } from "@/lib/cms";
 interface PlacesClientWrapperProps {
   placesData: PlacesData;
   breadcrumbLabel?: string;
+  basePath?: string;
 }
 
 export default function PlacesClientWrapper({
   placesData,
   breadcrumbLabel,
+  basePath,
 }: PlacesClientWrapperProps) {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
@@ -33,6 +35,7 @@ export default function PlacesClientWrapper({
           onSelectCategory={(cat) => setSelectedCategory(cat)}
           placesList={placesData.listingCatalog.places}
           catalogHeader={placesData.listingCatalog}
+          basePath={basePath}
         />
       </div>
     </>

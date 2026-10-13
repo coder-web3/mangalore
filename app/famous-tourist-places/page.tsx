@@ -24,6 +24,7 @@ export default async function FamousTouristPlacesPage() {
         <PlacesClientWrapper
           placesData={famousPlacesData}
           breadcrumbLabel="Famous Tourist Places"
+          basePath="/famous-tourist-places"
         />
         <TourEnquiryCTA />
       </main>

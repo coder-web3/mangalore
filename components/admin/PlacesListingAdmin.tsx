@@ -25,6 +25,7 @@ interface PlacesListingAdminProps {
   onSubTabChange?: (tab: "hero" | "cards") => void;
   title?: string;
   description?: string;
+  basePath?: string;
 }
 
 export default function PlacesListingAdmin({
@@ -35,6 +36,7 @@ export default function PlacesListingAdmin({
   onSubTabChange,
   title,
   description,
+  basePath = "/places-to-visit",
 }: PlacesListingAdminProps) {
   const [internalSubTab, setInternalSubTab] = useState<"hero" | "cards">("hero");
 
@@ -453,7 +455,7 @@ export default function PlacesListingAdmin({
 
                       {place.slug && (
                         <a
-                          href={`/places-to-visit/${place.slug}`}
+                          href={`${basePath}/${place.slug}`}
                           target="_blank"
                           rel="noreferrer"
                           className="px-2.5 py-1.5 rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition text-[11px] inline-flex items-center gap-1"
