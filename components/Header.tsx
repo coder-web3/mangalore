@@ -23,11 +23,11 @@ export default function Header() {
 
   const navLinks = [
     { name: "Home", href: "/", active: pathname === "/" },
+    { name: "About Us", href: "/about", active: pathname === "/about" },
     { name: "Places to Visit", href: "/places-to-visit", active: pathname === "/places-to-visit" },
     { name: "Famous Places", href: "/famous-tourist-places", active: pathname === "/famous-tourist-places" },
     { name: "Local Guides", href: "/local-guides", active: pathname === "/local-guides" },
-    { name: "About", href: "/about", active: pathname === "/about" },
-    { name: "Contact", href: "/contact", active: pathname === "/contact" },
+    { name: "Contact Us", href: "/contact", active: pathname === "/contact" },
   ];
 
   return (
