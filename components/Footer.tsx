@@ -21,6 +21,7 @@ export default function Footer() {
   const exploreLinks = [
     { name: "Places to Visit", href: "/places-to-visit" },
     { name: "Famous Tourist Places", href: "/famous-tourist-places" },
+    { name: "Local Guides", href: "/local-guides" },
     { name: "Food & Dining", href: "/#food" },
     { name: "Things to Do", href: "/places-to-visit" },
     { name: "Events", href: "/#events" },

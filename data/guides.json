@@ -1,0 +1,193 @@
+{
+  "listingHero": {
+    "badge": "VERIFIED LOCAL STORYTELLERS",
+    "titleLine1": "Explore With Mangalore's",
+    "titleHighlight": "Expert Local Guides",
+    "description": "Discover hidden coastal coves, sacred temple legends, bustling street food bazaars and Kambala traditions guided by certified native storytellers fluent in Tulu, Kannada, English and Hindi.",
+    "backdropImage": "/places-backdrop-clean-right.jpg",
+    "stats": {
+      "guidesCount": "25+",
+      "toursCompleted": "1,400+",
+      "rating": "4.95 ★",
+      "languagesCount": "5 Languages"
+    },
+    "galleryCards": [
+      {
+        "id": "heritage-guide",
+        "title": "Temple & Heritage Walks",
+        "subtitle": "Kadri • Kudroli • Car Street",
+        "image": "/card-kadri.jpg"
+      },
+      {
+        "id": "coastal-guide",
+        "title": "Coastal & Watersports Expeditions",
+        "subtitle": "Panambur • Sasihithlu • Gurupura",
+        "image": "/card-panambur.jpg"
+      }
+    ]
+  },
+  "listingCatalog": {
+    "tag": "MEET OUR VERIFIED NATIVES",
+    "title": "Certified Mangalore",
+    "titleHighlight": "Tour & Experience Guides",
+    "description": "Choose from licensed historians, coastal navigators, food trail creators and nature naturalists. Every guide is background verified with transparent day rates and direct WhatsApp booking.",
+    "guides": [
+      {
+        "id": "prasad-bhat",
+        "name": "Prasad Bhat",
+        "title": "Senior Temple Historian & Vedic Heritage Scholar",
+        "category": "heritage",
+        "categoryLabel": "Temples & Heritage",
+        "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=80",
+        "languages": ["Kannada", "Tulu", "English", "Sanskrit"],
+        "experienceYears": 14,
+        "rating": "4.98",
+        "reviewCount": 184,
+        "pricePerDay": "₹1,800",
+        "pricePerHour": "₹350/hr",
+        "location": "Kadri, Kudroli & Car Street Hub",
+        "badge": "Master Historian",
+        "phone": "+91 98451 22390",
+        "whatsapp": "+919845122390",
+        "bio": "Lifelong resident of Kadri with 14+ years detailing ancient bronze iconography at Kadri Manjunatha, the architecture of Mangaladevi, and Car Street's vibrant ratha festivals.",
+        "specialties": [
+          "Kadri & Kudroli Temple Chronicles",
+          "Vedic Architecture & Iconography",
+          "Car Street Ratha Festivals",
+          "Tuluva Mythological Lore"
+        ],
+        "available": true
+      },
+      {
+        "id": "devika-rao",
+        "name": "Devika Rao",
+        "title": "Tulu Culinary Trail Curator & Food Anthropologist",
+        "category": "food",
+        "categoryLabel": "Food & Culinary",
+        "image": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80",
+        "languages": ["Tulu", "Kannada", "English", "Hindi"],
+        "experienceYears": 8,
+        "rating": "4.96",
+        "reviewCount": 152,
+        "pricePerDay": "₹1,600",
+        "pricePerHour": "₹300/hr",
+        "location": "Mangalore Central, Bunder & Hampankatta",
+        "badge": "Top Culinary Host",
+        "phone": "+91 98863 44102",
+        "whatsapp": "+919886344102",
+        "bio": "Passionate home-chef and culinary explorer guiding travelers through authentic Ghee Roast corners, antique fish market auctions, and secret century-old leaf-steamed pundi joints.",
+        "specialties": [
+          "Car Street Traditional Sweet Trails",
+          "Authentic Bunder Fish Market Tours",
+          "Ghee Roast & Neer Dosa Origins",
+          "Old Mangalore Bakery Legends"
+        ],
+        "available": true
+      },
+      {
+        "id": "rajesh-shetty",
+        "name": "Rajesh Shetty",
+        "title": "Coastal Marine Explorer & Surf Expedition Leader",
+        "category": "beaches",
+        "categoryLabel": "Beaches & Watersports",
+        "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80",
+        "languages": ["Kannada", "Tulu", "English", "Hindi"],
+        "experienceYears": 11,
+        "rating": "4.94",
+        "reviewCount": 129,
+        "pricePerDay": "₹2,200",
+        "pricePerHour": "₹400/hr",
+        "location": "Sasihithlu, Panambur & Tannirbhavi",
+        "badge": "Coastal Specialist",
+        "phone": "+91 97412 88319",
+        "whatsapp": "+919741288319",
+        "bio": "Certified watersports & kayak skipper specialized in secret estuary sunset spots, mangrove backwater paddling in Gurupura, and surf breaks along Sasihithlu beach.",
+        "specialties": [
+          "Sasihithlu Surf & Kayak Navigation",
+          "Gurupura Mangrove Backwater Treks",
+          "Sunset Photography Horizons",
+          "Fishermen Village Interactions"
+        ],
+        "available": true
+      },
+      {
+        "id": "dr-vivian-fernandes",
+        "name": "Dr. Vivian Fernandes",
+        "title": "Colonial Heritage Historian & Catholic Antiquities Specialist",
+        "category": "heritage",
+        "categoryLabel": "Temples & Heritage",
+        "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=700&q=80",
+        "languages": ["English", "Konkani", "Kannada"],
+        "experienceYears": 16,
+        "rating": "4.99",
+        "reviewCount": 210,
+        "pricePerDay": "₹2,000",
+        "pricePerHour": "₹450/hr",
+        "location": "St. Aloysius Chapel, Milagres & Rosario",
+        "badge": "Heritage Scholar",
+        "phone": "+91 94481 77620",
+        "whatsapp": "+919448177620",
+        "bio": "Art researcher and lecturer sharing intimate details of Brother Moscheni's frescoes at St. Aloysius Chapel, Portuguese coastal bastions, and the Konkani cultural diaspora.",
+        "specialties": [
+          "St. Aloysius Fresco Art Analysis",
+          "Portuguese & British Colonial History",
+          "Milagres & Rosario Architecture",
+          "Mangalorean Konkani Heritage"
+        ],
+        "available": true
+      },
+      {
+        "id": "shailesh-kumar",
+        "name": "Shailesh Kumar",
+        "title": "Western Ghats Naturalist & Pilikula Eco-Guide",
+        "category": "nature",
+        "categoryLabel": "Nature & Wildlife",
+        "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=700&q=80",
+        "languages": ["Kannada", "Tulu", "English"],
+        "experienceYears": 9,
+        "rating": "4.91",
+        "reviewCount": 94,
+        "pricePerDay": "₹1,700",
+        "pricePerHour": "₹320/hr",
+        "location": "Pilikula Nisargadhama & Moodbidri Foothills",
+        "badge": "Eco Naturalist",
+        "phone": "+91 99014 33890",
+        "whatsapp": "+919901433890",
+        "bio": "Certified wildlife naturalist leading birding walks, medicinal botanical excursions, and interactive heritage artisan sessions at Pilikula Heritage Village.",
+        "specialties": [
+          "Western Ghats Birding Early Morning",
+          "Pilikula Heritage Crafts & Weaving",
+          "Medicinal Plant Forest Walks",
+          "Eco-Friendly Photography Trails"
+        ],
+        "available": true
+      },
+      {
+        "id": "ananya-acharya",
+        "name": "Ananya Acharya",
+        "title": "Yakshagana Artiste & Tuluva Folk Traditions Curator",
+        "category": "culture",
+        "categoryLabel": "Cultural & Arts",
+        "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80",
+        "languages": ["Tulu", "Kannada", "English", "Hindi"],
+        "experienceYears": 7,
+        "rating": "4.97",
+        "reviewCount": 116,
+        "pricePerDay": "₹1,900",
+        "pricePerHour": "₹380/hr",
+        "location": "Mangalore Town & Dakshina Kannada",
+        "badge": "Folk Arts Curator",
+        "phone": "+91 96112 55940",
+        "whatsapp": "+919611255940",
+        "bio": "Practicing Yakshagana performer and cultural ethnographer offering backstage artist interactions, costume dressing demos, and live demonstrations of Tuluva folk lore.",
+        "specialties": [
+          "Live Yakshagana Makeup & Backstage",
+          "Daiva Aradhane Cultural Insights",
+          "Traditional Kambala Buffalo Races",
+          "Tulu Tribal Folk Music & Instruments"
+        ],
+        "available": true
+      }
+    ]
+  }
+}

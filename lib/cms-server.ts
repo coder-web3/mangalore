@@ -1,12 +1,13 @@
 import fs from "fs/promises";
 import path from "path";
-import { HomepageData, PlacesData, AboutData, ContactData } from "@/lib/cms";
+import { HomepageData, PlacesData, AboutData, ContactData, GuidesData } from "@/lib/cms";
 
 const dataFilePath = path.join(process.cwd(), "data", "homepage.json");
 const placesFilePath = path.join(process.cwd(), "data", "places.json");
 const famousPlacesFilePath = path.join(process.cwd(), "data", "famous-places.json");
 const aboutFilePath = path.join(process.cwd(), "data", "about.json");
 const contactFilePath = path.join(process.cwd(), "data", "contact.json");
+const guidesFilePath = path.join(process.cwd(), "data", "guides.json");
 
 export async function getHomepageData(): Promise<HomepageData> {
   try {
@@ -147,4 +148,18 @@ export async function getContactData(): Promise<ContactData> {
 
 export async function saveContactData(data: ContactData): Promise<void> {
   await fs.writeFile(contactFilePath, JSON.stringify(data, null, 2), "utf8");
+}
+
+export async function getGuidesData(): Promise<GuidesData> {
+  try {
+    const raw = await fs.readFile(guidesFilePath, "utf8");
+    return JSON.parse(raw) as GuidesData;
+  } catch (error) {
+    console.error("Error reading guides data:", error);
+    throw error;
+  }
+}
+
+export async function saveGuidesData(data: GuidesData): Promise<void> {
+  await fs.writeFile(guidesFilePath, JSON.stringify(data, null, 2), "utf8");
 }

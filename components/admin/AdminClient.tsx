@@ -35,13 +35,15 @@ import {
   FileText,
   Clock,
   Laptop,
+  Users,
 } from "lucide-react";
-import { HomepageData, PlacesData, AboutData, ContactData } from "@/lib/cms";
+import { HomepageData, PlacesData, AboutData, ContactData, GuidesData } from "@/lib/cms";
 import HomepageAdmin, { HomepageTab } from "@/components/admin/HomepageAdmin";
 import PlacesListingAdmin from "@/components/admin/PlacesListingAdmin";
 import PlaceDetailAdmin from "@/components/admin/PlaceDetailAdmin";
 import AboutAdmin from "@/components/admin/AboutAdmin";
 import ContactAdmin from "@/components/admin/ContactAdmin";
+import GuidesAdmin from "@/components/admin/GuidesAdmin";
 
 interface AdminClientProps {
   initialHomepageData: HomepageData;
@@ -49,12 +51,14 @@ interface AdminClientProps {
   initialFamousPlacesData: PlacesData;
   initialAboutData: AboutData;
   initialContactData: ContactData;
+  initialGuidesData: GuidesData;
 }
 
 export type AdminSection =
   | "homepage"
   | "places"
   | "famousPlaces"
+  | "guides"
   | "detail"
   | "famousDetail"
   | "about"
@@ -66,11 +70,13 @@ export default function AdminClient({
   initialFamousPlacesData,
   initialAboutData,
   initialContactData,
+  initialGuidesData,
 }: AdminClientProps) {
   // CMS Data States
   const [data, setData] = useState<HomepageData>(initialHomepageData);
   const [placesData, setPlacesData] = useState<PlacesData>(initialPlacesData);
   const [famousPlacesData, setFamousPlacesData] = useState<PlacesData>(initialFamousPlacesData);
+  const [guidesData, setGuidesData] = useState<GuidesData>(initialGuidesData);
   const [aboutData, setAboutData] = useState<AboutData>(initialAboutData);
   const [contactData, setContactData] = useState<ContactData>(initialContactData);
 
@@ -94,6 +100,7 @@ export default function AdminClient({
   const [homepageTab, setHomepageTab] = useState<HomepageTab>("hero");
   const [placesTab, setPlacesTab] = useState<"hero" | "cards">("hero");
   const [famousPlacesTab, setFamousPlacesTab] = useState<"hero" | "cards">("hero");
+  const [guidesTab, setGuidesTab] = useState<"hero" | "guides">("guides");
   const [aboutSubTab, setAboutSubTab] = useState<
     "hero" | "story" | "different" | "vision" | "team"
   >("hero");
@@ -110,6 +117,7 @@ export default function AdminClient({
     homepage: true,
     places: true,
     famousPlaces: true,
+    guides: true,
     detail: false,
     famousDetail: false,
     about: true,
@@ -200,6 +208,8 @@ export default function AdminClient({
         return "/places-to-visit";
       case "famousPlaces":
         return "/famous-tourist-places";
+      case "guides":
+        return "/local-guides";
       case "detail":
         return `/places-to-visit/${selectedDetailSlug}`;
       case "famousDetail":
@@ -219,6 +229,8 @@ export default function AdminClient({
         return "Places to Visit Listing";
       case "famousPlaces":
         return "Famous Tourist Places";
+      case "guides":
+        return "Local Guides Directory";
       case "detail": {
         const place = placesList.find((p) => p.slug === selectedDetailSlug);
         return place ? `${place.name} Detail Page` : "Place Detail Pages";
@@ -242,6 +254,8 @@ export default function AdminClient({
         return "Manage page hero, polaroid photos, badges, search tags and destination cards.";
       case "famousPlaces":
         return "Manage hero banner, polaroid showcase, and famous tourist destination catalog cards.";
+      case "guides":
+        return "Manage hero banner, polaroids, verified guide headshots, specialties, rates, and direct WhatsApp contacts (/local-guides).";
       case "detail":
         return "Customize overview story, facts, gallery photos and things to do for this destination (/places-to-visit).";
       case "famousDetail":
@@ -348,6 +362,21 @@ export default function AdminClient({
         setMessage({
           type: "success",
           text: "About Us page changes saved & published live!",
+        });
+      } else if (activeSection === "guides") {
+        const res = await fetch("/api/admin/guides", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "listing",
+            listingHero: guidesData.listingHero,
+            listingCatalog: guidesData.listingCatalog,
+          }),
+        });
+        if (!res.ok) throw new Error("Failed to save local guides directory");
+        setMessage({
+          type: "success",
+          text: "Local Guides directory saved & published live!",
         });
       } else if (activeSection === "contact") {
         const res = await fetch("/api/admin/contact", {
@@ -831,7 +860,80 @@ export default function AdminClient({
                 )}
               </div>
 
-              {/* 3. PLACE DETAIL PAGES */}
+              {/* 4. LOCAL GUIDES DIRECTORY */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("guides");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "guides"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Local Guides Directory"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Users className="h-4 w-4 shrink-0 text-cyan-500" />
+                    {!isSidebarCollapsed && (
+                      <span className="truncate">Local Guides</span>
+                    )}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-cyan-500/15 text-cyan-600 dark:text-cyan-400 font-bold">
+                        {guidesData?.listingCatalog?.guides?.length || 6} Guides
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubmenu("guides");
+                        }}
+                        className="p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/10"
+                      >
+                        {expandedMenus.guides ? (
+                          <ChevronUp className="h-3 w-3" />
+                        ) : (
+                          <ChevronDown className="h-3 w-3" />
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </button>
+
+                {!isSidebarCollapsed && expandedMenus.guides && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5">
+                    {[
+                      { id: "guides", label: "Guide Profiles" },
+                      { id: "hero", label: "Hero & Polaroids" },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("guides");
+                          setGuidesTab(item.id as "hero" | "guides");
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
+                          activeSection === "guides" && guidesTab === item.id
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 5. PLACE DETAIL PAGES */}
               <div className="space-y-1">
                 <button
                   type="button"
@@ -1220,6 +1322,8 @@ export default function AdminClient({
                             ? "Places Listing"
                             : activeSection === "famousPlaces"
                             ? "Famous Listing"
+                            : activeSection === "guides"
+                            ? "Guides Directory"
                             : activeSection === "about"
                             ? "About Page"
                             : activeSection === "contact"
@@ -1277,6 +1381,15 @@ export default function AdminClient({
                   setSelectedFamousDetailSlug(slug);
                   setActiveSection("famousDetail");
                 }}
+              />
+            )}
+
+            {activeSection === "guides" && (
+              <GuidesAdmin
+                data={guidesData}
+                onChange={setGuidesData}
+                activeSubTab={guidesTab}
+                onSubTabChange={setGuidesTab}
               />
             )}
 

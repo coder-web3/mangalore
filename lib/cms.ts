@@ -746,3 +746,53 @@ export interface ContactData {
     houseboatImage: string;
   };
 }
+
+export interface GuideItemData {
+  id: string;
+  name: string;
+  title: string;
+  category: "heritage" | "beaches" | "food" | "nature" | "culture" | "all" | string;
+  categoryLabel: string;
+  image: string;
+  languages: string[];
+  experienceYears: number;
+  rating: string;
+  reviewCount: number;
+  pricePerDay: string;
+  pricePerHour?: string;
+  location: string;
+  badge: string;
+  phone: string;
+  whatsapp?: string;
+  bio: string;
+  specialties: string[];
+  available: boolean;
+}
+
+export interface GuidesListingHeroData {
+  badge: string;
+  titleLine1: string;
+  titleHighlight: string;
+  description: string;
+  backdropImage: string;
+  galleryCards: PlacesPolaroidCard[];
+  stats?: {
+    guidesCount: string;
+    toursCompleted: string;
+    rating: string;
+    languagesCount: string;
+  };
+}
+
+export interface GuidesListingCatalogData {
+  tag: string;
+  title: string;
+  titleHighlight: string;
+  description: string;
+  guides: GuideItemData[];
+}
+
+export interface GuidesData {
+  listingHero: GuidesListingHeroData;
+  listingCatalog: GuidesListingCatalogData;
+}
