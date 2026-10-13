@@ -148,7 +148,7 @@ export default function PopularPlacesSection({
   });
 
   return (
-    <section id="places-catalog" className="relative w-full bg-[#f8fbff] py-10 sm:py-14 lg:py-16 overflow-hidden scroll-mt-24">
+    <section id="places-catalog" className="relative w-full bg-[#f8fbff] py-10 sm:py-14 lg:py-16 scroll-mt-24">
       <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Section Header */}
         <div className="mb-8 sm:mb-10 max-w-3xl">
@@ -297,7 +297,7 @@ export default function PopularPlacesSection({
           </div>
 
           {/* RIGHT SIDEBAR (SEARCH, CATEGORY LIST, MAP WIDGET) */}
-          <div className="lg:col-span-4 xl:col-span-3.5 space-y-6">
+          <aside className="lg:col-span-4 xl:col-span-3.5 space-y-6 lg:sticky lg:top-24 self-start">
             {/* 1. Search Bar with Orange Icon Button */}
             <div className="relative flex items-center rounded-2xl bg-white shadow-md shadow-slate-900/5 border border-slate-200/90 p-1.5 pl-3.5 focus-within:ring-2 focus-within:ring-orange-500/20">
               <Search className="h-4 w-4 text-slate-400 shrink-0" />
@@ -426,7 +426,7 @@ export default function PopularPlacesSection({
                 <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors" />
               </a>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>

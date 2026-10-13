@@ -190,6 +190,71 @@
         "location": "Vamanjoor, Mangalore",
         "rating": "4.6",
         "timings": "10:00 AM to 5:30 PM"
+      },
+      {
+        "id": "place-1791889605304",
+        "name": "Sasihithlu Beach",
+        "slug": "sasihithlu-beach",
+        "category": "beaches",
+        "categoryLabel": "Beaches",
+        "categoryIcon": "beach",
+        "description": "Sasihithlu Beach is a scenic coastal destination known for its sandy shoreline, peaceful atmosphere, and beautiful sunset views near the Nandini River estuary.",
+        "image": "",
+        "location": "Sasihithlu, near Mangalore",
+        "rating": "4.7",
+        "timings": "24 hours"
+      },
+      {
+        "id": "place-1791889719638",
+        "name": "Kateel Durgaparameshwari Temple",
+        "slug": "kateel-durgaparameshwari-temple",
+        "category": "temples",
+        "categoryLabel": "Temples",
+        "categoryIcon": "temple",
+        "description": "Kateel Durgaparameshwari Temple is a famous pilgrimage site on the Nandini River, celebrated for its spiritual importance, traditional architecture, and vibrant religious festivals.",
+        "image": "",
+        "location": "Kateel, near Mangalore",
+        "rating": "4.8",
+        "timings": " 5:30 AM to 9:30 PM"
+      },
+      {
+        "id": "place-1791889817302",
+        "name": "Adyar Falls",
+        "slug": "adyar-falls",
+        "category": "nature",
+        "categoryLabel": "Nature",
+        "categoryIcon": "hill",
+        "description": "Adyar Falls is a natural attraction surrounded by greenery, offering a refreshing setting during the monsoon season. Visitors should take care around slippery rocks and strong water currents.",
+        "image": "",
+        "location": "Adyar area, Mangalore",
+        "rating": "4.4",
+        "timings": "Open daily 6:00 AM - 7:00 PM"
+      },
+      {
+        "id": "place-1791889883645",
+        "name": "Bunder Dargah",
+        "slug": "bunder-dargah-mangalore",
+        "category": "cultural",
+        "categoryLabel": "Cultural",
+        "categoryIcon": "temple",
+        "description": "Bunder Dargah is a religious landmark in historic Mangalore, known for its spiritual significance and connection to the city's Islamic heritage. It offers visitors an opportunity to explore the area's rich religious and cultural history.",
+        "image": "",
+        "location": "Bunder, Mangalore, Karnataka 575001",
+        "rating": "4.6",
+        "timings": "Open daily 6:00 AM - 7:00 PM"
+      },
+      {
+        "id": "place-1791890045156",
+        "name": "Milagres Church",
+        "slug": "milagres-church",
+        "category": "temples",
+        "categoryLabel": "Temples",
+        "categoryIcon": "temple",
+        "description": "Milagres Church is one of Mangalore's historic Catholic landmarks, known for its elegant architecture, peaceful atmosphere, and rich religious heritage. Originally built in the 17th century, it is a notable stop for visitors exploring the city's cultural history.",
+        "image": "",
+        "location": "Hampankatta, Mangalore",
+        "rating": "4.7",
+        "timings": " 8:30 AM – 12:30 PM ,2:00 PM – 5:00 PM"
       }
     ]
   },
