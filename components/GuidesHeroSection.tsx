@@ -94,7 +94,7 @@ export default function GuidesHeroSection({
       setInternalTab(tabId);
     }
 
-    const el = document.getElementById("guides-catalog");
+    const el = document.getElementById("guides-articles");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
@@ -222,10 +222,10 @@ export default function GuidesHeroSection({
               {/* CTA Buttons */}
               <div className="flex items-center gap-3">
                 <a
-                  href="#guides-catalog"
+                  href="#guides-articles"
                   className="group inline-flex items-center gap-2 rounded-xl bg-[#ff5411] px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-white shadow-lg shadow-orange-950/40 transition-all duration-300 hover:bg-[#ea4908] hover:shadow-orange-900/50 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                 >
-                  <span>Browse Guides</span>
+                  <span>Explore Stories</span>
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </a>
 
@@ -383,11 +383,11 @@ export default function GuidesHeroSection({
               </div>
 
               <a
-                href="#guides-catalog"
+                href="#guides-articles"
                 onClick={() => setSelectedImage(null)}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-600 hover:text-orange-700 bg-orange-50 px-3 py-1.5 rounded-xl transition"
               >
-                <span>Find Guides</span>
+                <span>View Articles</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </a>
             </div>

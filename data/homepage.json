@@ -155,7 +155,7 @@
     "description": "Tell us your travel dates, interests and group details. We'll create a customised itinerary just for you.",
     "buttonText": "Plan My Trip",
     "buttonLink": "/contact",
-    "backdropImage": "/nitk.avif"
+    "backdropImage": "/uploads/1791886267398-need-help-planning-your-mangal.heif"
   },
   "gallery": {
     "tag": "GALLERY",
@@ -197,37 +197,37 @@
         "id": "1",
         "title": "Panambur Beach Sunset",
         "category": "beaches",
-        "image": "/uploads/1791884922981-analysis-output-1.jpg"
+        "image": "/uploads/1791883432902-panambur-beach.heif"
       },
       {
         "id": "2",
         "title": "Heritage Pagoda Temple",
         "category": "temples",
-        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+        "image": "/uploads/1791883437888-heritage-pagoda-temple.heif"
       },
       {
         "id": "3",
         "title": "Netravati River & Palms",
         "category": "nature",
-        "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
+        "image": "/uploads/1791883442682-netravati-river---palms11.heif"
       },
       {
         "id": "4",
         "title": "Authentic Ghee Roast Feast",
         "category": "food",
-        "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80"
+        "image": "/uploads/1791883446378-authentic-ghee-roast-feast.heif"
       },
       {
         "id": "5",
         "title": "Historic Coastal Fort",
         "category": "culture",
-        "image": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80"
+        "image": "/uploads/1791883822130-c2d9c398-fd01-48d4-959b-cb8b9a.heif"
       },
       {
         "id": "6",
         "title": "Mangalore Suspension Bridge Twilight",
         "category": "city",
-        "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80"
+        "image": "/uploads/1791883464602-mangalore-suspension-bridge-tw.heif"
       },
       {
         "id": "7",
@@ -245,7 +245,7 @@
     "buttonLink": "/contact",
     "phone": "+91 98765 43210",
     "email": "explore@mangaloretours.com",
-    "backdropImage": "/nitk.avif",
+    "backdropImage": "/uploads/1791886247432-need-help-planning-your-mangal.heif",
     "steps": [
       {
         "id": "choose",
@@ -279,7 +279,7 @@
         "id": "landmarks",
         "title": "Historic Landmarks",
         "iconName": "landmark",
-        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+        "image": "/uploads/1791885767318-heritage-pagoda-temple.heif",
         "link": "/places-to-visit"
       },
       {
