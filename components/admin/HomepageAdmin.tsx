@@ -15,6 +15,7 @@ import {
   Compass,
   Calendar,
   ExternalLink,
+  Video,
 } from "lucide-react";
 import {
   HomepageData,
@@ -24,6 +25,7 @@ import {
   ExploreMoreQuickLinkData,
 } from "@/lib/cms";
 import ImageUploader from "@/components/admin/ImageUploader";
+import VideoUploader from "@/components/admin/VideoUploader";
 
 export type HomepageTab =
   | "hero"
@@ -213,6 +215,72 @@ export default function HomepageAdmin({
                 }
                 className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
               />
+            </div>
+          </div>
+
+          {/* Hero Video Upload & Settings */}
+          <div className="pt-4 border-t border-slate-800 space-y-4">
+            <div>
+              <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                <Video className="h-4 w-4 text-orange-400" />
+                <span>Hero "Watch Video" Modal Settings</span>
+              </h4>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Upload a video file from your device (MP4, WebM, MOV) or paste a YouTube / Vimeo embed URL for the homepage hero "Watch Video" button.
+              </p>
+            </div>
+
+            <VideoUploader
+              label="Hero Promotional Video (Device Upload or YouTube / Embed Link)"
+              value={data.hero.videoUrl || ""}
+              onChange={(newUrl) =>
+                onChange({
+                  ...data,
+                  hero: { ...data.hero, videoUrl: newUrl },
+                })
+              }
+              aspectHint="Supports MP4, WebM, MOV video files (up to 100MB) or paste any YouTube / Vimeo URL."
+            />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Video Modal Title
+                </label>
+                <input
+                  type="text"
+                  value={data.hero.videoTitle ?? "A Glimpse of Mangalore"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      hero: { ...data.hero, videoTitle: e.target.value },
+                    })
+                  }
+                  placeholder="A Glimpse of Mangalore"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Video Modal Subtitle / Caption
+                </label>
+                <input
+                  type="text"
+                  value={
+                    data.hero.videoSubtitle ??
+                    "Coastal beaches, lighthouses, temple heritage & vibrant food culture"
+                  }
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      hero: { ...data.hero, videoSubtitle: e.target.value },
+                    })
+                  }
+                  placeholder="Coastal beaches, lighthouses, temple heritage & vibrant food culture"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
             </div>
           </div>
 

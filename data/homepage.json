@@ -6,6 +6,9 @@
     "description": "Uncover pristine beaches, historic temples, lush scenic hills, and the authentic coastal cuisine of Karnataka with customized itineraries, trusted local guides, and authentic cultural experiences.",
     "ctaText": "Explore Places",
     "ctaLink": "/places-to-visit",
+    "videoUrl": "https://www.youtube-nocookie.com/embed/y6pMfmmJCf0?autoplay=1&rel=0",
+    "videoTitle": "A Glimpse of Mangalore",
+    "videoSubtitle": "Coastal beaches, lighthouses, temple heritage & vibrant food culture",
     "slides": [
       {
         "image": "/kadri.avif",
@@ -293,14 +296,14 @@
         "id": "forts",
         "title": "Kadri Manjunath Temple",
         "iconName": "shield",
-        "image": "/uploads/1791890293750-heritage-pagoda-temple.heif",
+        "image": "/uploads/1791890840065-kadri-12.heif",
         "link": "/places-to-visit"
       },
       {
         "id": "churches",
         "title": "Tannirbhavi Beach",
         "iconName": "church",
-        "image": "/milagrees.avif",
+        "image": "/uploads/1791890834427-img--1-.heif",
         "link": "/places-to-visit"
       }
     ]

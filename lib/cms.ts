@@ -137,6 +137,9 @@ export interface HomepageData {
     description: string;
     ctaText: string;
     ctaLink: string;
+    videoUrl?: string;
+    videoTitle?: string;
+    videoSubtitle?: string;
     slides: SlideData[];
   };
   popularDestinations: {

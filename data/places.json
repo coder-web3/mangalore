@@ -32,7 +32,7 @@
       "subtitle": "View all tourist places in Mangalore",
       "buttonText": "View Full Map →",
       "buttonLink": "https://maps.google.com/?q=Mangalore+Tourist+Places",
-      "image": "/ref-places-map.jpg"
+      "image": "/uploads/1791890697853-mangaluru-coastal-heritage-map.heif"
     },
     "places": [
       {
@@ -710,7 +710,7 @@
         "titleHighlight": "Bathery",
         "category": "Cultural",
         "description": "Explore Sultan Battery in Boloor, Mangaluru, a historic stone watchtower built during Tipu Sultan’s rule. Discover its coastal defence history, enjoy views of the Gurupura River, and visit the nearby ferry point for a scenic journey towards Tannirbhavi Beach.",
-        "backdropImage": "/ref-card-sultan.jpg",
+        "backdropImage": "/uploads/1791891203822-888.heif",
         "location": "Boloor, Mangalore",
         "bestTime": "Oct to March • 4:30 PM",
         "popularFor": "Tipu's Watchtower & Ferry Crossing",
@@ -758,7 +758,7 @@
       "gallery": [
         {
           "id": "1",
-          "image": "/ref-card-sultan.jpg",
+          "image": "/uploads/1791891217844-sulthan2.heif",
           "caption": "Sultan Battery Watchtower & Cannon Embankments",
           "tag": "Fortress"
         },

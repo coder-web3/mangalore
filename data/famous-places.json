@@ -32,7 +32,7 @@
       "subtitle": "View all tourist places in Mangalore",
       "buttonText": "View Full Map →",
       "buttonLink": "https://maps.google.com/?q=Mangalore+Tourist+Places",
-      "image": "/ref-places-map.jpg"
+      "image": "/uploads/1791890697853-mangaluru-coastal-heritage-map.heif"
     },
     "places": [
       {
@@ -43,7 +43,7 @@
         "categoryLabel": "Temples",
         "categoryIcon": "temple",
         "description": "Famous for its beautiful ceiling frescoes, historic architecture, and remarkable religious artwork, St. Aloysius Chapel is one of Mangalore's most distinctive heritage attractions.",
-        "image": "",
+        "image": "/uploads/1791891035692-pastel-blue-neoclassical-churc.heif",
         "location": "Light House Hill Road, Mangalore",
         "rating": "4.8",
         "timings": "9:30 AM – 1:00 PM , 2:30 PM – 5:00 PM"
@@ -69,7 +69,7 @@
         "categoryLabel": "Temples",
         "categoryIcon": "temple",
         "description": " An important historic temple dedicated to Goddess Mangaladevi, known for its traditional architecture, spiritual atmosphere, and cultural significance in Mangalore.",
-        "image": "",
+        "image": "/uploads/1791891203916-symmetrical-golden-temple-entr.heif",
         "location": "Bolara, Mangalore",
         "rating": "4.7",
         "timings": "6:00 AM to 1:00 PM ,4:00 PM to 8:30 PM"

@@ -37,6 +37,9 @@ interface HeroSectionProps {
     description?: string;
     ctaText?: string;
     ctaLink?: string;
+    videoUrl?: string;
+    videoTitle?: string;
+    videoSubtitle?: string;
     slides?: Array<{
       image: string;
       badgeTitle: string;
@@ -305,7 +308,13 @@ export default function HeroSection({ initialData }: HeroSectionProps) {
       </div>
 
       {/* Video Modal */}
-      <VideoModal isOpen={videoOpen} onClose={() => setVideoOpen(false)} />
+      <VideoModal
+        isOpen={videoOpen}
+        onClose={() => setVideoOpen(false)}
+        videoUrl={initialData?.videoUrl}
+        videoTitle={initialData?.videoTitle}
+        videoSubtitle={initialData?.videoSubtitle}
+      />
     </section>
   );
 }
