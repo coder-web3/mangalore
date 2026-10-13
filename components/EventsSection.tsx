@@ -14,59 +14,87 @@ import {
   Users,
 } from "lucide-react";
 
-interface EventCategory {
-  id: string;
-  title: string;
-  icon: React.ReactNode;
-  image: string;
+import { EventsSectionData } from "@/lib/cms";
+
+interface EventsSectionProps {
+  initialData?: EventsSectionData;
 }
 
-const eventCategories: EventCategory[] = [
+const defaultEventCategories = [
   {
     id: "cultural",
     title: "Cultural Programs",
-    icon: <Sparkles className="h-3.5 w-3.5 text-orange-400" />,
+    iconName: "sparkles",
     image: "/cultural.avif",
+    link: "#events",
   },
   {
     id: "food-fests",
     title: "Food Festivals",
-    icon: <Utensils className="h-3.5 w-3.5 text-orange-400" />,
+    iconName: "utensils",
     image: "/food.avif",
+    link: "#events",
   },
   {
     id: "concerts",
     title: "Concerts & Music",
-    icon: <Music className="h-3.5 w-3.5 text-orange-400" />,
+    iconName: "music",
     image:
       "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+    link: "#events",
   },
   {
     id: "exhibitions",
     title: "Exhibitions",
-    icon: <Palette className="h-3.5 w-3.5 text-orange-400" />,
+    iconName: "palette",
     image:
       "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
+    link: "#events",
   },
   {
     id: "religious",
     title: "Religious Festivals",
-    icon: <Flame className="h-3.5 w-3.5 text-orange-400" />,
+    iconName: "flame",
     image:
       "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+    link: "#events",
   },
   {
     id: "community",
     title: "Community Events",
-    icon: <Users className="h-3.5 w-3.5 text-orange-400" />,
+    iconName: "users",
     image: "/community.avif",
+    link: "#events",
   },
 ];
 
-export default function EventsSection() {
+function getEventIcon(iconName: string) {
+  switch (iconName?.toLowerCase()) {
+    case "utensils":
+      return <Utensils className="h-3.5 w-3.5 text-orange-400" />;
+    case "music":
+      return <Music className="h-3.5 w-3.5 text-orange-400" />;
+    case "palette":
+      return <Palette className="h-3.5 w-3.5 text-orange-400" />;
+    case "flame":
+      return <Flame className="h-3.5 w-3.5 text-orange-400" />;
+    case "users":
+      return <Users className="h-3.5 w-3.5 text-orange-400" />;
+    case "sparkles":
+    default:
+      return <Sparkles className="h-3.5 w-3.5 text-orange-400" />;
+  }
+}
+
+export default function EventsSection({ initialData }: EventsSectionProps) {
   const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const categories =
+    initialData?.categories && initialData.categories.length > 0
+      ? initialData.categories
+      : defaultEventCategories;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -115,29 +143,30 @@ export default function EventsSection() {
             <div className="flex items-center gap-1.5 mb-2">
               <span className="text-orange-500 font-extrabold text-sm">—</span>
               <span className="text-[11px] sm:text-xs font-extrabold tracking-widest text-[#0d1e38] uppercase">
-                WHAT&apos;S HAPPENING
+                {initialData?.tag || "WHAT'S HAPPENING"}
               </span>
             </div>
 
             {/* Headline */}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0d1e38] leading-tight">
-              Events in <span className="text-[#ea580c]">Mangalore</span>
+              {initialData?.title || "Events in"}{" "}
+              <span className="text-[#ea580c]">{initialData?.titleHighlight || "Mangalore"}</span>
             </h2>
 
             {/* Subtitle */}
             <p className="mt-1 text-xs sm:text-sm text-slate-500 max-w-xl font-normal leading-relaxed">
-              Discover upcoming festivals, cultural programs, concerts, markets
-              and more.
+              {initialData?.description ||
+                "Discover upcoming festivals, cultural programs, concerts, markets and more."}
             </p>
           </div>
 
           {/* Right Action: View All Link & Carousel Controls */}
           <div className="flex items-center gap-3 sm:gap-4 self-start sm:self-end">
             <Link
-              href="#events"
+              href={initialData?.viewAllLink || "#events"}
               className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#ea580c] hover:text-orange-600 transition-colors"
             >
-              <span>View All Events</span>
+              <span>{initialData?.viewAllText || "View All Events"}</span>
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
 
@@ -170,10 +199,11 @@ export default function EventsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          {eventCategories.map((cat, idx) => (
-            <div
+          {categories.map((cat, idx) => (
+            <Link
               key={cat.id}
-              className="group relative flex-shrink-0 w-[200px] sm:w-[220px] lg:w-full h-[200px] sm:h-[215px] lg:h-[230px] rounded-[20px] sm:rounded-[22px] overflow-hidden cursor-pointer shadow-md shadow-slate-900/10 border border-slate-100/60 transition-all duration-500 hover:shadow-xl hover:shadow-slate-900/15 hover:-translate-y-1.5"
+              href={cat.link || initialData?.viewAllLink || "#events"}
+              className="group relative flex-shrink-0 w-[200px] sm:w-[220px] lg:w-full h-[200px] sm:h-[215px] lg:h-[230px] rounded-[20px] sm:rounded-[22px] overflow-hidden cursor-pointer shadow-md shadow-slate-900/10 border border-slate-100/60 transition-all duration-500 hover:shadow-xl hover:shadow-slate-900/15 hover:-translate-y-1.5 block select-none"
               style={{
                 transitionDelay: `${idx * 70 + 80}ms`,
               }}
@@ -198,7 +228,7 @@ export default function EventsSection() {
                 <div className="flex items-center gap-2 min-w-0 pr-1">
                   {/* Small Circular Frosted Icon Badge */}
                   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex-shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:bg-orange-500/80">
-                    {cat.icon}
+                    {"iconName" in cat ? getEventIcon((cat as { iconName: string }).iconName) : getEventIcon("sparkles")}
                   </div>
                   <h3 className="text-xs sm:text-sm lg:text-[13px] font-extrabold text-white leading-tight drop-shadow-md tracking-tight">
                     {cat.title}
@@ -212,7 +242,7 @@ export default function EventsSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

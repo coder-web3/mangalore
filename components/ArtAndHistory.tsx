@@ -5,46 +5,68 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Landmark, Palette, Shield, Church } from "lucide-react";
 
-interface HeritageItem {
-  id: string;
-  title: string;
-  icon: React.ReactNode;
-  image: string;
+import { ArtAndHistoryData } from "@/lib/cms";
+
+interface ArtAndHistoryProps {
+  initialData?: ArtAndHistoryData;
 }
 
-const heritageItems: HeritageItem[] = [
+const defaultHeritageItems = [
   {
     id: "landmarks",
     title: "Historic Landmarks",
-    icon: <Landmark className="h-4 w-4 text-orange-400" />,
+    iconName: "landmark",
     image:
       "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+    link: "/places-to-visit",
   },
   {
     id: "art-culture",
     title: "Art & Culture",
-    icon: <Palette className="h-4 w-4 text-orange-400" />,
+    iconName: "palette",
     image:
       "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=800&q=80",
+    link: "/places-to-visit",
   },
   {
     id: "forts",
     title: "Forts & Monuments",
-    icon: <Shield className="h-4 w-4 text-orange-400" />,
+    iconName: "shield",
     image:
       "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80",
+    link: "/places-to-visit",
   },
   {
     id: "churches",
     title: "Churches & Heritage",
-    icon: <Church className="h-4 w-4 text-orange-400" />,
+    iconName: "church",
     image: "/milagrees.avif",
+    link: "/places-to-visit",
   },
 ];
 
-export default function ArtAndHistory() {
+function getArtIcon(iconName: string) {
+  switch (iconName?.toLowerCase()) {
+    case "palette":
+      return <Palette className="h-4 w-4 text-orange-400" />;
+    case "shield":
+      return <Shield className="h-4 w-4 text-orange-400" />;
+    case "church":
+      return <Church className="h-4 w-4 text-orange-400" />;
+    case "landmark":
+    default:
+      return <Landmark className="h-4 w-4 text-orange-400" />;
+  }
+}
+
+export default function ArtAndHistory({ initialData }: ArtAndHistoryProps) {
   const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
+
+  const items =
+    initialData?.items && initialData.items.length > 0
+      ? initialData.items
+      : defaultHeritageItems;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -107,30 +129,30 @@ export default function ArtAndHistory() {
             <div className="flex items-center gap-1.5 mb-2">
               <span className="text-orange-500 font-extrabold text-sm">—</span>
               <span className="text-[11px] sm:text-xs font-extrabold tracking-widest text-[#0d1e38] uppercase">
-                ART &amp; HISTORY
+                {initialData?.tag || "ART & HISTORY"}
               </span>
             </div>
 
             {/* Headline */}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0d1e38] leading-[1.15]">
-              Mangalore&apos;s
+              {initialData?.titleLine1 || "Mangalore's"}
               <br />
-              Art, <span className="text-[#ea580c]">Heritage and History</span>
+              <span className="text-[#ea580c]">{initialData?.titleHighlight || "Art, Heritage and History"}</span>
             </h2>
 
             {/* Subtitle */}
             <p className="mt-1.5 text-xs sm:text-sm text-slate-500 max-w-xl font-normal leading-relaxed">
-              Explore the rich culture, historic landmarks and artistic
-              traditions that have shaped Mangalore over the years.
+              {initialData?.description ||
+                "Explore the rich culture, historic landmarks and artistic traditions that have shaped Mangalore over the years."}
             </p>
           </div>
 
           {/* View All Link */}
           <Link
-            href="#places"
+            href={initialData?.viewAllLink || "/places-to-visit"}
             className="group self-start sm:self-end inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#ea580c] hover:text-orange-600 transition-colors"
           >
-            <span>View All</span>
+            <span>{initialData?.viewAllText || "View All"}</span>
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
@@ -141,10 +163,11 @@ export default function ArtAndHistory() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          {heritageItems.map((item, idx) => (
-            <div
+          {items.map((item, idx) => (
+            <Link
               key={item.id}
-              className="group relative h-[250px] sm:h-[270px] lg:h-[285px] rounded-[22px] sm:rounded-[24px] overflow-hidden cursor-pointer shadow-md shadow-slate-900/10 border border-slate-100/60 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-900/15 hover:-translate-y-1.5 select-none"
+              href={item.link || initialData?.viewAllLink || "/places-to-visit"}
+              className="group relative h-[250px] sm:h-[270px] lg:h-[285px] rounded-[22px] sm:rounded-[24px] overflow-hidden cursor-pointer shadow-md shadow-slate-900/10 border border-slate-100/60 transition-all duration-500 hover:shadow-2xl hover:shadow-slate-900/15 hover:-translate-y-1.5 select-none block"
               style={{
                 transitionDelay: `${idx * 70 + 80}ms`,
               }}
@@ -169,7 +192,7 @@ export default function ArtAndHistory() {
                 {/* Left: Icon Pill + Title */}
                 <div className="flex items-center gap-2.5 min-w-0 pr-1">
                   <div className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex-shrink-0 shadow-sm transition-transform duration-300 group-hover:scale-110 group-hover:bg-orange-500/80">
-                    {item.icon}
+                    {"iconName" in item ? getArtIcon((item as { iconName: string }).iconName) : getArtIcon("landmark")}
                   </div>
                   <h3 className="text-sm sm:text-base font-extrabold text-white leading-tight drop-shadow-md tracking-tight">
                     {item.title}
@@ -183,7 +206,7 @@ export default function ArtAndHistory() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

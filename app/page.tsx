@@ -28,11 +28,11 @@ export default async function Home() {
         <WhyChooseUs initialData={cmsData?.whyChooseUs} />
         <TasteMangalore initialData={cmsData?.tasteMangalore} />
         <PlanTripCTA initialData={cmsData?.planTripCTA} />
-        <MangaloreGallery />
+        <MangaloreGallery initialData={cmsData?.gallery} />
         <TourEnquiryCTA initialData={cmsData?.tourEnquiryCTA} />
-        <ArtAndHistory />
-        <EventsSection />
-        <ExploreMoreCTA />
+        <ArtAndHistory initialData={cmsData?.artAndHistory} />
+        <EventsSection initialData={cmsData?.events} />
+        <ExploreMoreCTA initialData={cmsData?.exploreMore} />
       </main>
       <Footer />
       <ScrollToTop />

@@ -5,13 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { PlanTripCTAData } from "@/lib/cms";
+
 interface PlanTripCTAProps {
-  initialData?: {
-    title?: string;
-    description?: string;
-    buttonText?: string;
-    buttonLink?: string;
-  };
+  initialData?: PlanTripCTAData;
 }
 
 export default function PlanTripCTA({ initialData }: PlanTripCTAProps) {
@@ -51,7 +48,7 @@ export default function PlanTripCTA({ initialData }: PlanTripCTAProps) {
           {/* Background Sunset & Lighthouse Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/nitk.avif"
+              src={initialData?.backdropImage || "/nitk.avif"}
               alt="Mangalore NITK Lighthouse Sunset Coast"
               fill
               unoptimized
@@ -95,7 +92,7 @@ export default function PlanTripCTA({ initialData }: PlanTripCTAProps) {
             <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
               <span className="text-orange-500 font-extrabold text-xs sm:text-sm">—</span>
               <span className="text-[11px] sm:text-xs font-extrabold tracking-[0.2em] text-[#ea580c] uppercase">
-                PLAN YOUR TRIP
+                {initialData?.tag || "PLAN YOUR TRIP"}
               </span>
             </div>
 
@@ -124,7 +121,7 @@ export default function PlanTripCTA({ initialData }: PlanTripCTAProps) {
 
             {/* CTA Button */}
             <Link
-              href={initialData?.buttonLink || "#contact"}
+              href={initialData?.buttonLink || "/contact"}
               className="group btn-shimmer inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-500 via-orange-500 to-orange-600 px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-white shadow-md shadow-orange-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/50 hover:scale-[1.02] hover:-translate-y-0.5 active:translate-y-0"
             >
               <span>{initialData?.buttonText || "Plan My Trip"}</span>

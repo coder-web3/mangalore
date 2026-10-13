@@ -26,6 +26,109 @@ export interface FoodCategoryData {
   image: string;
 }
 
+export interface GalleryItemData {
+  id: string;
+  title: string;
+  category: string;
+  image: string;
+}
+
+export interface GalleryFilterTab {
+  id: string;
+  label: string;
+}
+
+export interface MangaloreGalleryData {
+  tag: string;
+  title: string;
+  titleHighlight: string;
+  description: string;
+  filterTabs?: GalleryFilterTab[];
+  items: GalleryItemData[];
+}
+
+export interface ArtAndHistoryItemData {
+  id: string;
+  title: string;
+  iconName: string;
+  image: string;
+  link?: string;
+}
+
+export interface ArtAndHistoryData {
+  tag: string;
+  titleLine1: string;
+  titleHighlight: string;
+  description: string;
+  viewAllText: string;
+  viewAllLink: string;
+  items: ArtAndHistoryItemData[];
+}
+
+export interface EventCategoryItemData {
+  id: string;
+  title: string;
+  iconName: string;
+  image: string;
+  link?: string;
+}
+
+export interface EventsSectionData {
+  tag: string;
+  title: string;
+  titleHighlight: string;
+  description: string;
+  viewAllText: string;
+  viewAllLink: string;
+  categories: EventCategoryItemData[];
+}
+
+export interface ExploreMoreQuickLinkData {
+  id: string;
+  label: string;
+  iconName: string;
+  href: string;
+}
+
+export interface ExploreMoreCTAData {
+  tag: string;
+  title: string;
+  titleHighlight: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  backdropImage: string;
+  quickLinks: ExploreMoreQuickLinkData[];
+}
+
+export interface PlanTripCTAData {
+  tag?: string;
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  backdropImage?: string;
+}
+
+export interface TourEnquiryStepData {
+  id: string;
+  title: string;
+  subtitle: string;
+  iconName: string;
+}
+
+export interface TourEnquiryCTAData {
+  tag?: string;
+  title: string;
+  subtitle: string;
+  buttonText?: string;
+  buttonLink?: string;
+  phone: string;
+  email: string;
+  backdropImage?: string;
+  steps?: TourEnquiryStepData[];
+}
+
 export interface HomepageData {
   hero: {
     badge: string;
@@ -57,18 +160,12 @@ export interface HomepageData {
     description: string;
     categories: FoodCategoryData[];
   };
-  planTripCTA: {
-    title: string;
-    description: string;
-    buttonText: string;
-    buttonLink: string;
-  };
-  tourEnquiryCTA: {
-    title: string;
-    subtitle: string;
-    phone: string;
-    email: string;
-  };
+  planTripCTA: PlanTripCTAData;
+  gallery: MangaloreGalleryData;
+  tourEnquiryCTA: TourEnquiryCTAData;
+  artAndHistory: ArtAndHistoryData;
+  events: EventsSectionData;
+  exploreMore: ExploreMoreCTAData;
 }
 
 export interface PlacesPolaroidCard {

@@ -486,22 +486,29 @@ export default function AdminClient({
                     <Home className="h-4 w-4 shrink-0" />
                     {!isSidebarCollapsed && <span className="truncate">Homepage</span>}
                   </div>
-                  {!isSidebarCollapsed && (
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleSubmenu("homepage");
-                      }}
-                      className="p-1 rounded-md opacity-70 hover:opacity-100"
-                    >
-                      {expandedMenus.homepage ? (
-                        <ChevronUp className="h-3.5 w-3.5" />
-                      ) : (
-                        <ChevronDown className="h-3.5 w-3.5" />
-                      )}
-                    </button>
-                  )}
+                  <div className="flex items-center gap-1.5">
+                    {!isSidebarCollapsed && (
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        10 Sections
+                      </span>
+                    )}
+                    {!isSidebarCollapsed && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubmenu("homepage");
+                        }}
+                        className="p-1 rounded-md opacity-70 hover:opacity-100"
+                      >
+                        {expandedMenus.homepage ? (
+                          <ChevronUp className="h-3.5 w-3.5" />
+                        ) : (
+                          <ChevronDown className="h-3.5 w-3.5" />
+                        )}
+                      </button>
+                    )}
+                  </div>
                 </button>
 
                 {/* Homepage Submenu */}
@@ -512,7 +519,12 @@ export default function AdminClient({
                       { id: "destinations", label: "Top Destinations" },
                       { id: "whyChooseUs", label: "Why Choose Us" },
                       { id: "tasteMangalore", label: "Taste of Mangalore" },
-                      { id: "cta", label: "Tour CTA & Contact" },
+                      { id: "planTripCTA", label: "Plan Trip Banner" },
+                      { id: "gallery", label: "Pictures Gallery" },
+                      { id: "tourEnquiryCTA", label: "Tour Enquiry Banner" },
+                      { id: "artAndHistory", label: "Art & History" },
+                      { id: "events", label: "Events & Festivals" },
+                      { id: "exploreMore", label: "Explore More CTA" },
                     ].map((item) => (
                       <button
                         key={item.id}

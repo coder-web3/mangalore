@@ -95,7 +95,7 @@
       },
       {
         "id": "sultan",
-        "name": "Sultan Battery",
+        "name": "Sultan Bathery",
         "slug": "sultan-battery",
         "category": "cultural",
         "categoryLabel": "Hills",
@@ -311,7 +311,7 @@
         "titleHighlight": "Beach",
         "category": "Beaches",
         "description": "Escape to Tannirbhavi Beach in Mangalore, a peaceful coastal retreat known for its sandy shores, scenic Arabian Sea views, lush greenery and beautiful sunsets.",
-        "backdropImage": "/ref-card-tannirbhavi.jpg",
+        "backdropImage": "/uploads/1791870810185-bacf9a29-d9f0-42f4-939a-ffe0a8.png",
         "location": "Tannirbhavi Beach, Mangaluru, Karnataka Copy text",
         "bestTime": "October to February · Late Afternoon",
         "popularFor": "Peaceful Shoreline, Sunsets, Coastal Scenery",
@@ -408,50 +408,50 @@
         "title": "Kadri Manjunath",
         "titleHighlight": "Temple",
         "category": "Temples",
-        "description": "A sacred 10th-century heritage shrine renowned for bronze deities, eternal Gomukha spring water ponds, and Buddhist-Hindu cave heritage.",
+        "description": "A peaceful coastal escape in Mangaluru, Thannirbhavi Beach is known for its golden sands, Arabian Sea views, gentle waves, and beautiful sunsets.",
         "backdropImage": "/ref-card-kadri.jpg",
         "location": "Kadri, Mangalore",
-        "bestTime": "All Year • Morning Darshan",
-        "popularFor": "Bronze Deities & Spring Ponds",
-        "idealDuration": "1 - 2 Hours",
+        "bestTime": "October to March",
+        "popularFor": "Golden Sunsets & Coastal Views",
+        "idealDuration": "1–2 Hours",
         "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
       },
       "overview": {
         "badge": "SACRED HERITAGE",
         "title": "About Kadri Manjunath Temple",
-        "p1": "Perched on the verdant Kadri Hill, the Kadri Manjunath Temple dates back to at least 1068 CE. Originally affiliated with Vajrayana Buddhism before becoming a principal Shaivite shrine, it houses one of the finest bronze statues in India—the seated Lokeshwara bronze cast by King Kundavarma.",
-        "p2": "Behind the main sanctum, natural natural springs flow through seven stone ponds called Gomukhas. Devotees perform ablutions in these crystal streams before climbing further to the ancient Pandava Caves carved high on the hill.",
+        "p1": "Kadri Manjunath Temple is one of the most historic temples in Mangaluru, Karnataka. Located on Kadri Hill, this ancient shrine is dedicated to Lord Manjunatha, a form of Lord Shiva. Known for its traditional architecture, spiritual atmosphere, and rich cultural heritage, the temple attracts devotees and visitors throughout the year.",
+        "p2": "The temple is admired for its ancient bronze deity, sacred water ponds known as Gomukhas, and connections to the region's Buddhist and Hindu traditions. Surrounded by greenery, the temple complex offers a peaceful setting for prayer, reflection, and cultural exploration. Visitors can also appreciate its traditional shrines, stone structures, and distinctive heritage.",
         "highlights": [
-          "One of the oldest temples in South India dating back over 1,000 years",
-          "Magnificent Trilokyanatha Lokeshwara bronze sculpture from 968 CE",
-          "Sacred Gomukha natural hillside spring ponds with healing water",
-          "Ancient Pandava caves and scenic Kadri Park adjoining the premises"
+          "Historic Shiva temple situated on Kadri Hill",
+          "Famous for its ancient bronze Manjunatha deity   Copy",
+          "Sacred Gomukha water sources and traditional stone ponds",
+          "Rich heritage blending Hindu traditions with Buddhist influences"
         ]
       },
       "quickFacts": [
         {
           "label": "Entry Fee",
-          "value": "Free Entry (Special Pujas on booking)"
+          "value": "Free Entry (Donations Welcome)"
         },
         {
           "label": "Timings",
-          "value": "6:00 AM - 1:00 PM & 4:00 PM - 8:30 PM"
+          "value": "Generally 6:00 AM–1:00 PM and 4:00 PM–8:00 PM"
         },
         {
           "label": "Dress Code",
-          "value": "Traditional Indian Attire Recommended"
+          "value": "Modest, Traditional Attire Recommended"
         },
         {
           "label": "Distance from City",
-          "value": "4 km from Central Mangalore"
+          "value": "Approximately 4 km from Central Mangaluru"
         },
         {
           "label": "Main Festival",
-          "value": "Kadri Annual Car Festival (Jan - Feb)"
+          "value": "Kadri Kambala and Maha Shivaratri Celebrations"
         },
         {
           "label": "Ideal Visit Duration",
-          "value": "1 to 2 Hours"
+          "value": "1–2 Hours"
         }
       ],
       "gallery": [
@@ -700,7 +700,7 @@
     "sultan-battery": {
       "hero": {
         "title": "Sultan",
-        "titleHighlight": "Battery",
+        "titleHighlight": "Bathery",
         "category": "Cultural",
         "description": "A historic miniature fortress and watchtower constructed by Tipu Sultan, offering ferry crossings and panoramic waterfront trails.",
         "backdropImage": "/ref-card-sultan.jpg",

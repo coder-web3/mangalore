@@ -150,15 +150,225 @@
     ]
   },
   "planTripCTA": {
+    "tag": "PLAN YOUR TRIP",
     "title": "Need Help Planning Your Mangalore Trip?",
     "description": "Tell us your travel dates, interests and group details. We'll create a customised itinerary just for you.",
     "buttonText": "Plan My Trip",
-    "buttonLink": "#contact"
+    "buttonLink": "/contact",
+    "backdropImage": "/nitk.avif"
+  },
+  "gallery": {
+    "tag": "GALLERY",
+    "title": "Mangalore in",
+    "titleHighlight": "Pictures",
+    "description": "A visual journey through Mangalore's beaches, heritage, culture, food and everyday moments.",
+    "filterTabs": [
+      { "id": "all", "label": "All" },
+      { "id": "beaches", "label": "Beaches" },
+      { "id": "temples", "label": "Temples" },
+      { "id": "nature", "label": "Nature" },
+      { "id": "food", "label": "Food" },
+      { "id": "culture", "label": "Culture" },
+      { "id": "city", "label": "City Life" }
+    ],
+    "items": [
+      {
+        "id": "1",
+        "title": "Panambur Beach Sunset",
+        "category": "beaches",
+        "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "2",
+        "title": "Heritage Pagoda Temple",
+        "category": "temples",
+        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "3",
+        "title": "Netravati River & Palms",
+        "category": "nature",
+        "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "4",
+        "title": "Authentic Ghee Roast Feast",
+        "category": "food",
+        "image": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "5",
+        "title": "Historic Coastal Fort",
+        "category": "culture",
+        "image": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "6",
+        "title": "Mangalore Suspension Bridge Twilight",
+        "category": "city",
+        "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        "id": "7",
+        "title": "Milagres Historic Altar",
+        "category": "culture",
+        "image": "/milagrees.avif"
+      }
+    ]
   },
   "tourEnquiryCTA": {
+    "tag": "TOUR ENQUIRY",
     "title": "Interested in Our Mangalore Tour Packages?",
     "subtitle": "Get the latest offers, package details, pricing and availability. Our travel experts will help you choose the best tour for your needs.",
+    "buttonText": "Send Enquiry",
+    "buttonLink": "/contact",
     "phone": "+91 98765 43210",
-    "email": "explore@mangaloretours.com"
+    "email": "explore@mangaloretours.com",
+    "backdropImage": "/nitk.avif",
+    "steps": [
+      {
+        "id": "choose",
+        "title": "Choose Your Preferred Tour",
+        "subtitle": "Beach, Heritage, Nature & More",
+        "iconName": "briefcase"
+      },
+      {
+        "id": "dates",
+        "title": "Share Travel Dates",
+        "subtitle": "Tell us when you plan to visit",
+        "iconName": "calendar"
+      },
+      {
+        "id": "experts",
+        "title": "Talk to Our Experts",
+        "subtitle": "For a hassle-free Mangalore trip",
+        "iconName": "headphones"
+      }
+    ]
+  },
+  "artAndHistory": {
+    "tag": "ART & HISTORY",
+    "titleLine1": "Mangalore's",
+    "titleHighlight": "Art, Heritage and History",
+    "description": "Explore the rich culture, historic landmarks and artistic traditions that have shaped Mangalore over the years.",
+    "viewAllText": "View All",
+    "viewAllLink": "/places-to-visit",
+    "items": [
+      {
+        "id": "landmarks",
+        "title": "Historic Landmarks",
+        "iconName": "landmark",
+        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+        "link": "/places-to-visit"
+      },
+      {
+        "id": "art-culture",
+        "title": "Art & Culture",
+        "iconName": "palette",
+        "image": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=800&q=80",
+        "link": "/places-to-visit"
+      },
+      {
+        "id": "forts",
+        "title": "Forts & Monuments",
+        "iconName": "shield",
+        "image": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80",
+        "link": "/places-to-visit"
+      },
+      {
+        "id": "churches",
+        "title": "Churches & Heritage",
+        "iconName": "church",
+        "image": "/milagrees.avif",
+        "link": "/places-to-visit"
+      }
+    ]
+  },
+  "events": {
+    "tag": "WHAT'S HAPPENING",
+    "title": "Events in",
+    "titleHighlight": "Mangalore",
+    "description": "Discover upcoming festivals, cultural programs, concerts, markets and more.",
+    "viewAllText": "View All Events",
+    "viewAllLink": "#events",
+    "categories": [
+      {
+        "id": "cultural",
+        "title": "Cultural Programs",
+        "iconName": "sparkles",
+        "image": "/cultural.avif",
+        "link": "#events"
+      },
+      {
+        "id": "food-fests",
+        "title": "Food Festivals",
+        "iconName": "utensils",
+        "image": "/food.avif",
+        "link": "#events"
+      },
+      {
+        "id": "concerts",
+        "title": "Concerts & Music",
+        "iconName": "music",
+        "image": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80",
+        "link": "#events"
+      },
+      {
+        "id": "exhibitions",
+        "title": "Exhibitions",
+        "iconName": "palette",
+        "image": "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=800&q=80",
+        "link": "#events"
+      },
+      {
+        "id": "religious",
+        "title": "Religious Festivals",
+        "iconName": "flame",
+        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+        "link": "#events"
+      },
+      {
+        "id": "community",
+        "title": "Community Events",
+        "iconName": "users",
+        "image": "/community.avif",
+        "link": "#events"
+      }
+    ]
+  },
+  "exploreMore": {
+    "tag": "BE A PART OF MANGALORE",
+    "title": "Explore More of",
+    "titleHighlight": "Mangalore",
+    "description": "Discover places, food, events, businesses and experiences that make Mangalore unique.",
+    "buttonText": "Start Exploring",
+    "buttonLink": "/places-to-visit",
+    "backdropImage": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80",
+    "quickLinks": [
+      {
+        "id": "places",
+        "label": "Discover Places",
+        "iconName": "pin",
+        "href": "/places-to-visit"
+      },
+      {
+        "id": "food",
+        "label": "Try Local Food",
+        "iconName": "utensils",
+        "href": "#food"
+      },
+      {
+        "id": "events",
+        "label": "Find Events",
+        "iconName": "calendar",
+        "href": "#events"
+      },
+      {
+        "id": "businesses",
+        "label": "Support Local Businesses",
+        "iconName": "shopping",
+        "href": "#businesses"
+      }
+    ]
   }
 }

@@ -62,7 +62,9 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
-const filterTabs = [
+import { MangaloreGalleryData } from "@/lib/cms";
+
+const defaultFilterTabs = [
   { id: "all", label: "All" },
   { id: "beaches", label: "Beaches" },
   { id: "temples", label: "Temples" },
@@ -72,12 +74,19 @@ const filterTabs = [
   { id: "city", label: "City Life" },
 ];
 
-export default function MangaloreGallery() {
+interface MangaloreGalleryProps {
+  initialData?: MangaloreGalleryData;
+}
+
+export default function MangaloreGallery({ initialData }: MangaloreGalleryProps) {
   const [activeTab, setActiveTab] = useState("all");
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [isVisible, setIsVisible] = useState(true);
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const items = initialData?.items && initialData.items.length > 0 ? initialData.items : galleryItems;
+  const filterTabs = initialData?.filterTabs && initialData.filterTabs.length > 0 ? initialData.filterTabs : defaultFilterTabs;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -98,8 +107,8 @@ export default function MangaloreGallery() {
 
   const filteredItems =
     activeTab === "all"
-      ? galleryItems
-      : galleryItems.filter((item) => item.category === activeTab);
+      ? items
+      : items.filter((item) => item.category === activeTab);
 
   const scrollLeft = () => {
     if (containerRef.current) {
@@ -132,19 +141,20 @@ export default function MangaloreGallery() {
             <div className="flex items-center gap-1.5 mb-2">
               <span className="text-orange-500 font-extrabold text-sm">—</span>
               <span className="text-[11px] sm:text-xs font-extrabold tracking-widest text-[#0d1e38] uppercase">
-                GALLERY
+                {initialData?.tag || "GALLERY"}
               </span>
             </div>
 
             {/* Headline */}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0d1e38] leading-tight">
-              Mangalore in <span className="text-[#ea580c]">Pictures</span>
+              {initialData?.title || "Mangalore in"}{" "}
+              <span className="text-[#ea580c]">{initialData?.titleHighlight || "Pictures"}</span>
             </h2>
 
             {/* Subtitle */}
             <p className="mt-1 text-xs sm:text-sm text-slate-500 max-w-xl font-normal leading-relaxed">
-              A visual journey through Mangalore&apos;s beaches, heritage, culture,
-              food and everyday moments.
+              {initialData?.description ||
+                "A visual journey through Mangalore's beaches, heritage, culture, food and everyday moments."}
             </p>
           </div>
 

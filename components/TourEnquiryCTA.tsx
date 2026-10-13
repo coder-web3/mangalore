@@ -5,34 +5,43 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Briefcase, Calendar, Headphones } from "lucide-react";
 
-const steps = [
+import { TourEnquiryCTAData } from "@/lib/cms";
+
+const defaultSteps = [
   {
     id: "choose",
     title: "Choose Your Preferred Tour",
     subtitle: "Beach, Heritage, Nature & More",
-    icon: <Briefcase className="h-5 w-5 sm:h-6 sm:w-6 text-white" />,
+    iconName: "briefcase",
   },
   {
     id: "dates",
     title: "Share Travel Dates",
     subtitle: "Tell us when you plan to visit",
-    icon: <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-white" />,
+    iconName: "calendar",
   },
   {
     id: "experts",
     title: "Talk to Our Experts",
     subtitle: "For a hassle-free Mangalore trip",
-    icon: <Headphones className="h-5 w-5 sm:h-6 sm:w-6 text-white" />,
+    iconName: "headphones",
   },
 ];
 
+function getStepIcon(iconName: string) {
+  switch (iconName?.toLowerCase()) {
+    case "calendar":
+      return <Calendar className="h-5 w-5 sm:h-6 sm:w-6 text-white" />;
+    case "headphones":
+      return <Headphones className="h-5 w-5 sm:h-6 sm:w-6 text-white" />;
+    case "briefcase":
+    default:
+      return <Briefcase className="h-5 w-5 sm:h-6 sm:w-6 text-white" />;
+  }
+}
+
 interface TourEnquiryCTAProps {
-  initialData?: {
-    title?: string;
-    subtitle?: string;
-    phone?: string;
-    email?: string;
-  };
+  initialData?: TourEnquiryCTAData;
 }
 
 export default function TourEnquiryCTA({ initialData }: TourEnquiryCTAProps) {
@@ -72,7 +81,7 @@ export default function TourEnquiryCTA({ initialData }: TourEnquiryCTAProps) {
           {/* Background Sunset/Twilight Lighthouse Image on Right */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/nitk.avif"
+              src={initialData?.backdropImage || "/nitk.avif"}
               alt="Mangalore NITK Lighthouse Coast"
               fill
               unoptimized
@@ -127,7 +136,7 @@ export default function TourEnquiryCTA({ initialData }: TourEnquiryCTAProps) {
               <div className="flex items-center gap-2 mb-2 sm:mb-2.5">
                 <span className="text-orange-500 font-extrabold text-sm">—</span>
                 <span className="text-[11px] sm:text-xs font-extrabold tracking-[0.25em] text-slate-300 uppercase">
-                  TOUR ENQUIRY
+                  {initialData?.tag || "TOUR ENQUIRY"}
                 </span>
               </div>
 
@@ -159,10 +168,10 @@ export default function TourEnquiryCTA({ initialData }: TourEnquiryCTAProps) {
               {/* CTA Button */}
               <div>
                 <Link
-                  href="#contact"
+                  href={initialData?.buttonLink || "/contact"}
                   className="group btn-shimmer inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-orange-500 via-orange-500 to-orange-600 px-6 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-white shadow-lg shadow-orange-500/35 transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/50 hover:scale-[1.02] hover:-translate-y-0.5 active:translate-y-0"
                 >
-                  <span>Send Enquiry</span>
+                  <span>{initialData?.buttonText || "Send Enquiry"}</span>
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
@@ -170,12 +179,12 @@ export default function TourEnquiryCTA({ initialData }: TourEnquiryCTAProps) {
 
             {/* Right Steps (3 Circular Step Icons with Dividers) */}
             <div className="lg:col-span-6 xl:col-span-7 flex items-center justify-start lg:justify-end gap-3 sm:gap-4 lg:gap-6 pr-0 lg:pr-10 xl:pr-16">
-              {steps.map((step, idx) => (
+              {(initialData?.steps && initialData.steps.length > 0 ? initialData.steps : defaultSteps).map((step, idx, arr) => (
                 <React.Fragment key={step.id}>
                   <div className="group/step flex flex-col items-center text-center flex-1 max-w-[140px] sm:max-w-[160px]">
                     {/* Circular Icon Container */}
                     <div className="flex h-11 w-11 sm:h-13 sm:w-13 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-md transition-all duration-300 group-hover/step:scale-110 group-hover/step:bg-orange-500 group-hover/step:border-orange-400">
-                      {step.icon}
+                      {"iconName" in step ? getStepIcon((step as { iconName: string }).iconName) : getStepIcon("briefcase")}
                     </div>
 
                     {/* Step Title */}
@@ -190,7 +199,7 @@ export default function TourEnquiryCTA({ initialData }: TourEnquiryCTAProps) {
                   </div>
 
                   {/* Vertical Divider Line between steps */}
-                  {idx < steps.length - 1 && (
+                  {idx < arr.length - 1 && (
                     <div className="h-10 sm:h-12 w-[1px] bg-white/15 self-center flex-shrink-0" />
                   )}
                 </React.Fragment>

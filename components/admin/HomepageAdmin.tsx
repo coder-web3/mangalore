@@ -9,8 +9,20 @@ import {
   PhoneCall,
   Plus,
   Trash2,
+  Camera,
+  Landmark,
+  Flame,
+  Compass,
+  Calendar,
+  ExternalLink,
 } from "lucide-react";
-import { HomepageData } from "@/lib/cms";
+import {
+  HomepageData,
+  GalleryItemData,
+  ArtAndHistoryItemData,
+  EventCategoryItemData,
+  ExploreMoreQuickLinkData,
+} from "@/lib/cms";
 import ImageUploader from "@/components/admin/ImageUploader";
 
 export type HomepageTab =
@@ -18,6 +30,12 @@ export type HomepageTab =
   | "destinations"
   | "whyChooseUs"
   | "tasteMangalore"
+  | "planTripCTA"
+  | "gallery"
+  | "tourEnquiryCTA"
+  | "artAndHistory"
+  | "events"
+  | "exploreMore"
   | "cta";
 
 interface HomepageAdminProps {
@@ -35,10 +53,15 @@ export default function HomepageAdmin({
 }: HomepageAdminProps) {
   const tabs: { id: HomepageTab; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: "hero", label: "Hero Banner", icon: Sparkles },
-    { id: "destinations", label: "Popular Destinations", icon: MapPin },
+    { id: "destinations", label: "Destinations", icon: MapPin },
     { id: "whyChooseUs", label: "Why Choose Us", icon: Layers },
-    { id: "tasteMangalore", label: "Taste of Mangalore", icon: Utensils },
-    { id: "cta", label: "Tour CTA & Contact", icon: PhoneCall },
+    { id: "tasteMangalore", label: "Taste Cuisine", icon: Utensils },
+    { id: "planTripCTA", label: "Plan Trip Banner", icon: Calendar },
+    { id: "gallery", label: "Pictures Gallery", icon: Camera },
+    { id: "tourEnquiryCTA", label: "Tour Enquiry", icon: PhoneCall },
+    { id: "artAndHistory", label: "Art & History", icon: Landmark },
+    { id: "events", label: "Events & Fests", icon: Flame },
+    { id: "exploreMore", label: "Explore More", icon: Compass },
   ];
 
   return (
@@ -822,124 +845,462 @@ export default function HomepageAdmin({
         </div>
       )}
 
-      {/* ================= 5. CTA & CONTACT INFO ================= */}
-      {activeTab === "cta" && (
+      {/* ================= 5. PLAN TRIP BANNER ================= */}
+      {(activeTab === "planTripCTA" || activeTab === "cta") && (
         <div className="space-y-6">
           <div>
             <h3 className="text-base font-bold text-white mb-1">
-              Call to Action & Contact Banners
+              Plan Trip Banner Settings
             </h3>
             <p className="text-xs text-slate-400">
-              Update enquiry phone numbers, email, and booking headlines.
+              Customize the itinerary planning invitation banner, title, background photo, and CTA button.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-slate-800 bg-slate-800/30 space-y-3">
-            <h4 className="text-xs font-bold uppercase text-orange-400">
-              Plan Trip Banner
-            </h4>
-            <div>
-              <label className="block text-[11px] text-slate-400 mb-1">
-                Banner Title
-              </label>
-              <input
-                type="text"
-                value={data.planTripCTA.title}
-                onChange={(e) =>
-                  onChange({
-                    ...data,
-                    planTripCTA: { ...data.planTripCTA, title: e.target.value },
-                  })
-                }
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-              />
+          <div className="p-4 sm:p-5 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Eyebrow Tag
+                </label>
+                <input
+                  type="text"
+                  value={data.planTripCTA.tag || "PLAN YOUR TRIP"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      planTripCTA: { ...data.planTripCTA, tag: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Banner Title
+                </label>
+                <input
+                  type="text"
+                  value={data.planTripCTA.title}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      planTripCTA: { ...data.planTripCTA, title: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Description Text
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.planTripCTA.description}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      planTripCTA: {
+                        ...data.planTripCTA,
+                        description: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Button Label
+                </label>
+                <input
+                  type="text"
+                  value={data.planTripCTA.buttonText}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      planTripCTA: {
+                        ...data.planTripCTA,
+                        buttonText: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Button Target Link
+                </label>
+                <input
+                  type="text"
+                  value={data.planTripCTA.buttonLink}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      planTripCTA: {
+                        ...data.planTripCTA,
+                        buttonLink: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-[11px] text-slate-400 mb-1">
-                Description
-              </label>
-              <textarea
-                rows={2}
-                value={data.planTripCTA.description}
-                onChange={(e) =>
+
+            <div className="pt-2">
+              <ImageUploader
+                label="Banner Background Image (Lighthouse Sunset Coast)"
+                value={data.planTripCTA.backdropImage || "/nitk.avif"}
+                onChange={(newUrl) =>
                   onChange({
                     ...data,
                     planTripCTA: {
                       ...data.planTripCTA,
-                      description: e.target.value,
+                      backdropImage: newUrl,
                     },
                   })
                 }
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] text-slate-400 mb-1">
-                Button Label
-              </label>
-              <input
-                type="text"
-                value={data.planTripCTA.buttonText}
-                onChange={(e) =>
-                  onChange({
-                    ...data,
-                    planTripCTA: {
-                      ...data.planTripCTA,
-                      buttonText: e.target.value,
-                    },
-                  })
-                }
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
               />
             </div>
           </div>
+        </div>
+      )}
 
-          <div className="p-4 rounded-xl border border-slate-800 bg-slate-800/30 space-y-3">
+      {/* ================= 6. PICTURES GALLERY ================= */}
+      {activeTab === "gallery" && (
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">
+                Mangalore in Pictures Gallery
+              </h3>
+              <p className="text-xs text-slate-400">
+                Manage the photo carousel, category tags, captions, and device photo uploads.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const newItem: GalleryItemData = {
+                  id: Date.now().toString(),
+                  title: "New Mangalore Moment",
+                  category: "beaches",
+                  image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+                };
+                onChange({
+                  ...data,
+                  gallery: {
+                    ...data.gallery,
+                    items: [...(data.gallery?.items || []), newItem],
+                  },
+                });
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white transition self-start cursor-pointer shadow-sm shadow-orange-600/30"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              <span>Add Gallery Photo</span>
+            </button>
+          </div>
+
+          {/* Section Header Settings */}
+          <div className="p-4 sm:p-5 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4">
             <h4 className="text-xs font-bold uppercase text-orange-400">
-              Tour Enquiry Contact Banner
+              Section Header &amp; Description
             </h4>
-            <div>
-              <label className="block text-[11px] text-slate-400 mb-1">
-                Title
-              </label>
-              <input
-                type="text"
-                value={data.tourEnquiryCTA.title}
-                onChange={(e) =>
-                  onChange({
-                    ...data,
-                    tourEnquiryCTA: {
-                      ...data.tourEnquiryCTA,
-                      title: e.target.value,
-                    },
-                  })
-                }
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-              />
-            </div>
-            <div>
-              <label className="block text-[11px] text-slate-400 mb-1">
-                Subtitle
-              </label>
-              <input
-                type="text"
-                value={data.tourEnquiryCTA.subtitle}
-                onChange={(e) =>
-                  onChange({
-                    ...data,
-                    tourEnquiryCTA: {
-                      ...data.tourEnquiryCTA,
-                      subtitle: e.target.value,
-                    },
-                  })
-                }
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-              />
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-[11px] text-slate-400 mb-1">
-                  Phone Number
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Eyebrow Tag
+                </label>
+                <input
+                  type="text"
+                  value={data.gallery?.tag || "GALLERY"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      gallery: { ...data.gallery, tag: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Main Title
+                </label>
+                <input
+                  type="text"
+                  value={data.gallery?.title || "Mangalore in"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      gallery: { ...data.gallery, title: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Title Highlight
+                </label>
+                <input
+                  type="text"
+                  value={data.gallery?.titleHighlight || "Pictures"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      gallery: { ...data.gallery, titleHighlight: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div className="sm:col-span-3">
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Subtitle Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.gallery?.description || ""}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      gallery: { ...data.gallery, description: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery Items Grid */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase text-slate-400">
+              Gallery Photos List ({data.gallery?.items?.length || 0} items)
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(data.gallery?.items || []).map((item, idx) => (
+                <div
+                  key={item.id || idx}
+                  className="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3 relative group"
+                >
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                    <span className="text-xs font-bold text-orange-400">
+                      Photo #{idx + 1}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updated = data.gallery.items.filter((_, i) => i !== idx);
+                        onChange({
+                          ...data,
+                          gallery: { ...data.gallery, items: updated },
+                        });
+                      }}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-slate-800 transition"
+                      title="Delete photo"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Photo Caption / Title
+                    </label>
+                    <input
+                      type="text"
+                      value={item.title}
+                      onChange={(e) => {
+                        const updated = [...data.gallery.items];
+                        updated[idx].title = e.target.value;
+                        onChange({
+                          ...data,
+                          gallery: { ...data.gallery, items: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Filter Category
+                    </label>
+                    <select
+                      value={item.category}
+                      onChange={(e) => {
+                        const updated = [...data.gallery.items];
+                        updated[idx].category = e.target.value;
+                        onChange({
+                          ...data,
+                          gallery: { ...data.gallery, items: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:outline-none"
+                    >
+                      <option value="beaches">Beaches</option>
+                      <option value="temples">Temples</option>
+                      <option value="nature">Nature</option>
+                      <option value="food">Food</option>
+                      <option value="culture">Culture</option>
+                      <option value="city">City Life</option>
+                    </select>
+                  </div>
+
+                  <ImageUploader
+                    label="Photo Image"
+                    value={item.image}
+                    onChange={(newUrl) => {
+                      const updated = [...data.gallery.items];
+                      updated[idx].image = newUrl;
+                      onChange({
+                        ...data,
+                        gallery: { ...data.gallery, items: updated },
+                      });
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= 7. TOUR ENQUIRY BANNER ================= */}
+      {(activeTab === "tourEnquiryCTA" || activeTab === "cta") && (
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-base font-bold text-white mb-1">
+              Tour Enquiry Banner Settings
+            </h3>
+            <p className="text-xs text-slate-400">
+              Update customer enquiry headlines, travel guidance steps, phone, email, and action link.
+            </p>
+          </div>
+
+          <div className="p-4 sm:p-5 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4">
+            <h4 className="text-xs font-bold uppercase text-orange-400">
+              Enquiry Banner Information
+            </h4>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Eyebrow Tag
+                </label>
+                <input
+                  type="text"
+                  value={data.tourEnquiryCTA.tag || "TOUR ENQUIRY"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      tourEnquiryCTA: {
+                        ...data.tourEnquiryCTA,
+                        tag: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Main Headline
+                </label>
+                <input
+                  type="text"
+                  value={data.tourEnquiryCTA.title}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      tourEnquiryCTA: {
+                        ...data.tourEnquiryCTA,
+                        title: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Subtitle Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.tourEnquiryCTA.subtitle}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      tourEnquiryCTA: {
+                        ...data.tourEnquiryCTA,
+                        subtitle: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Button Text
+                </label>
+                <input
+                  type="text"
+                  value={data.tourEnquiryCTA.buttonText || "Send Enquiry"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      tourEnquiryCTA: {
+                        ...data.tourEnquiryCTA,
+                        buttonText: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Button Link
+                </label>
+                <input
+                  type="text"
+                  value={data.tourEnquiryCTA.buttonLink || "/contact"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      tourEnquiryCTA: {
+                        ...data.tourEnquiryCTA,
+                        buttonLink: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Support Phone Number
                 </label>
                 <input
                   type="text"
@@ -953,12 +1314,13 @@ export default function HomepageAdmin({
                       },
                     })
                   }
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
                 />
               </div>
+
               <div>
-                <label className="block text-[11px] text-slate-400 mb-1">
-                  Email Address
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Support Email Address
                 </label>
                 <input
                   type="text"
@@ -972,9 +1334,911 @@ export default function HomepageAdmin({
                       },
                     })
                   }
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
                 />
               </div>
+            </div>
+
+            <div className="pt-2">
+              <ImageUploader
+                label="Banner Twilight Lighthouse Background"
+                value={data.tourEnquiryCTA.backdropImage || "/nitk.avif"}
+                onChange={(newUrl) =>
+                  onChange({
+                    ...data,
+                    tourEnquiryCTA: {
+                      ...data.tourEnquiryCTA,
+                      backdropImage: newUrl,
+                    },
+                  })
+                }
+              />
+            </div>
+          </div>
+
+          {/* 3 Step Pillars */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase text-slate-400">
+              Enquiry Process Steps (Right Side Pillars)
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {(data.tourEnquiryCTA.steps || []).map((step, idx) => (
+                <div
+                  key={step.id || idx}
+                  className="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3"
+                >
+                  <span className="text-xs font-bold text-orange-400">
+                    Step {idx + 1}
+                  </span>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      value={step.title}
+                      onChange={(e) => {
+                        const updated = [...(data.tourEnquiryCTA.steps || [])];
+                        updated[idx].title = e.target.value;
+                        onChange({
+                          ...data,
+                          tourEnquiryCTA: {
+                            ...data.tourEnquiryCTA,
+                            steps: updated,
+                          },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Subtitle
+                    </label>
+                    <input
+                      type="text"
+                      value={step.subtitle}
+                      onChange={(e) => {
+                        const updated = [...(data.tourEnquiryCTA.steps || [])];
+                        updated[idx].subtitle = e.target.value;
+                        onChange({
+                          ...data,
+                          tourEnquiryCTA: {
+                            ...data.tourEnquiryCTA,
+                            steps: updated,
+                          },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Icon
+                    </label>
+                    <select
+                      value={step.iconName}
+                      onChange={(e) => {
+                        const updated = [...(data.tourEnquiryCTA.steps || [])];
+                        updated[idx].iconName = e.target.value;
+                        onChange({
+                          ...data,
+                          tourEnquiryCTA: {
+                            ...data.tourEnquiryCTA,
+                            steps: updated,
+                          },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:outline-none"
+                    >
+                      <option value="briefcase">Briefcase (Tour)</option>
+                      <option value="calendar">Calendar (Dates)</option>
+                      <option value="headphones">Headphones (Expert Help)</option>
+                    </select>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= 8. ART & HISTORY ================= */}
+      {activeTab === "artAndHistory" && (
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">
+                Art, Heritage &amp; History
+              </h3>
+              <p className="text-xs text-slate-400">
+                Manage cultural heritage showcases, landmarks, forts, and historic monuments.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const newCard: ArtAndHistoryItemData = {
+                  id: Date.now().toString(),
+                  title: "New Heritage Spot",
+                  iconName: "landmark",
+                  image: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+                  link: "/places-to-visit",
+                };
+                onChange({
+                  ...data,
+                  artAndHistory: {
+                    ...data.artAndHistory,
+                    items: [...(data.artAndHistory?.items || []), newCard],
+                  },
+                });
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white transition self-start cursor-pointer shadow-sm shadow-orange-600/30"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              <span>Add Heritage Card</span>
+            </button>
+          </div>
+
+          {/* Section Header Settings */}
+          <div className="p-4 sm:p-5 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4">
+            <h4 className="text-xs font-bold uppercase text-orange-400">
+              Section Header &amp; Action Link
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Eyebrow Tag
+                </label>
+                <input
+                  type="text"
+                  value={data.artAndHistory?.tag || "ART & HISTORY"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      artAndHistory: { ...data.artAndHistory, tag: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Main Title Line
+                </label>
+                <input
+                  type="text"
+                  value={data.artAndHistory?.titleLine1 || "Mangalore's"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      artAndHistory: { ...data.artAndHistory, titleLine1: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Title Highlight
+                </label>
+                <input
+                  type="text"
+                  value={data.artAndHistory?.titleHighlight || "Art, Heritage and History"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      artAndHistory: { ...data.artAndHistory, titleHighlight: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div className="sm:col-span-2 lg:col-span-3">
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Description Paragraph
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.artAndHistory?.description || ""}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      artAndHistory: { ...data.artAndHistory, description: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  View All Button Label
+                </label>
+                <input
+                  type="text"
+                  value={data.artAndHistory?.viewAllText || "View All"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      artAndHistory: { ...data.artAndHistory, viewAllText: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  View All Target Link
+                </label>
+                <input
+                  type="text"
+                  value={data.artAndHistory?.viewAllLink || "/places-to-visit"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      artAndHistory: { ...data.artAndHistory, viewAllLink: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Cards List */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase text-slate-400">
+              Heritage Cards ({data.artAndHistory?.items?.length || 0} cards)
+            </h4>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {(data.artAndHistory?.items || []).map((item, idx) => (
+                <div
+                  key={item.id || idx}
+                  className="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3 relative group"
+                >
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                    <span className="text-xs font-bold text-orange-400">
+                      Card #{idx + 1}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updated = data.artAndHistory.items.filter((_, i) => i !== idx);
+                        onChange({
+                          ...data,
+                          artAndHistory: { ...data.artAndHistory, items: updated },
+                        });
+                      }}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-slate-800 transition"
+                      title="Delete card"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Card Title
+                    </label>
+                    <input
+                      type="text"
+                      value={item.title}
+                      onChange={(e) => {
+                        const updated = [...data.artAndHistory.items];
+                        updated[idx].title = e.target.value;
+                        onChange({
+                          ...data,
+                          artAndHistory: { ...data.artAndHistory, items: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Icon
+                    </label>
+                    <select
+                      value={item.iconName}
+                      onChange={(e) => {
+                        const updated = [...data.artAndHistory.items];
+                        updated[idx].iconName = e.target.value;
+                        onChange({
+                          ...data,
+                          artAndHistory: { ...data.artAndHistory, items: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:outline-none"
+                    >
+                      <option value="landmark">Landmark / Pillar</option>
+                      <option value="palette">Palette (Art & Culture)</option>
+                      <option value="shield">Shield (Forts & History)</option>
+                      <option value="church">Church / Sacred Architecture</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Link Destination
+                    </label>
+                    <input
+                      type="text"
+                      value={item.link || "/places-to-visit"}
+                      onChange={(e) => {
+                        const updated = [...data.artAndHistory.items];
+                        updated[idx].link = e.target.value;
+                        onChange({
+                          ...data,
+                          artAndHistory: { ...data.artAndHistory, items: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <ImageUploader
+                    label="Cover Photo"
+                    value={item.image}
+                    onChange={(newUrl) => {
+                      const updated = [...data.artAndHistory.items];
+                      updated[idx].image = newUrl;
+                      onChange({
+                        ...data,
+                        artAndHistory: { ...data.artAndHistory, items: updated },
+                      });
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= 9. EVENTS & FESTIVALS ================= */}
+      {activeTab === "events" && (
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">
+                Events &amp; Festivals Section
+              </h3>
+              <p className="text-xs text-slate-400">
+                Showcase cultural festivals, food fests, concerts, exhibitions, and religious celebrations.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const newCat: EventCategoryItemData = {
+                  id: Date.now().toString(),
+                  title: "New Event Festival",
+                  iconName: "sparkles",
+                  image: "/cultural.avif",
+                  link: "#events",
+                };
+                onChange({
+                  ...data,
+                  events: {
+                    ...data.events,
+                    categories: [...(data.events?.categories || []), newCat],
+                  },
+                });
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white transition self-start cursor-pointer shadow-sm shadow-orange-600/30"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              <span>Add Event Category</span>
+            </button>
+          </div>
+
+          {/* Section Header Settings */}
+          <div className="p-4 sm:p-5 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4">
+            <h4 className="text-xs font-bold uppercase text-orange-400">
+              Section Header &amp; Action Link
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Eyebrow Tag
+                </label>
+                <input
+                  type="text"
+                  value={data.events?.tag || "WHAT'S HAPPENING"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      events: { ...data.events, tag: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  value={data.events?.title || "Events in"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      events: { ...data.events, title: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Title Highlight
+                </label>
+                <input
+                  type="text"
+                  value={data.events?.titleHighlight || "Mangalore"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      events: { ...data.events, titleHighlight: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div className="sm:col-span-3">
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Subtitle Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.events?.description || ""}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      events: { ...data.events, description: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  View All Button Label
+                </label>
+                <input
+                  type="text"
+                  value={data.events?.viewAllText || "View All Events"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      events: { ...data.events, viewAllText: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  View All Target Link
+                </label>
+                <input
+                  type="text"
+                  value={data.events?.viewAllLink || "#events"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      events: { ...data.events, viewAllLink: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Event Categories List */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase text-slate-400">
+              Event Categories ({data.events?.categories?.length || 0} categories)
+            </h4>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {(data.events?.categories || []).map((cat, idx) => (
+                <div
+                  key={cat.id || idx}
+                  className="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3 relative group"
+                >
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                    <span className="text-xs font-bold text-orange-400">
+                      Category #{idx + 1}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updated = data.events.categories.filter((_, i) => i !== idx);
+                        onChange({
+                          ...data,
+                          events: { ...data.events, categories: updated },
+                        });
+                      }}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-slate-800 transition"
+                      title="Delete category"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      value={cat.title}
+                      onChange={(e) => {
+                        const updated = [...data.events.categories];
+                        updated[idx].title = e.target.value;
+                        onChange({
+                          ...data,
+                          events: { ...data.events, categories: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Icon
+                    </label>
+                    <select
+                      value={cat.iconName}
+                      onChange={(e) => {
+                        const updated = [...data.events.categories];
+                        updated[idx].iconName = e.target.value;
+                        onChange({
+                          ...data,
+                          events: { ...data.events, categories: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:outline-none"
+                    >
+                      <option value="sparkles">Sparkles (Cultural Programs)</option>
+                      <option value="utensils">Utensils (Food Festivals)</option>
+                      <option value="music">Music (Concerts &amp; Gigs)</option>
+                      <option value="palette">Palette (Art Exhibitions)</option>
+                      <option value="flame">Flame (Religious Fests)</option>
+                      <option value="users">Users (Community Gatherings)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Link Destination
+                    </label>
+                    <input
+                      type="text"
+                      value={cat.link || "#events"}
+                      onChange={(e) => {
+                        const updated = [...data.events.categories];
+                        updated[idx].link = e.target.value;
+                        onChange({
+                          ...data,
+                          events: { ...data.events, categories: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <ImageUploader
+                    label="Category Photo"
+                    value={cat.image}
+                    onChange={(newUrl) => {
+                      const updated = [...data.events.categories];
+                      updated[idx].image = newUrl;
+                      onChange({
+                        ...data,
+                        events: { ...data.events, categories: updated },
+                      });
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ================= 10. EXPLORE MORE CTA ================= */}
+      {activeTab === "exploreMore" && (
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h3 className="text-base font-bold text-white mb-1">
+                Explore More of Mangalore CTA Banner
+              </h3>
+              <p className="text-xs text-slate-400">
+                Manage the floating coastal banner, background photo, action buttons, and quick navigation links.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                const newLink: ExploreMoreQuickLinkData = {
+                  id: Date.now().toString(),
+                  label: "New Experience",
+                  iconName: "pin",
+                  href: "/places-to-visit",
+                };
+                onChange({
+                  ...data,
+                  exploreMore: {
+                    ...data.exploreMore,
+                    quickLinks: [...(data.exploreMore?.quickLinks || []), newLink],
+                  },
+                });
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white transition self-start cursor-pointer shadow-sm shadow-orange-600/30"
+            >
+              <Plus className="h-3.5 w-3.5" />
+              <span>Add Quick Link</span>
+            </button>
+          </div>
+
+          {/* Section Header Settings */}
+          <div className="p-4 sm:p-5 rounded-2xl border border-slate-800 bg-slate-900/40 space-y-4">
+            <h4 className="text-xs font-bold uppercase text-orange-400">
+              Banner Content &amp; Button
+            </h4>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Eyebrow Tag
+                </label>
+                <input
+                  type="text"
+                  value={data.exploreMore?.tag || "BE A PART OF MANGALORE"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      exploreMore: { ...data.exploreMore, tag: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  value={data.exploreMore?.title || "Explore More of"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      exploreMore: { ...data.exploreMore, title: e.target.value },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Title Highlight
+                </label>
+                <input
+                  type="text"
+                  value={data.exploreMore?.titleHighlight || "Mangalore"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      exploreMore: {
+                        ...data.exploreMore,
+                        titleHighlight: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div className="sm:col-span-2 lg:col-span-3">
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Subtitle Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={data.exploreMore?.description || ""}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      exploreMore: {
+                        ...data.exploreMore,
+                        description: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Button Text
+                </label>
+                <input
+                  type="text"
+                  value={data.exploreMore?.buttonText || "Start Exploring"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      exploreMore: {
+                        ...data.exploreMore,
+                        buttonText: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  Button Link Destination
+                </label>
+                <input
+                  type="text"
+                  value={data.exploreMore?.buttonLink || "/places-to-visit"}
+                  onChange={(e) =>
+                    onChange({
+                      ...data,
+                      exploreMore: {
+                        ...data.exploreMore,
+                        buttonLink: e.target.value,
+                      },
+                    })
+                  }
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <ImageUploader
+                label="Banner Coastal Aerial Background Image"
+                value={
+                  data.exploreMore?.backdropImage ||
+                  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
+                }
+                onChange={(newUrl) =>
+                  onChange({
+                    ...data,
+                    exploreMore: {
+                      ...data.exploreMore,
+                      backdropImage: newUrl,
+                    },
+                  })
+                }
+              />
+            </div>
+          </div>
+
+          {/* Quick Links List */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold uppercase text-slate-400">
+              Quick Navigation Links ({data.exploreMore?.quickLinks?.length || 0} links)
+            </h4>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {(data.exploreMore?.quickLinks || []).map((link, idx) => (
+                <div
+                  key={link.id || idx}
+                  className="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3 relative group"
+                >
+                  <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                    <span className="text-xs font-bold text-orange-400">
+                      Link #{idx + 1}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const updated = data.exploreMore.quickLinks.filter((_, i) => i !== idx);
+                        onChange({
+                          ...data,
+                          exploreMore: { ...data.exploreMore, quickLinks: updated },
+                        });
+                      }}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-red-400 hover:bg-slate-800 transition"
+                      title="Delete link"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Label Text
+                    </label>
+                    <input
+                      type="text"
+                      value={link.label}
+                      onChange={(e) => {
+                        const updated = [...data.exploreMore.quickLinks];
+                        updated[idx].label = e.target.value;
+                        onChange({
+                          ...data,
+                          exploreMore: { ...data.exploreMore, quickLinks: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Icon
+                    </label>
+                    <select
+                      value={link.iconName}
+                      onChange={(e) => {
+                        const updated = [...data.exploreMore.quickLinks];
+                        updated[idx].iconName = e.target.value;
+                        onChange({
+                          ...data,
+                          exploreMore: { ...data.exploreMore, quickLinks: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:outline-none"
+                    >
+                      <option value="pin">Pin (Places)</option>
+                      <option value="utensils">Utensils (Food)</option>
+                      <option value="calendar">Calendar (Events)</option>
+                      <option value="shopping">Shopping Bag (Businesses)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-300 mb-1">
+                      Target URL
+                    </label>
+                    <input
+                      type="text"
+                      value={link.href}
+                      onChange={(e) => {
+                        const updated = [...data.exploreMore.quickLinks];
+                        updated[idx].href = e.target.value;
+                        onChange({
+                          ...data,
+                          exploreMore: { ...data.exploreMore, quickLinks: updated },
+                        });
+                      }}
+                      className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white"
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
