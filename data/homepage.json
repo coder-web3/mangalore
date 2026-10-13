@@ -279,21 +279,21 @@
         "id": "landmarks",
         "title": "Panambur Beach",
         "iconName": "palette",
-        "image": "/uploads/1791885767318-heritage-pagoda-temple.heif",
+        "image": "/uploads/1791890286628-panambur-beach.heif",
         "link": "/places-to-visit"
       },
       {
         "id": "art-culture",
         "title": "Netravati River",
         "iconName": "landmark",
-        "image": "https://images.unsplash.com/photo-1609137144813-7d9921338f24?auto=format&fit=crop&w=800&q=80",
+        "image": "/uploads/1791890290305-netravati-river---palms11.heif",
         "link": "/places-to-visit"
       },
       {
         "id": "forts",
         "title": "Kadri Manjunath Temple",
         "iconName": "shield",
-        "image": "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&w=800&q=80",
+        "image": "/uploads/1791890293750-heritage-pagoda-temple.heif",
         "link": "/places-to-visit"
       },
       {

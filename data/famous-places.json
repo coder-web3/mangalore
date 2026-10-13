@@ -255,6 +255,19 @@
         "location": "Hampankatta, Mangalore",
         "rating": "4.7",
         "timings": " 8:30 AM – 12:30 PM ,2:00 PM – 5:00 PM"
+      },
+      {
+        "id": "place-1791890159811",
+        "name": "Kadri Hill Park",
+        "slug": "kadri-hill-park",
+        "category": "nature",
+        "categoryLabel": "Nature",
+        "categoryIcon": "hill",
+        "description": "Kadri Hill Park is a popular green space in Mangalore, featuring landscaped gardens, walking paths, and relaxing natural surroundings. It is a pleasant destination for families, nature lovers, and visitors looking for a peaceful outdoor escape.",
+        "image": "",
+        "location": "Kadri, Mangalore, Karnataka",
+        "rating": "4.5",
+        "timings": "6:00 AM to 8:30 PM"
       }
     ]
   },
