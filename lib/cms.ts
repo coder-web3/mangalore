@@ -264,3 +264,126 @@ export function getDefaultPlaceDetail(place: {
     ],
   };
 }
+
+export interface AboutStatData {
+  count: string;
+  label: string;
+}
+
+export interface AboutFeatureBullet {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface AboutValueCard {
+  id: string;
+  title: string;
+  description: string;
+  icon: "map" | "book" | "sparkles" | "camera";
+}
+
+export interface AboutData {
+  hero: {
+    badge: string;
+    titleLine1: string;
+    titleLine2: string;
+    titleHighlight: string;
+    description: string;
+    backdropImage: string;
+    stats: {
+      travelers: AboutStatData;
+      places: AboutStatData;
+      rating: AboutStatData;
+    };
+  };
+  story: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    description: string;
+    beachPhoto: string;
+    beachBadgeTitle: string;
+    beachBadgeSubtitle: string;
+    templePhoto: string;
+    templeBadge: string;
+    sunsetPhoto: string;
+    sunsetBadge: string;
+    features: AboutFeatureBullet[];
+  };
+  whatMakesUsDifferent: {
+    badge: string;
+    titleLine1: string;
+    titleHighlight: string;
+    description: string;
+    cards: AboutValueCard[];
+  };
+  vision: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    description: string;
+    backdropImage: string;
+    quoteText: string;
+  };
+  team: {
+    badge: string;
+    title: string;
+    titleHighlight: string;
+    description: string;
+    teamPhoto: string;
+    pillars: AboutFeatureBullet[];
+  };
+}
+
+export interface ContactData {
+  hero: {
+    badge: string;
+    titlePrefix: string;
+    titleHighlight: string;
+    description: string;
+    backdropImage: string;
+  };
+  quickInfo: {
+    location: {
+      title: string;
+      line1: string;
+      line2: string;
+    };
+    phone: {
+      title: string;
+      number: string;
+      hours: string;
+    };
+    email: {
+      title: string;
+      address: string;
+      note: string;
+    };
+    workingHours: {
+      title: string;
+      days: string;
+      hours: string;
+    };
+  };
+  formSection: {
+    badge: string;
+    titlePrefix: string;
+    titleHighlight: string;
+    description: string;
+  };
+  mapWidget: {
+    badgeTitle: string;
+    badgeSubtitle: string;
+    mapImage: string;
+    googleMapsUrl: string;
+  };
+  customTourBanner: {
+    titlePrefix: string;
+    titleHighlight: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    houseboatImage: string;
+  };
+}

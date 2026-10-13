@@ -1,0 +1,118 @@
+{
+  "hero": {
+    "badge": "ABOUT US",
+    "titleLine1": "Discover the",
+    "titleLine2": "Real",
+    "titleHighlight": "Mangalore",
+    "description": "We are passionate about showcasing the beauty, culture and unique experiences of Mangalore — from pristine beaches and historic temples to local food, nature and hidden gems.",
+    "backdropImage": "/about-hero-lighthouse.jpg",
+    "stats": {
+      "travelers": {
+        "count": "10K+",
+        "label": "Happy Travelers"
+      },
+      "places": {
+        "count": "50+",
+        "label": "Places Covered"
+      },
+      "rating": {
+        "count": "4.8",
+        "label": "Traveler Rating"
+      }
+    }
+  },
+  "story": {
+    "badge": "OUR STORY",
+    "title": "Our Journey to Showcase",
+    "titleHighlight": "Mangalore",
+    "description": "Mangalore Tours was created with a simple vision — to bring together all the amazing places, experiences and local stories of Mangalore in one place. Whether you are a traveler, a local or someone planning a visit, we help you discover the real essence of this beautiful coastal city.",
+    "beachPhoto": "/about-beach-curve.jpg",
+    "beachBadgeTitle": "Mangalore",
+    "beachBadgeSubtitle": "A city of beaches, temples and vibrant culture.",
+    "templePhoto": "/about-temple.jpg",
+    "templeBadge": "Heritage & Culture",
+    "sunsetPhoto": "/about-sunset-beach.jpg",
+    "sunsetBadge": "Beaches & Nature",
+    "features": [
+      {
+        "id": "1",
+        "title": "Local Expertise",
+        "description": "Authentic and up-to-date information from local insights."
+      },
+      {
+        "id": "2",
+        "title": "Passion for Travel",
+        "description": "We love Mangalore and want to share its beauty with everyone."
+      },
+      {
+        "id": "3",
+        "title": "Helpful Travel Guides",
+        "description": "Detailed guides, tips and recommendations for a memorable trip."
+      }
+    ]
+  },
+  "whatMakesUsDifferent": {
+    "badge": "WHAT MAKES US DIFFERENT",
+    "titleLine1": "More Than Just a",
+    "titleHighlight": "Travel Guide",
+    "description": "We focus on real experiences, local insights and carefully curated information to help you explore Mangalore like a local.",
+    "cards": [
+      {
+        "id": "1",
+        "title": "Curated Places",
+        "description": "Handpicked destinations across beaches, temples, nature and more.",
+        "icon": "map"
+      },
+      {
+        "id": "2",
+        "title": "Detailed Guides",
+        "description": "Useful information, tips and travel recommendations.",
+        "icon": "book"
+      },
+      {
+        "id": "3",
+        "title": "Local Experiences",
+        "description": "Discover local food, culture, festivals and hidden gems.",
+        "icon": "sparkles"
+      },
+      {
+        "id": "4",
+        "title": "Updated Content",
+        "description": "Always up-to-date with the latest places, events and travel tips.",
+        "icon": "camera"
+      }
+    ]
+  },
+  "vision": {
+    "badge": "OUR VISION",
+    "title": "To Make Mangalore",
+    "titleHighlight": "a Must-Visit Destination",
+    "description": "We aim to inspire more people to explore Mangalore by showcasing its natural beauty, rich heritage, delicious food and unforgettable experiences.",
+    "backdropImage": "/about-vision-panorama.jpg",
+    "quoteText": "“Mangalore is more than a place — it's an experience of nature, culture and warm people.”"
+  },
+  "team": {
+    "badge": "MEET THE TEAM",
+    "title": "People Behind",
+    "titleHighlight": "Mangalore Tours",
+    "description": "A small team with a big passion for travel, exploration and our beautiful city.",
+    "teamPhoto": "/about-team-road.jpg",
+    "pillars": [
+      {
+        "id": "1",
+        "title": "Travel Enthusiasts",
+        "description": "We love exploring new places and sharing our experiences."
+      },
+      {
+        "id": "2",
+        "title": "Local Knowledge",
+        "description": "Born and raised in Mangalore, we bring authentic insights."
+      },
+      {
+        "id": "3",
+        "title": "Committed to You",
+        "description": "Your trusted travel guide for Mangalore."
+      }
+    ]
+  }
+}

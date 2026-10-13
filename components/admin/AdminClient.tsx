@@ -19,32 +19,42 @@ import {
   Compass,
   Palmtree,
   Home,
+  Info,
+  MessageSquare,
 } from "lucide-react";
-import { HomepageData, PlacesData } from "@/lib/cms";
+import { HomepageData, PlacesData, AboutData, ContactData } from "@/lib/cms";
 import ImageUploader from "@/components/admin/ImageUploader";
 import PlacesListingAdmin from "@/components/admin/PlacesListingAdmin";
 import PlaceDetailAdmin from "@/components/admin/PlaceDetailAdmin";
+import AboutAdmin from "@/components/admin/AboutAdmin";
+import ContactAdmin from "@/components/admin/ContactAdmin";
 
 interface AdminClientProps {
   initialHomepageData: HomepageData;
   initialPlacesData: PlacesData;
+  initialAboutData: AboutData;
+  initialContactData: ContactData;
 }
 
 export default function AdminClient({
   initialHomepageData,
   initialPlacesData,
+  initialAboutData,
+  initialContactData,
 }: AdminClientProps) {
   const [data, setData] = useState<HomepageData>(initialHomepageData);
   const [placesData, setPlacesData] = useState<PlacesData>(initialPlacesData);
+  const [aboutData, setAboutData] = useState<AboutData>(initialAboutData);
+  const [contactData, setContactData] = useState<ContactData>(initialContactData);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<{
     type: "success" | "error";
     text: string;
   } | null>(null);
 
-  // Top Section: "homepage" | "places" | "detail"
+  // Top Section: "homepage" | "places" | "detail" | "about" | "contact"
   const [activeSection, setActiveSection] = useState<
-    "homepage" | "places" | "detail"
+    "homepage" | "places" | "detail" | "about" | "contact"
   >("homepage");
 
   // Which place detail page is currently being edited
@@ -61,6 +71,10 @@ export default function AdminClient({
         return "/places-to-visit";
       case "detail":
         return `/places-to-visit/${selectedDetailSlug}`;
+      case "about":
+        return "/about";
+      case "contact":
+        return "/contact";
       default:
         return "/";
     }
@@ -72,6 +86,10 @@ export default function AdminClient({
         return "Places to Visit Listing";
       case "detail":
         return "Place Detail Pages";
+      case "about":
+        return "About Us Page";
+      case "contact":
+        return "Contact Page";
       default:
         return "Homepage";
     }
@@ -91,6 +109,28 @@ export default function AdminClient({
         setMessage({
           type: "success",
           text: "Homepage changes & device images saved and published live!",
+        });
+      } else if (activeSection === "about") {
+        const res = await fetch("/api/admin/about", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(aboutData),
+        });
+        if (!res.ok) throw new Error("Failed to save about page");
+        setMessage({
+          type: "success",
+          text: "About Us page changes & images saved and published live!",
+        });
+      } else if (activeSection === "contact") {
+        const res = await fetch("/api/admin/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(contactData),
+        });
+        if (!res.ok) throw new Error("Failed to save contact page");
+        setMessage({
+          type: "success",
+          text: "Contact page details & images saved and published live!",
         });
       } else {
         const res = await fetch("/api/admin/places", {
@@ -176,6 +216,32 @@ export default function AdminClient({
             <Palmtree className="h-3.5 w-3.5" />
             <span>Detail Pages</span>
           </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveSection("about")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
+              activeSection === "about"
+                ? "bg-orange-600 text-white shadow-sm"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            <Info className="h-3.5 w-3.5" />
+            <span>About Page</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveSection("contact")}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
+              activeSection === "contact"
+                ? "bg-orange-600 text-white shadow-sm"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            <MessageSquare className="h-3.5 w-3.5" />
+            <span>Contact Page</span>
+          </button>
         </div>
 
         <div className="flex items-center gap-3 justify-end">
@@ -243,6 +309,14 @@ export default function AdminClient({
               selectedSlug={selectedDetailSlug}
               onSelectSlug={setSelectedDetailSlug}
             />
+          </div>
+        ) : activeSection === "about" ? (
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-7 shadow-xl">
+            <AboutAdmin data={aboutData} onChange={setAboutData} />
+          </div>
+        ) : activeSection === "contact" ? (
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-7 shadow-xl">
+            <ContactAdmin data={contactData} onChange={setContactData} />
           </div>
         ) : (
           <div className="flex flex-col md:flex-row gap-6">

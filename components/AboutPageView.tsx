@@ -14,15 +14,153 @@ import {
   Camera,
   Landmark,
   Palmtree,
-  ArrowRight,
   Quote,
 } from "lucide-react";
 import Header from "@/components/Header";
 import TourEnquiryCTA from "@/components/TourEnquiryCTA";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import { AboutData } from "@/lib/cms";
 
-export default function AboutPageView() {
+interface AboutPageViewProps {
+  aboutData?: AboutData;
+}
+
+export default function AboutPageView({ aboutData }: AboutPageViewProps) {
+  const hero = aboutData?.hero || {
+    badge: "ABOUT US",
+    titleLine1: "Discover the",
+    titleLine2: "Real",
+    titleHighlight: "Mangalore",
+    description:
+      "We are passionate about showcasing the beauty, culture and unique experiences of Mangalore — from pristine beaches and historic temples to local food, nature and hidden gems.",
+    backdropImage: "/about-hero-lighthouse.jpg",
+    stats: {
+      travelers: { count: "10K+", label: "Happy Travelers" },
+      places: { count: "50+", label: "Places Covered" },
+      rating: { count: "4.8", label: "Traveler Rating" },
+    },
+  };
+
+  const story = aboutData?.story || {
+    badge: "OUR STORY",
+    title: "Our Journey to Showcase",
+    titleHighlight: "Mangalore",
+    description:
+      "Mangalore Tours was created with a simple vision — to bring together all the amazing places, experiences and local stories of Mangalore in one place. Whether you are a traveler, a local or someone planning a visit, we help you discover the real essence of this beautiful coastal city.",
+    beachPhoto: "/about-beach-curve.jpg",
+    beachBadgeTitle: "Mangalore",
+    beachBadgeSubtitle: "A city of beaches, temples and vibrant culture.",
+    templePhoto: "/about-temple.jpg",
+    templeBadge: "Heritage & Culture",
+    sunsetPhoto: "/about-sunset-beach.jpg",
+    sunsetBadge: "Beaches & Nature",
+    features: [
+      {
+        id: "1",
+        title: "Local Expertise",
+        description: "Authentic and up-to-date information from local insights.",
+      },
+      {
+        id: "2",
+        title: "Passion for Travel",
+        description: "We love Mangalore and want to share its beauty with everyone.",
+      },
+      {
+        id: "3",
+        title: "Helpful Travel Guides",
+        description:
+          "Detailed guides, tips and recommendations for a memorable trip.",
+      },
+    ],
+  };
+
+  const whatMakesUsDifferent = aboutData?.whatMakesUsDifferent || {
+    badge: "WHAT MAKES US DIFFERENT",
+    titleLine1: "More Than Just a",
+    titleHighlight: "Travel Guide",
+    description:
+      "We focus on real experiences, local insights and carefully curated information to help you explore Mangalore like a local.",
+    cards: [
+      {
+        id: "1",
+        title: "Curated Places",
+        description:
+          "Handpicked destinations across beaches, temples, nature and more.",
+        icon: "map",
+      },
+      {
+        id: "2",
+        title: "Detailed Guides",
+        description: "Useful information, tips and travel recommendations.",
+        icon: "book",
+      },
+      {
+        id: "3",
+        title: "Local Experiences",
+        description: "Discover local food, culture, festivals and hidden gems.",
+        icon: "sparkles",
+      },
+      {
+        id: "4",
+        title: "Updated Content",
+        description:
+          "Always up-to-date with the latest places, events and travel tips.",
+        icon: "camera",
+      },
+    ],
+  };
+
+  const vision = aboutData?.vision || {
+    badge: "OUR VISION",
+    title: "To Make Mangalore",
+    titleHighlight: "a Must-Visit Destination",
+    description:
+      "We aim to inspire more people to explore Mangalore by showcasing its natural beauty, rich heritage, delicious food and unforgettable experiences.",
+    backdropImage: "/about-vision-panorama.jpg",
+    quoteText:
+      "“Mangalore is more than a place — it's an experience of nature, culture and warm people.”",
+  };
+
+  const team = aboutData?.team || {
+    badge: "MEET THE TEAM",
+    title: "People Behind",
+    titleHighlight: "Mangalore Tours",
+    description:
+      "A small team with a big passion for travel, exploration and our beautiful city.",
+    teamPhoto: "/about-team-road.jpg",
+    pillars: [
+      {
+        id: "1",
+        title: "Travel Enthusiasts",
+        description: "We love exploring new places and sharing our experiences.",
+      },
+      {
+        id: "2",
+        title: "Local Knowledge",
+        description: "Born and raised in Mangalore, we bring authentic insights.",
+      },
+      {
+        id: "3",
+        title: "Committed to You",
+        description: "Your trusted travel guide for Mangalore.",
+      },
+    ],
+  };
+
+  const getCardIcon = (iconName: string) => {
+    switch (iconName) {
+      case "book":
+        return <BookOpen className="h-5 w-5" />;
+      case "sparkles":
+        return <Sparkles className="h-5 w-5" />;
+      case "camera":
+        return <Camera className="h-5 w-5" />;
+      default:
+        return <MapPin className="h-5 w-5" />;
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
@@ -35,7 +173,7 @@ export default function AboutPageView() {
               {/* Scenic Coastal Lighthouse Backdrop on Right */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/about-hero-lighthouse.jpg"
+                  src={hero.backdropImage || "/about-hero-lighthouse.jpg"}
                   alt="Mangalore Coastal Lighthouse"
                   fill
                   priority
@@ -67,21 +205,22 @@ export default function AboutPageView() {
                 <div className="flex items-center gap-2 mb-3">
                   <span className="h-[3px] w-6 rounded-full bg-[#ff5e15]" />
                   <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-[#0d1e38]">
-                    ABOUT US
+                    {hero.badge || "ABOUT US"}
                   </span>
                 </div>
 
                 {/* Headline */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-extrabold tracking-tight text-[#0d1e38] leading-[1.08] mb-4">
-                  Discover the <br />
-                  Real <span className="text-[#ff5e15]">Mangalore</span>
+                  {hero.titleLine1 || "Discover the"} <br />
+                  {hero.titleLine2 || "Real"}{" "}
+                  <span className="text-[#ff5e15]">
+                    {hero.titleHighlight || "Mangalore"}
+                  </span>
                 </h1>
 
                 {/* Subtitle Description */}
                 <p className="text-xs sm:text-sm md:text-[14px] text-slate-600 leading-relaxed font-normal max-w-lg mb-6">
-                  We are passionate about showcasing the beauty, culture and
-                  unique experiences of Mangalore — from pristine beaches and
-                  historic temples to local food, nature and hidden gems.
+                  {hero.description}
                 </p>
 
                 {/* 3 Trust Metrics / Stat Badges Row */}
@@ -93,10 +232,10 @@ export default function AboutPageView() {
                     </div>
                     <div>
                       <div className="text-sm font-extrabold text-[#0d1e38]">
-                        10K+
+                        {hero.stats.travelers.count}
                       </div>
                       <div className="text-[10px] text-slate-500">
-                        Happy Travelers
+                        {hero.stats.travelers.label}
                       </div>
                     </div>
                   </div>
@@ -108,10 +247,10 @@ export default function AboutPageView() {
                     </div>
                     <div>
                       <div className="text-sm font-extrabold text-[#0d1e38]">
-                        50+
+                        {hero.stats.places.count}
                       </div>
                       <div className="text-[10px] text-slate-500">
-                        Places Covered
+                        {hero.stats.places.label}
                       </div>
                     </div>
                   </div>
@@ -123,10 +262,10 @@ export default function AboutPageView() {
                     </div>
                     <div>
                       <div className="text-sm font-extrabold text-[#0d1e38]">
-                        4.8
+                        {hero.stats.rating.count}
                       </div>
                       <div className="text-[10px] text-slate-500">
-                        Traveler Rating
+                        {hero.stats.rating.label}
                       </div>
                     </div>
                   </div>
@@ -144,7 +283,7 @@ export default function AboutPageView() {
               {/* Vertical Card 1: Curved Beach */}
               <div className="col-span-6 relative aspect-[3/4] rounded-3xl overflow-hidden shadow-lg border border-slate-100 bg-slate-100 group">
                 <Image
-                  src="/about-beach-curve.jpg"
+                  src={story.beachPhoto || "/about-beach-curve.jpg"}
                   alt="Mangalore Curved Coastline"
                   fill
                   unoptimized
@@ -158,10 +297,11 @@ export default function AboutPageView() {
                   </div>
                   <div>
                     <h4 className="text-xs font-extrabold text-[#0d1e38]">
-                      Mangalore
+                      {story.beachBadgeTitle || "Mangalore"}
                     </h4>
                     <p className="text-[10px] text-slate-500 leading-tight">
-                      A city of beaches, temples and vibrant culture.
+                      {story.beachBadgeSubtitle ||
+                        "A city of beaches, temples and vibrant culture."}
                     </p>
                   </div>
                 </div>
@@ -172,7 +312,7 @@ export default function AboutPageView() {
                 {/* Top Photo: Temple */}
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 bg-slate-100 group">
                   <Image
-                    src="/about-temple.jpg"
+                    src={story.templePhoto || "/about-temple.jpg"}
                     alt="Heritage Temple Architecture"
                     fill
                     unoptimized
@@ -183,7 +323,7 @@ export default function AboutPageView() {
                   <div className="absolute top-2.5 left-2.5 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-2.5 py-1 shadow-sm border border-slate-100">
                     <Landmark className="h-3 w-3 text-[#ff5e15]" />
                     <span className="text-[10px] font-bold text-[#0d1e38]">
-                      Heritage &amp; Culture
+                      {story.templeBadge || "Heritage & Culture"}
                     </span>
                   </div>
                 </div>
@@ -191,7 +331,7 @@ export default function AboutPageView() {
                 {/* Bottom Photo: Sunset Beach */}
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-md border border-slate-100 bg-slate-100 group">
                   <Image
-                    src="/about-sunset-beach.jpg"
+                    src={story.sunsetPhoto || "/about-sunset-beach.jpg"}
                     alt="Beaches and Nature Sunset"
                     fill
                     unoptimized
@@ -202,7 +342,7 @@ export default function AboutPageView() {
                   <div className="absolute top-2.5 left-2.5 z-10 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-2.5 py-1 shadow-sm border border-slate-100">
                     <Palmtree className="h-3 w-3 text-[#ff5e15]" />
                     <span className="text-[10px] font-bold text-[#0d1e38]">
-                      Beaches &amp; Nature
+                      {story.sunsetBadge || "Beaches & Nature"}
                     </span>
                   </div>
                 </div>
@@ -215,73 +355,42 @@ export default function AboutPageView() {
               <div className="flex items-center gap-2">
                 <span className="h-[3px] w-6 rounded-full bg-[#ff5e15]" />
                 <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-[#0d1e38]">
-                  OUR STORY
+                  {story.badge || "OUR STORY"}
                 </span>
               </div>
 
               {/* Headline */}
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#0d1e38] leading-tight">
-                Our Journey to <br className="hidden sm:inline" />
-                Showcase <span className="text-[#ff5e15]">Mangalore</span>
+                {story.title}{" "}
+                <span className="text-[#ff5e15]">{story.titleHighlight}</span>
               </h2>
 
               {/* Description */}
               <p className="text-xs sm:text-sm md:text-[15px] text-slate-600 leading-relaxed font-normal">
-                Mangalore Tours was created with a simple vision — to bring
-                together all the amazing places, experiences and local stories
-                of Mangalore in one place. Whether you are a traveler, a local or
-                someone planning a visit, we help you discover the real essence
-                of this beautiful coastal city.
+                {story.description}
               </p>
 
               {/* 3 Feature Bullets */}
               <div className="space-y-4 pt-2">
-                {/* Bullet 1 */}
-                <div className="flex items-start gap-3.5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 border border-orange-100 text-[#ff5e15] shadow-xs">
-                    <Compass className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-extrabold text-[#0d1e38]">
-                      Local Expertise
-                    </h3>
-                    <p className="text-xs text-slate-600 mt-0.5">
-                      Authentic and up-to-date information from local insights.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Bullet 2 */}
-                <div className="flex items-start gap-3.5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 border border-orange-100 text-[#ff5e15] shadow-xs">
-                    <Heart className="h-5 w-5 fill-current" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-extrabold text-[#0d1e38]">
-                      Passion for Travel
-                    </h3>
-                    <p className="text-xs text-slate-600 mt-0.5">
-                      We love Mangalore and want to share its beauty with
-                      everyone.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Bullet 3 */}
-                <div className="flex items-start gap-3.5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 border border-orange-100 text-[#ff5e15] shadow-xs">
-                    <Users className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-extrabold text-[#0d1e38]">
-                      Helpful Travel Guides
-                    </h3>
-                    <p className="text-xs text-slate-600 mt-0.5">
-                      Detailed guides, tips and recommendations for a memorable
-                      trip.
-                    </p>
-                  </div>
-                </div>
+                {story.features.map((feat, idx) => {
+                  const icons = [Compass, Heart, Users];
+                  const Icon = icons[idx % icons.length];
+                  return (
+                    <div key={feat.id || idx} className="flex items-start gap-3.5">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-orange-50 border border-orange-100 text-[#ff5e15] shadow-xs">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h3 className="text-sm font-extrabold text-[#0d1e38]">
+                          {feat.title}
+                        </h3>
+                        <p className="text-xs text-slate-600 mt-0.5">
+                          {feat.description}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -296,76 +405,40 @@ export default function AboutPageView() {
                 <div className="flex items-center gap-2">
                   <span className="h-[3px] w-6 rounded-full bg-[#ff5e15]" />
                   <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-[#0d1e38]">
-                    WHAT MAKES US DIFFERENT
+                    {whatMakesUsDifferent.badge}
                   </span>
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0d1e38] leading-tight">
-                  More Than Just a <br />
-                  <span className="text-[#ff5e15]">Travel Guide</span>
+                  {whatMakesUsDifferent.titleLine1} <br />
+                  <span className="text-[#ff5e15]">
+                    {whatMakesUsDifferent.titleHighlight}
+                  </span>
                 </h2>
 
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  We focus on real experiences, local insights and carefully
-                  curated information to help you explore Mangalore like a local.
+                  {whatMakesUsDifferent.description}
                 </p>
               </div>
 
               {/* Right: 4 Value Cards (8 cols) */}
               <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {/* Card 1 */}
-                <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-orange-200 hover:shadow-md transition-all">
-                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-50 text-[#ff5e15]">
-                    <MapPin className="h-5 w-5" />
+                {whatMakesUsDifferent.cards.map((card, idx) => (
+                  <div
+                    key={card.id || idx}
+                    className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-orange-200 hover:shadow-md transition-all"
+                  >
+                    <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-50 text-[#ff5e15]">
+                      {getCardIcon(card.icon)}
+                    </div>
+                    <h3 className="text-sm font-extrabold text-[#0d1e38] mb-1">
+                      {card.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 leading-relaxed">
+                      {card.description}
+                    </p>
                   </div>
-                  <h3 className="text-sm font-extrabold text-[#0d1e38] mb-1">
-                    Curated Places
-                  </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    Handpicked destinations across beaches, temples, nature and
-                    more.
-                  </p>
-                </div>
-
-                {/* Card 2 */}
-                <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-blue-200 hover:shadow-md transition-all">
-                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                    <BookOpen className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-sm font-extrabold text-[#0d1e38] mb-1">
-                    Detailed Guides
-                  </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    Useful information, tips and travel recommendations.
-                  </p>
-                </div>
-
-                {/* Card 3 */}
-                <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-emerald-200 hover:shadow-md transition-all">
-                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
-                    <Sparkles className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-sm font-extrabold text-[#0d1e38] mb-1">
-                    Local Experiences
-                  </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    Discover local food, culture, festivals and hidden gems.
-                  </p>
-                </div>
-
-                {/* Card 4 */}
-                <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-purple-200 hover:shadow-md transition-all">
-                  <div className="mb-3.5 flex h-10 w-10 items-center justify-center rounded-2xl bg-purple-50 text-purple-600">
-                    <Camera className="h-5 w-5" />
-                  </div>
-                  <h3 className="text-sm font-extrabold text-[#0d1e38] mb-1">
-                    Updated Content
-                  </h3>
-                  <p className="text-xs text-slate-500 leading-relaxed">
-                    Always up-to-date with the latest places, events and travel
-                    tips.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -377,7 +450,7 @@ export default function AboutPageView() {
             {/* Background Panorama Image */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/about-vision-panorama.jpg"
+                src={vision.backdropImage || "/about-vision-panorama.jpg"}
                 alt="Mangalore Coastal Vista Sunset"
                 fill
                 unoptimized
@@ -401,21 +474,17 @@ export default function AboutPageView() {
                 <div className="flex items-center gap-2">
                   <span className="h-[3px] w-6 rounded-full bg-[#ff5e15]" />
                   <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-[#0d1e38]">
-                    OUR VISION
+                    {vision.badge}
                   </span>
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#0d1e38] leading-tight">
-                  To Make Mangalore <br />
-                  <span className="text-[#ff5e15]">
-                    a Must-Visit Destination
-                  </span>
+                  {vision.title} <br />
+                  <span className="text-[#ff5e15]">{vision.titleHighlight}</span>
                 </h2>
 
                 <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal max-w-md">
-                  We aim to inspire more people to explore Mangalore by
-                  showcasing its natural beauty, rich heritage, delicious food
-                  and unforgettable experiences.
+                  {vision.description}
                 </p>
               </div>
 
@@ -425,8 +494,7 @@ export default function AboutPageView() {
                   <Quote className="h-5 w-5 text-[#ff5e15] shrink-0 fill-current mt-0.5" />
                   <div>
                     <p className="text-xs sm:text-sm font-semibold text-slate-800 leading-relaxed italic">
-                      “Mangalore is more than a place — it&apos;s an experience of
-                      nature, culture and warm people.”
+                      {vision.quoteText}
                     </p>
                     <div className="mt-2.5 h-[2px] w-8 rounded-full bg-[#ff5e15]" />
                   </div>
@@ -442,69 +510,50 @@ export default function AboutPageView() {
             <div className="flex items-center gap-2 mb-2">
               <span className="h-[3px] w-6 rounded-full bg-[#ff5e15]" />
               <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-[#0d1e38]">
-                MEET THE TEAM
+                {team.badge}
               </span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-[#0d1e38] leading-tight">
-              People Behind{" "}
-              <span className="text-[#ff5e15]">Mangalore Tours</span>
+              {team.title}{" "}
+              <span className="text-[#ff5e15]">{team.titleHighlight}</span>
             </h2>
 
             <p className="text-xs sm:text-sm text-slate-600 mt-2 font-normal">
-              A small team with a big passion for travel, exploration and our
-              beautiful city.
+              {team.description}
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left: 3 Value Pills (7 cols) */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {/* Pill 1 */}
-              <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-orange-200 transition-all">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-50 text-[#ff5e15]">
-                  <Users className="h-5 w-5" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-[#0d1e38] mb-1">
-                  Travel Enthusiasts
-                </h3>
-                <p className="text-[11px] text-slate-500 leading-relaxed">
-                  We love exploring new places and sharing our experiences.
-                </p>
-              </div>
-
-              {/* Pill 2 */}
-              <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-blue-200 transition-all">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                  <MapPin className="h-5 w-5" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-[#0d1e38] mb-1">
-                  Local Knowledge
-                </h3>
-                <p className="text-[11px] text-slate-500 leading-relaxed">
-                  Born and raised in Mangalore, we bring authentic insights.
-                </p>
-              </div>
-
-              {/* Pill 3 */}
-              <div className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-emerald-200 transition-all">
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600">
-                  <Heart className="h-5 w-5 fill-current" />
-                </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-[#0d1e38] mb-1">
-                  Committed to You
-                </h3>
-                <p className="text-[11px] text-slate-500 leading-relaxed">
-                  Your trusted travel guide for Mangalore.
-                </p>
-              </div>
+              {team.pillars.map((pill, idx) => {
+                const icons = [Users, MapPin, Heart];
+                const Icon = icons[idx % icons.length];
+                return (
+                  <div
+                    key={pill.id || idx}
+                    className="rounded-3xl border border-slate-200/80 bg-white p-5 shadow-sm hover:border-orange-200 transition-all"
+                  >
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-2xl bg-orange-50 text-[#ff5e15]">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-xs sm:text-sm font-extrabold text-[#0d1e38] mb-1">
+                      {pill.title}
+                    </h3>
+                    <p className="text-[11px] text-slate-500 leading-relaxed">
+                      {pill.description}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Right: Coastal Scenic Image with Explore Mangalore cursive (5 cols) */}
             <div className="lg:col-span-5 flex items-center justify-center lg:justify-end gap-4">
               <div className="relative aspect-[16/11] w-full max-w-sm rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-slate-100 group">
                 <Image
-                  src="/about-team-road.jpg"
+                  src={team.teamPhoto || "/about-team-road.jpg"}
                   alt="Explore Mangalore Coastal Roads"
                   fill
                   unoptimized

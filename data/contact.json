@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "badge": "GET IN TOUCH",
+    "titlePrefix": "We're Here to",
+    "titleHighlight": "Help",
+    "description": "Have questions about places to visit, tours or travel planning? Our team is ready to assist you with the best travel experiences in Mangalore.",
+    "backdropImage": "/contact-hero-scenic.jpg"
+  },
+  "quickInfo": {
+    "location": {
+      "title": "Our Location",
+      "line1": "Mangalore, Karnataka",
+      "line2": "India"
+    },
+    "phone": {
+      "title": "Call Us",
+      "number": "+91 74 8383 0582",
+      "hours": "Mon - Sat, 9:00 AM - 6:00 PM"
+    },
+    "email": {
+      "title": "Email Us",
+      "address": "info@mangaloreetours.com",
+      "note": "We reply within 24 hours"
+    },
+    "workingHours": {
+      "title": "Working Hours",
+      "days": "Monday - Saturday",
+      "hours": "9:00 AM - 6:00 PM"
+    }
+  },
+  "formSection": {
+    "badge": "SEND US A MESSAGE",
+    "titlePrefix": "Plan Your",
+    "titleHighlight": "Mangalore Trip",
+    "description": "Fill out the form below and our travel experts will get back to you soon."
+  },
+  "mapWidget": {
+    "badgeTitle": "Find Us on Map",
+    "badgeSubtitle": "Mangalore, Karnataka",
+    "mapImage": "/contact-map.jpg",
+    "googleMapsUrl": "https://maps.google.com/?q=Mangalore,+Karnataka"
+  },
+  "customTourBanner": {
+    "titlePrefix": "Need a Custom",
+    "titleHighlight": "Tour Package?",
+    "description": "Let us create a personalised itinerary based on your interests, budget and travel dates.",
+    "buttonText": "Get a Custom Plan",
+    "buttonLink": "/#tour-enquiry",
+    "houseboatImage": "/contact-houseboat.jpg"
+  }
+}

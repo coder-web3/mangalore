@@ -20,7 +20,70 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
-export default function ContactPageView() {
+import { ContactData } from "@/lib/cms";
+
+interface ContactPageViewProps {
+  contactData?: ContactData;
+}
+
+export default function ContactPageView({ contactData }: ContactPageViewProps) {
+  const hero = contactData?.hero || {
+    badge: "GET IN TOUCH",
+    titlePrefix: "We're Here to",
+    titleHighlight: "Help",
+    description:
+      "Have questions about places to visit, tours or travel planning? Our team is ready to assist you with the best travel experiences in Mangalore.",
+    backdropImage: "/contact-hero-scenic.jpg",
+  };
+
+  const quickInfo = contactData?.quickInfo || {
+    location: {
+      title: "Our Location",
+      line1: "Mangalore, Karnataka",
+      line2: "India",
+    },
+    phone: {
+      title: "Call Us",
+      number: "+91 74 8383 0582",
+      hours: "Mon - Sat, 9:00 AM - 6:00 PM",
+    },
+    email: {
+      title: "Email Us",
+      address: "info@mangaloreetours.com",
+      note: "We reply within 24 hours",
+    },
+    workingHours: {
+      title: "Working Hours",
+      days: "Monday - Saturday",
+      hours: "9:00 AM - 6:00 PM",
+    },
+  };
+
+  const formSection = contactData?.formSection || {
+    badge: "SEND US A MESSAGE",
+    titlePrefix: "Plan Your",
+    titleHighlight: "Mangalore Trip",
+    description:
+      "Fill out the form below and our travel experts will get back to you soon.",
+  };
+
+  const mapWidget = contactData?.mapWidget || {
+    badgeTitle: "Find Us on Map",
+    badgeSubtitle: "Mangalore, Karnataka",
+    mapImage: "/contact-map.jpg",
+    googleMapsUrl: "https://maps.google.com/?q=Mangalore,+Karnataka",
+  };
+
+  const customTourBanner = contactData?.customTourBanner || {
+    titlePrefix: "Need a Custom",
+    titleHighlight: "Tour Package?",
+    description:
+      "Let us create a personalised itinerary based on your interests, budget and travel dates.",
+    buttonText: "Get a Custom Plan",
+    buttonLink: "/#tour-enquiry",
+    houseboatImage: "/contact-houseboat.jpg",
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -102,7 +165,7 @@ export default function ContactPageView() {
               {/* Scenic Coastal Lighthouse Backdrop on Right */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/contact-hero-scenic.jpg"
+                  src={hero.backdropImage || "/contact-hero-scenic.jpg"}
                   alt="Mangalore Coastal Lighthouse"
                   fill
                   priority
@@ -160,21 +223,19 @@ export default function ContactPageView() {
                 <div className="flex items-center gap-2 mb-3">
                   <span className="h-[3px] w-6 rounded-full bg-[#ff5e15]" />
                   <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-[#0d1e38]">
-                    GET IN TOUCH
+                    {hero.badge || "GET IN TOUCH"}
                   </span>
                 </div>
 
                 {/* Headline */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-extrabold tracking-tight text-[#0d1e38] leading-[1.08] mb-4">
-                  We&apos;re Here to{" "}
-                  <span className="text-[#ff5e15]">Help</span>
+                  {hero.titlePrefix || "We're Here to"}{" "}
+                  <span className="text-[#ff5e15]">{hero.titleHighlight || "Help"}</span>
                 </h1>
 
                 {/* Subtitle Description */}
                 <p className="text-xs sm:text-sm md:text-[14px] text-slate-600 leading-relaxed font-normal max-w-lg mb-4">
-                  Have questions about places to visit, tours or travel planning?
-                  Our team is ready to assist you with the best travel experiences
-                  in Mangalore.
+                  {hero.description}
                 </p>
               </div>
             </div>
@@ -191,12 +252,14 @@ export default function ContactPageView() {
               </div>
               <div>
                 <h3 className="text-sm font-extrabold text-[#0d1e38]">
-                  Our Location
+                  {quickInfo.location.title || "Our Location"}
                 </h3>
                 <p className="text-xs text-slate-600 mt-0.5">
-                  Mangalore, Karnataka
+                  {quickInfo.location.line1 || "Mangalore, Karnataka"}
                 </p>
-                <p className="text-[11px] text-slate-400">India</p>
+                <p className="text-[11px] text-slate-400">
+                  {quickInfo.location.line2 || "India"}
+                </p>
               </div>
             </div>
 
@@ -207,16 +270,16 @@ export default function ContactPageView() {
               </div>
               <div>
                 <h3 className="text-sm font-extrabold text-[#0d1e38]">
-                  Call Us
+                  {quickInfo.phone.title || "Call Us"}
                 </h3>
                 <a
-                  href="tel:+917483830582"
+                  href={`tel:${(quickInfo.phone.number || "").replace(/\s+/g, "")}`}
                   className="text-xs font-bold text-[#0d1e38] hover:text-[#ff5e15] transition-colors mt-0.5 block"
                 >
-                  +91 74 8383 0582
+                  {quickInfo.phone.number || "+91 74 8383 0582"}
                 </a>
                 <p className="text-[11px] text-slate-500">
-                  Mon - Sat, 9:00 AM - 6:00 PM
+                  {quickInfo.phone.hours || "Mon - Sat, 9:00 AM - 6:00 PM"}
                 </p>
               </div>
             </div>
@@ -228,16 +291,16 @@ export default function ContactPageView() {
               </div>
               <div>
                 <h3 className="text-sm font-extrabold text-[#0d1e38]">
-                  Email Us
+                  {quickInfo.email.title || "Email Us"}
                 </h3>
                 <a
-                  href="mailto:info@mangaloreetours.com"
+                  href={`mailto:${quickInfo.email.address || "info@mangaloreetours.com"}`}
                   className="text-xs font-bold text-[#0d1e38] hover:text-[#ff5e15] transition-colors mt-0.5 block truncate max-w-[160px]"
                 >
-                  info@mangaloreetours.com
+                  {quickInfo.email.address || "info@mangaloreetours.com"}
                 </a>
                 <p className="text-[11px] text-slate-500">
-                  We reply within 24 hours
+                  {quickInfo.email.note || "We reply within 24 hours"}
                 </p>
               </div>
             </div>
@@ -249,13 +312,13 @@ export default function ContactPageView() {
               </div>
               <div>
                 <h3 className="text-sm font-extrabold text-[#0d1e38]">
-                  Working Hours
+                  {quickInfo.workingHours.title || "Working Hours"}
                 </h3>
                 <p className="text-xs font-bold text-[#0d1e38] mt-0.5">
-                  Monday - Saturday
+                  {quickInfo.workingHours.days || "Monday - Saturday"}
                 </p>
                 <p className="text-[11px] text-slate-500">
-                  9:00 AM - 6:00 PM
+                  {quickInfo.workingHours.hours || "9:00 AM - 6:00 PM"}
                 </p>
               </div>
             </div>
@@ -272,17 +335,17 @@ export default function ContactPageView() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="h-[3px] w-6 rounded-full bg-[#ff5e15]" />
                   <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#0d1e38]">
-                    SEND US A MESSAGE
+                    {formSection.badge || "SEND US A MESSAGE"}
                   </span>
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl md:text-[32px] font-extrabold tracking-tight text-[#0d1e38] leading-tight mb-2">
-                  Plan Your <span className="text-[#ff5e15]">Mangalore Trip</span>
+                  {formSection.titlePrefix || "Plan Your"}{" "}
+                  <span className="text-[#ff5e15]">{formSection.titleHighlight || "Mangalore Trip"}</span>
                 </h2>
 
                 <p className="text-xs sm:text-sm text-slate-600 font-normal">
-                  Fill out the form below and our travel experts will get back to
-                  you soon.
+                  {formSection.description}
                 </p>
               </div>
 
@@ -457,7 +520,7 @@ export default function ContactPageView() {
               {/* Card 1: Interactive Styled Map Widget */}
               <div className="relative rounded-3xl border border-slate-200/90 overflow-hidden shadow-xl shadow-slate-900/5 min-h-[280px] sm:min-h-[300px] bg-slate-100 group">
                 <Image
-                  src="/contact-map.jpg"
+                  src={mapWidget.mapImage || "/contact-map.jpg"}
                   alt="Mangalore Location Map"
                   fill
                   unoptimized
@@ -472,17 +535,17 @@ export default function ContactPageView() {
                   </div>
                   <div>
                     <h4 className="text-xs font-extrabold text-[#0d1e38]">
-                      Find Us on Map
+                      {mapWidget.badgeTitle || "Find Us on Map"}
                     </h4>
                     <p className="text-[10px] text-slate-500">
-                      Mangalore, Karnataka
+                      {mapWidget.badgeSubtitle || "Mangalore, Karnataka"}
                     </p>
                   </div>
                 </div>
 
                 {/* Top Right: Expand / Open in Google Maps */}
                 <a
-                  href="https://maps.google.com/?q=Mangalore,+Karnataka"
+                  href={mapWidget.googleMapsUrl || "https://maps.google.com/?q=Mangalore,+Karnataka"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute top-4 right-4 z-20 flex h-9 w-9 items-center justify-center rounded-2xl bg-white/95 backdrop-blur-md shadow-md border border-slate-100 text-slate-700 hover:text-[#ff5e15] hover:scale-110 transition"
@@ -510,7 +573,7 @@ export default function ContactPageView() {
                 {/* Houseboat Scenic Image on Right */}
                 <div className="absolute right-0 top-0 bottom-0 w-[42%] pointer-events-none overflow-hidden opacity-55">
                   <Image
-                    src="/contact-houseboat.jpg"
+                    src={customTourBanner.houseboatImage || "/contact-houseboat.jpg"}
                     alt="Houseboat Tour Mangalore"
                     fill
                     unoptimized
@@ -523,19 +586,18 @@ export default function ContactPageView() {
                 {/* Content */}
                 <div className="relative z-10 max-w-xs">
                   <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight leading-tight">
-                    Need a Custom{" "}
-                    <span className="text-[#ff7a3d]">Tour Package?</span>
+                    {customTourBanner.titlePrefix || "Need a Custom"}{" "}
+                    <span className="text-[#ff7a3d]">{customTourBanner.titleHighlight || "Tour Package?"}</span>
                   </h3>
                   <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                    Let us create a personalised itinerary based on your
-                    interests, budget and travel dates.
+                    {customTourBanner.description}
                   </p>
 
                   <Link
-                    href="/#tour-enquiry"
+                    href={customTourBanner.buttonLink || "/#tour-enquiry"}
                     className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 hover:bg-white hover:text-[#0d1e38] px-5 py-2 text-xs font-bold text-white transition backdrop-blur-sm mt-4 shadow-sm"
                   >
-                    <span>Get a Custom Plan</span>
+                    <span>{customTourBanner.buttonText || "Get a Custom Plan"}</span>
                     <ArrowRight className="h-3.5 w-3.5" />
                   </Link>
                 </div>
