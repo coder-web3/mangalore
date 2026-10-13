@@ -1,0 +1,88 @@
+{
+  "hero": {
+    "badge": "DISCOVER • EXPLORE • EXPERIENCE",
+    "titleLine1": "Experience the",
+    "titleHighlight": "Real Mangalore",
+    "description": "Uncover pristine beaches, historic temples, lush scenic hills, and the authentic coastal cuisine of Karnataka with customized itineraries, trusted local guides, and authentic cultural experiences.",
+    "ctaText": "Explore Places",
+    "ctaLink": "/places-to-visit",
+    "slides": [
+      { "image": "/kadri.avif", "badgeTitle": "Kadri Temple", "badgeLocation": "Mangalore" },
+      { "image": "/nitk.avif", "badgeTitle": "NITK Beach", "badgeLocation": "Mangalore" },
+      { "image": "/milagrees.avif", "badgeTitle": "Milagres Church", "badgeLocation": "Mangalore" },
+      { "image": "/kudroli.avif", "badgeTitle": "Kudroli Temple", "badgeLocation": "Mangalore" }
+    ]
+  },
+  "popularDestinations": {
+    "tag": "TOP PLACES",
+    "title": "Popular Destinations in",
+    "titleHighlight": "Mangalore",
+    "description": "Explore the most beautiful and must-visit places in and around Mangalore.",
+    "scriptTop": "Beaches, Culture, Nature",
+    "scriptBottom": "and More...",
+    "destinations": [
+      { "id": "1", "number": "01", "name": "Panambur Beach", "location": "Mangalore", "image": "/panambur.avif" },
+      { "id": "2", "number": "02", "name": "Tannirbhavi Beach", "location": "Mangalore", "image": "/tannirbhavi.avif" },
+      { "id": "3", "number": "03", "name": "Someshwar Beach", "location": "Mangalore", "image": "/someshwar.avif" },
+      { "id": "4", "number": "04", "name": "Sultan Battery", "location": "Bantwal", "image": "/sulthan.avif" },
+      { "id": "5", "number": "05", "name": "Pilikula Nisargadhama", "location": "Moodushedde", "image": "/pilikula.avif" },
+      { "id": "6", "number": "06", "name": "Kadri Manjunath Temple", "location": "Mangalore", "image": "/kadri.avif" }
+    ]
+  },
+  "whyChooseUs": {
+    "tag": "WHY CHOOSE MANGALORE TOURS",
+    "title": "Your Local Travel Partner",
+    "description": "We help you experience the most authentic and memorable side of Mangalore with carefully curated tours, local insights and complete travel support.",
+    "features": [
+      {
+        "id": "expertise",
+        "title": "Local Expertise",
+        "description": "In-depth knowledge of Mangalore's hidden gems.",
+        "color": "orange"
+      },
+      {
+        "id": "packages",
+        "title": "Best Tour Packages",
+        "description": "Curated & customizable tours for every traveler.",
+        "color": "blue"
+      },
+      {
+        "id": "experiences",
+        "title": "Authentic Experiences",
+        "description": "Explore real local culture, food & traditions.",
+        "color": "emerald"
+      },
+      {
+        "id": "support",
+        "title": "24/7 Support",
+        "description": "We're here to help you plan a hassle-free trip.",
+        "color": "purple"
+      }
+    ]
+  },
+  "tasteMangalore": {
+    "tag": "FOOD & DINING",
+    "title": "Taste Mangalore",
+    "description": "From authentic Mangalorean cuisine to cafés and seafood, explore the best places to eat in the city.",
+    "categories": [
+      { "id": "mangalorean", "title": "Mangalorean Cuisine", "image": "/meals.avif" },
+      { "id": "seafood", "title": "Seafood", "image": "/seafood.avif" },
+      { "id": "cafes", "title": "Cafés & Bakeries", "image": "/cafe.avif" },
+      { "id": "restaurants", "title": "Restaurants", "image": "/restaurant.avif" },
+      { "id": "beverages", "title": "Juices & Beverages", "image": "/drinks.avif" },
+      { "id": "nightfood", "title": "Late-Night Food", "image": "/late-food.avif" }
+    ]
+  },
+  "planTripCTA": {
+    "title": "Need Help Planning Your Mangalore Trip?",
+    "description": "Tell us your travel dates, interests and group details. We'll create a customised itinerary just for you.",
+    "buttonText": "Plan My Trip",
+    "buttonLink": "#contact"
+  },
+  "tourEnquiryCTA": {
+    "title": "Interested in Our Mangalore Tour Packages?",
+    "subtitle": "Get the latest offers, package details, pricing and availability. Our travel experts will help you choose the best tour for your needs.",
+    "phone": "+91 98765 43210",
+    "email": "explore@mangaloretours.com"
+  }
+}

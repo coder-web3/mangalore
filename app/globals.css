@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-script: var(--font-script), cursive;
+  --color-brand-orange: #ea580c;
+  --color-brand-orange-light: #f97316;
+  --color-brand-orange-dark: #c2410c;
+  --color-brand-navy: #0d1e38;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #0d1e38;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+.font-script {
+  font-family: var(--font-script), cursive;
+}
+
+/* Fixed background for hero section */
+.hero-fixed-bg {
+  background-image: url('/hero-background.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .hero-fixed-bg {
+    background-attachment: fixed;
+  }
+}
+
+/* Underline SVG entrance draw animation */
+@keyframes drawUnderline {
+  0% {
+    stroke-dashoffset: 280;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: drawUnderline 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+}
+
+/* Subtle float animation for badges */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+/* Shimmer shine effect across buttons on hover */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: none;
+}
+
+.btn-shimmer:hover::before {
+  left: 180%;
+  transition: left 0.75s ease-in-out;
+}

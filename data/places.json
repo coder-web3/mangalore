@@ -1,0 +1,799 @@
+{
+  "listingHero": {
+    "badge": "DISCOVER MANGALORE",
+    "titleLine1": "Must-Visit Attractions &",
+    "titleHighlight": "Coastal Wonders",
+    "description": "Explore pristine golden beaches, century-old historic temples, breathtaking river views, lush hilltops and authentic coastal culture in coastal Karnataka.",
+    "backdropImage": "/uploads/1791865851797-5-days-beach-holiday-tour.jpg",
+    "galleryCards": [
+      {
+        "id": "beach-coast",
+        "title": "Panambur Beach Coast",
+        "subtitle": "Arabian Sea • Mangalore",
+        "image": "/panambur.avif",
+        "link": "/places-to-visit/panambur-beach"
+      },
+      {
+        "id": "kadri-temple",
+        "title": "Kadri Manjunath Temple",
+        "subtitle": "Historic Heritage • Kadri",
+        "image": "/kadri.avif",
+        "link": "/places-to-visit/kadri-manjunath-temple"
+      }
+    ]
+  },
+  "listingCatalog": {
+    "tag": "MANGALORE TRAVEL GUIDE",
+    "title": "Popular Tourist Places in",
+    "titleHighlight": "Mangalore",
+    "description": "Explore top-rated beaches, sacred temples, historic sites & viewpoints with practical visit details.",
+    "places": [
+      {
+        "id": "panambur",
+        "name": "Panambur Beach",
+        "slug": "panambur-beach",
+        "category": "beaches",
+        "categoryLabel": "Beaches",
+        "categoryIcon": "beach",
+        "description": "Golden sands, stunning sunsets and a vibrant beach experience with lifeguard safety.",
+        "image": "/ref-card-panambur.jpg",
+        "location": "10 km from Mangalore City",
+        "rating": "4.8",
+        "timings": "Open 24 Hours (Best till 8 PM)"
+      },
+      {
+        "id": "tannirbhavi",
+        "name": "Tannirbhavi Beach",
+        "slug": "tannirbhavi-beach",
+        "category": "beaches",
+        "categoryLabel": "Beaches",
+        "categoryIcon": "beach",
+        "description": "A peaceful and scenic beach with clean shores, pine trees, and serene views.",
+        "image": "/ref-card-tannirbhavi.jpg",
+        "location": "12 km from Mangalore City",
+        "rating": "4.7",
+        "timings": "6:00 AM - 7:30 PM"
+      },
+      {
+        "id": "kadri",
+        "name": "Kadri Manjunath Temple",
+        "slug": "kadri-manjunath-temple",
+        "category": "temples",
+        "categoryLabel": "Temples",
+        "categoryIcon": "temple",
+        "description": "A historic 10th-century temple known for its rich heritage, bronze statues, and spring water ponds.",
+        "image": "/ref-card-kadri.jpg",
+        "location": "Kadri, Mangalore",
+        "rating": "4.9",
+        "timings": "6:00 AM - 1:00 PM, 4:00 PM - 8:30 PM"
+      },
+      {
+        "id": "lighthouse",
+        "name": "Light House Hill",
+        "slug": "lighthouse-hill-garden",
+        "category": "hills",
+        "categoryLabel": "Viewpoints",
+        "categoryIcon": "viewpoint",
+        "description": "A scenic viewpoint and lush park offering panoramic views of the Arabian Sea and city skyline.",
+        "image": "/ref-card-lighthouse.jpg",
+        "location": "Hampankatta, Mangalore",
+        "rating": "4.6",
+        "timings": "9:00 AM - 8:00 PM"
+      },
+      {
+        "id": "netravati",
+        "name": "Netravati River",
+        "slug": "netravati-river-view",
+        "category": "rivers",
+        "categoryLabel": "Rivers",
+        "categoryIcon": "river",
+        "description": "Enjoy boat rides, fresh river breezes and serene sunset views along the picturesque riverbank.",
+        "image": "/ref-card-netravati.jpg",
+        "location": "Ullal / Mangalore Outskirts",
+        "rating": "4.7",
+        "timings": "6:00 AM - 7:00 PM"
+      },
+      {
+        "id": "sultan",
+        "name": "Sultan Battery",
+        "slug": "sultan-battery",
+        "category": "cultural",
+        "categoryLabel": "Hills",
+        "categoryIcon": "hill",
+        "description": "A historic watchtower built by Tipu Sultan with scenic waterfront nature trails and ferry rides.",
+        "image": "/ref-card-sultan.jpg",
+        "location": "Boloor, Mangalore",
+        "rating": "4.5",
+        "timings": "9:00 AM - 9:00 PM"
+      }
+    ]
+  },
+  "panamburDetail": {
+    "hero": {
+      "title": "Panambur",
+      "titleHighlight": "Beach",
+      "category": "Beaches",
+      "description": "Experience the golden sands, exciting water sports and mesmerising sunsets at Panambur Beach, one of the most popular beaches in Mangalore.",
+      "backdropImage": "/panambur-hero-backdrop.jpg",
+      "location": "Mangalore, Karnataka, India",
+      "bestTime": "Oct to March",
+      "popularFor": "Sunset, Water Sports",
+      "idealDuration": "1 - 2 Hours",
+      "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+    },
+    "overview": {
+      "badge": "DISCOVER PANAMBUR",
+      "title": "About Panambur Beach",
+      "p1": "Panambur Beach is widely regarded as one of the cleanest and safest beaches in India. Located adjacent to the New Mangalore Port, this picturesque destination attracts thousands of tourists every week for its lively beach carnival atmosphere, thrilling water sports, and tranquil sunset views over the Arabian Sea.",
+      "p2": "Known for hosting the world-famous International Kite Festival, Panambur boasts certified lifeguards, jet skiing, camel & horse rides, and an array of beachside shacks serving fresh Mangalorean seafood and snacks.",
+      "highlights": [
+        "Cleanest Beach with Lifeguards",
+        "Jet Ski, Parasailing & Boat Rides",
+        "Famous International Kite Festival",
+        "Beach Shacks & Seafood Delicacies"
+      ]
+    },
+    "quickFacts": [
+      {
+        "label": "Entry Fee",
+        "value": "Free Entry"
+      },
+      {
+        "label": "Timings",
+        "value": "Open 24 Hours (Best till 8 PM)"
+      },
+      {
+        "label": "Lifeguard Support",
+        "value": "Available on site"
+      },
+      {
+        "label": "Distance from City",
+        "value": "10 km (approx. 20 mins)"
+      },
+      {
+        "label": "Nearest Airport",
+        "value": "Mangaluru Intl Airport (IXE) - 15 km"
+      },
+      {
+        "label": "Ideal Visit Duration",
+        "value": "2 to 3 Hours"
+      }
+    ],
+    "gallery": [
+      {
+        "id": "1",
+        "image": "/panambur.avif",
+        "caption": "Panambur Beach Golden Coast",
+        "tag": "Sunset & Waves"
+      },
+      {
+        "id": "2",
+        "image": "/ref-card-panambur.jpg",
+        "caption": "Panambur Beach Waves & Lifeguards",
+        "tag": "Coastline"
+      },
+      {
+        "id": "3",
+        "image": "/panambur-sunset-scenery.jpg",
+        "caption": "Panambur Beach Spectacular Sunset",
+        "tag": "Sunset"
+      }
+    ],
+    "thingsToDo": [
+      {
+        "id": "1",
+        "title": "Water Sports",
+        "description": "Jet skis, speedboats, banana rides and parasailing.",
+        "icon": "waves"
+      },
+      {
+        "id": "2",
+        "title": "Sunset Walks",
+        "description": "Stroll along golden beaches watching ships enter the port.",
+        "icon": "sun"
+      },
+      {
+        "id": "3",
+        "title": "Camel & ATV Rides",
+        "description": "Fun beach rides enjoyable for families and kids.",
+        "icon": "car"
+      },
+      {
+        "id": "4",
+        "title": "Kite Flying",
+        "description": "Breezy coastal winds ideal for flying vibrant kites.",
+        "icon": "sparkles"
+      }
+    ]
+  },
+  "placeDetails": {
+    "panambur-beach": {
+      "hero": {
+        "title": "Panambur",
+        "titleHighlight": "Beach",
+        "category": "Beaches",
+        "description": "Experience the golden sands, exciting water sports and mesmerising sunsets at Panambur Beach, one of the most popular beaches in Mangalore.",
+        "backdropImage": "/panambur-hero-backdrop.jpg",
+        "location": "Mangalore, Karnataka, India",
+        "bestTime": "Oct to March",
+        "popularFor": "Sunset, Water Sports",
+        "idealDuration": "1 - 2 Hours",
+        "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+      },
+      "overview": {
+        "badge": "DISCOVER PANAMBUR",
+        "title": "About Panambur Beach",
+        "p1": "Panambur Beach is widely regarded as one of the cleanest and safest beaches in India. Located adjacent to the New Mangalore Port, this picturesque destination attracts thousands of tourists every week for its lively beach carnival atmosphere, thrilling water sports, and tranquil sunset views over the Arabian Sea.",
+        "p2": "Known for hosting the world-famous International Kite Festival, Panambur boasts certified lifeguards, jet skiing, camel & horse rides, and an array of beachside shacks serving fresh Mangalorean seafood and snacks.",
+        "highlights": [
+          "Cleanest Beach with Lifeguards",
+          "Jet Ski, Parasailing & Boat Rides",
+          "Famous International Kite Festival",
+          "Beach Shacks & Seafood Delicacies"
+        ]
+      },
+      "quickFacts": [
+        {
+          "label": "Entry Fee",
+          "value": "Free Entry"
+        },
+        {
+          "label": "Timings",
+          "value": "Open 24 Hours (Best till 8 PM)"
+        },
+        {
+          "label": "Lifeguard Support",
+          "value": "Available on site"
+        },
+        {
+          "label": "Distance from City",
+          "value": "10 km (approx. 20 mins)"
+        },
+        {
+          "label": "Nearest Airport",
+          "value": "Mangaluru Intl Airport (IXE) - 15 km"
+        },
+        {
+          "label": "Ideal Visit Duration",
+          "value": "2 to 3 Hours"
+        }
+      ],
+      "gallery": [
+        {
+          "id": "1",
+          "image": "/panambur.avif",
+          "caption": "Panambur Beach Golden Coast",
+          "tag": "Sunset & Waves"
+        },
+        {
+          "id": "2",
+          "image": "/ref-card-panambur.jpg",
+          "caption": "Panambur Beach Waves & Lifeguards",
+          "tag": "Coastline"
+        },
+        {
+          "id": "3",
+          "image": "/panambur-sunset-scenery.jpg",
+          "caption": "Panambur Beach Spectacular Sunset",
+          "tag": "Sunset"
+        }
+      ],
+      "thingsToDo": [
+        {
+          "id": "1",
+          "title": "Water Sports",
+          "description": "Jet skis, speedboats, banana rides and parasailing.",
+          "icon": "waves"
+        },
+        {
+          "id": "2",
+          "title": "Sunset Walks",
+          "description": "Stroll along golden beaches watching ships enter the port.",
+          "icon": "sun"
+        },
+        {
+          "id": "3",
+          "title": "Camel & ATV Rides",
+          "description": "Fun beach rides enjoyable for families and kids.",
+          "icon": "car"
+        },
+        {
+          "id": "4",
+          "title": "Kite Flying",
+          "description": "Breezy coastal winds ideal for flying vibrant kites.",
+          "icon": "sparkles"
+        }
+      ]
+    },
+    "tannirbhavi-beach": {
+      "hero": {
+        "title": "Tannirbhavi",
+        "titleHighlight": "Beach",
+        "category": "Beaches",
+        "description": "A tranquil haven of pristine golden coastline, whispering Casuarina pine groves, and peaceful Arabian Sea sunsets.",
+        "backdropImage": "/ref-card-tannirbhavi.jpg",
+        "location": "12 km from Mangalore City",
+        "bestTime": "Oct to Feb • 5:00 PM Sunset",
+        "popularFor": "Pine Tree Forest & Peace",
+        "idealDuration": "2 - 3 Hours",
+        "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+      },
+      "overview": {
+        "badge": "SERENE COASTLINE",
+        "title": "About Tannirbhavi Beach",
+        "p1": "Tannirbhavi Beach is celebrated for its natural simplicity, uncrowded sands, and adjacent verdant pine forest tree park. Reached either by road or a picturesque river ferry from Sultan Battery, it offers a quieter and more intimate beach retreat.",
+        "p2": "Walk under the shaded pine canopy, sit on the sun-warmed sands listening to roaring surf, or take the iconic boat ferry crossing Gurupura River for an unforgettable coastal journey.",
+        "highlights": [
+          "Whispering pine tree groves and eco-friendly tree park",
+          "Scenic river ferry crossing from Sultan Battery jetty",
+          "Peaceful, clean coastline perfect for nature lovers and families",
+          "Spectacular unobstructed sunset vistas across the horizon"
+        ]
+      },
+      "quickFacts": [
+        {
+          "label": "Entry Fee",
+          "value": "Free Beach Entry (Tree Park nominal fee)"
+        },
+        {
+          "label": "Timings",
+          "value": "6:00 AM - 7:30 PM"
+        },
+        {
+          "label": "Ferry Crossing",
+          "value": "Available from Sultan Battery (₹10 - ₹20)"
+        },
+        {
+          "label": "Distance from City",
+          "value": "12 km by road (approx. 25 mins)"
+        },
+        {
+          "label": "Ideal Visit Duration",
+          "value": "2 to 3 Hours"
+        },
+        {
+          "label": "Best Time to Visit",
+          "value": "Late Afternoon till Sunset"
+        }
+      ],
+      "gallery": [
+        {
+          "id": "1",
+          "image": "/ref-card-tannirbhavi.jpg",
+          "caption": "Tannirbhavi Shoreline & Pine Shadows",
+          "tag": "Shoreline"
+        },
+        {
+          "id": "2",
+          "image": "/tannirbhavi.avif",
+          "caption": "Golden Sunset on Calm Sands",
+          "tag": "Sunset"
+        },
+        {
+          "id": "3",
+          "image": "/panambur-sunset-scenery.jpg",
+          "caption": "Tannirbhavi Evening Horizon",
+          "tag": "Vistas"
+        }
+      ],
+      "thingsToDo": [
+        {
+          "id": "1",
+          "title": "Pine Forest Stroll",
+          "description": "Wander through the cool shaded tree park along the shoreline.",
+          "icon": "sun"
+        },
+        {
+          "id": "2",
+          "title": "Sultan Battery Ferry",
+          "description": "Take the scenic Gurupura River ferry connecting the fort to the beach.",
+          "icon": "waves"
+        },
+        {
+          "id": "3",
+          "title": "Sunset Photography",
+          "description": "Capture silhouette photos of tall pine trees against flaming sunset skies.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "4",
+          "title": "Family Picnics",
+          "description": "Relax on clean sandy banks under the soothing sea breeze.",
+          "icon": "car"
+        }
+      ]
+    },
+    "kadri-manjunath-temple": {
+      "hero": {
+        "title": "Kadri Manjunath",
+        "titleHighlight": "Temple",
+        "category": "Temples",
+        "description": "A sacred 10th-century heritage shrine renowned for bronze deities, eternal Gomukha spring water ponds, and Buddhist-Hindu cave heritage.",
+        "backdropImage": "/ref-card-kadri.jpg",
+        "location": "Kadri, Mangalore",
+        "bestTime": "All Year • Morning Darshan",
+        "popularFor": "Bronze Deities & Spring Ponds",
+        "idealDuration": "1 - 2 Hours",
+        "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+      },
+      "overview": {
+        "badge": "SACRED HERITAGE",
+        "title": "About Kadri Manjunath Temple",
+        "p1": "Perched on the verdant Kadri Hill, the Kadri Manjunath Temple dates back to at least 1068 CE. Originally affiliated with Vajrayana Buddhism before becoming a principal Shaivite shrine, it houses one of the finest bronze statues in India—the seated Lokeshwara bronze cast by King Kundavarma.",
+        "p2": "Behind the main sanctum, natural natural springs flow through seven stone ponds called Gomukhas. Devotees perform ablutions in these crystal streams before climbing further to the ancient Pandava Caves carved high on the hill.",
+        "highlights": [
+          "One of the oldest temples in South India dating back over 1,000 years",
+          "Magnificent Trilokyanatha Lokeshwara bronze sculpture from 968 CE",
+          "Sacred Gomukha natural hillside spring ponds with healing water",
+          "Ancient Pandava caves and scenic Kadri Park adjoining the premises"
+        ]
+      },
+      "quickFacts": [
+        {
+          "label": "Entry Fee",
+          "value": "Free Entry (Special Pujas on booking)"
+        },
+        {
+          "label": "Timings",
+          "value": "6:00 AM - 1:00 PM & 4:00 PM - 8:30 PM"
+        },
+        {
+          "label": "Dress Code",
+          "value": "Traditional Indian Attire Recommended"
+        },
+        {
+          "label": "Distance from City",
+          "value": "4 km from Central Mangalore"
+        },
+        {
+          "label": "Main Festival",
+          "value": "Kadri Annual Car Festival (Jan - Feb)"
+        },
+        {
+          "label": "Ideal Visit Duration",
+          "value": "1 to 2 Hours"
+        }
+      ],
+      "gallery": [
+        {
+          "id": "1",
+          "image": "/ref-card-kadri.jpg",
+          "caption": "Kadri Temple Sanctum & Courtyard",
+          "tag": "Temple"
+        },
+        {
+          "id": "2",
+          "image": "/kadri.avif",
+          "caption": "Ancient Stone Architecture of Kadri",
+          "tag": "Architecture"
+        },
+        {
+          "id": "3",
+          "image": "/milagrees.avif",
+          "caption": "Sacred Ponds & Kadri Hills Backdrop",
+          "tag": "Heritage"
+        }
+      ],
+      "thingsToDo": [
+        {
+          "id": "1",
+          "title": "Gomukha Holy Bath",
+          "description": "Wash in the natural mountain spring waters streaming through Gomukha.",
+          "icon": "waves"
+        },
+        {
+          "id": "2",
+          "title": "Darshan of Bronze Lokeshwara",
+          "description": "Admire the world-renowned 10th-century bronze sculpture of Lord Manjunatha.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "3",
+          "title": "Explore Pandava Caves",
+          "description": "Walk up Kadri hill to visit the prehistoric stone-carved caves.",
+          "icon": "sun"
+        },
+        {
+          "id": "4",
+          "title": "Visit Kadri Hill Park",
+          "description": "Enjoy the musical fountain, animal exhibits, and lush botanical park.",
+          "icon": "car"
+        }
+      ]
+    },
+    "lighthouse-hill-garden": {
+      "hero": {
+        "title": "Light House",
+        "titleHighlight": "Hill Garden",
+        "category": "Viewpoints",
+        "description": "A British-era stone watchtower and lush hilltop garden offering 360-degree panoramic views of the city skyline and Arabian Sea.",
+        "backdropImage": "/ref-card-lighthouse.jpg",
+        "location": "Hampankatta, Mangalore",
+        "bestTime": "Oct to March • 5:00 PM",
+        "popularFor": "Panoramic Sea & City Vistas",
+        "idealDuration": "1 Hour",
+        "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+      },
+      "overview": {
+        "badge": "PANORAMIC VIEWPOINT",
+        "title": "About Light House Hill Garden",
+        "p1": "Erected in the 18th century by Haider Ali, the historic watchtower at Light House Hill stands gracefully over the downtown heart of Mangalore. Surrounded by flower beds, shaded benches, and gentle sea breezes, it serves as an urban sanctuary for locals and tourists.",
+        "p2": "From the crest of the hill, visitors can gaze across the sparkling Arabian horizon, trace ships moving into port, and witness radiant sunsets painting the coastal sky in crimson and gold.",
+        "highlights": [
+          "Historic 18th-century watchtower built by Haider Ali",
+          "Sweeping panoramic vistas of the Arabian Sea and city skyline",
+          "Peaceful landscaped botanical gardens with shaded pergolas",
+          "Prime central location close to St. Aloysius Chapel & city landmarks"
+        ]
+      },
+      "quickFacts": [
+        {
+          "label": "Entry Fee",
+          "value": "Free Entry"
+        },
+        {
+          "label": "Timings",
+          "value": "9:00 AM - 8:00 PM Daily"
+        },
+        {
+          "label": "Location",
+          "value": "Hampankatta, Central Mangalore"
+        },
+        {
+          "label": "Distance from City",
+          "value": "1 km from City Center (Walkable)"
+        },
+        {
+          "label": "Photography",
+          "value": "Permitted (Great for sunsets)"
+        },
+        {
+          "label": "Ideal Visit Duration",
+          "value": "45 Mins to 1 Hour"
+        }
+      ],
+      "gallery": [
+        {
+          "id": "1",
+          "image": "/ref-card-lighthouse.jpg",
+          "caption": "Light House Hill Gardens & Tower",
+          "tag": "Watchtower"
+        },
+        {
+          "id": "2",
+          "image": "/nitk.avif",
+          "caption": "Arabian Horizon from the Hilltop",
+          "tag": "Horizon"
+        },
+        {
+          "id": "3",
+          "image": "/ref-card-netravati.jpg",
+          "caption": "Sunset Glow over Coastal Skyline",
+          "tag": "Sunset"
+        }
+      ],
+      "thingsToDo": [
+        {
+          "id": "1",
+          "title": "Watch the Sunset",
+          "description": "Relax on garden benches as the sun dips into the distant Arabian waters.",
+          "icon": "sun"
+        },
+        {
+          "id": "2",
+          "title": "Skyline Photography",
+          "description": "Capture wide angles of Mangalore's downtown buildings and port.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "3",
+          "title": "Historic Watchtower Inspection",
+          "description": "Observe the ancient stone brickwork that guarded coastal waters centuries ago.",
+          "icon": "car"
+        },
+        {
+          "id": "4",
+          "title": "Visit Nearby St. Aloysius",
+          "description": "Walk down the hill to the world-famous painted chapel of St. Aloysius.",
+          "icon": "waves"
+        }
+      ]
+    },
+    "netravati-river-view": {
+      "hero": {
+        "title": "Netravati",
+        "titleHighlight": "River",
+        "category": "Rivers",
+        "description": "The sacred lifeline of coastal Karnataka, famous for scenic boat rides, tranquil backwaters, and breathtaking bridge sunsets.",
+        "backdropImage": "/ref-card-netravati.jpg",
+        "location": "Ullal / Mangalore Riverbanks",
+        "bestTime": "Oct to March • Sunrise & Sunset",
+        "popularFor": "River Cruises & Estuary Sunset",
+        "idealDuration": "1 - 2 Hours",
+        "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+      },
+      "overview": {
+        "badge": "SCENIC BACKWATERS",
+        "title": "About Netravati River",
+        "p1": "Originating in the Western Ghats of Kudremukh, the Netravati River winds majestically through Dakshina Kannada before uniting with the Gurupura River and flowing into the Arabian Sea. It forms Mangalore's most scenic waterfront estuary.",
+        "p2": "Along its banks, fishermen cast traditional nets while visitors take soothing boat rides, relish fresh coastal seafood, and watch twilight reflections shimmer across the tranquil waters.",
+        "highlights": [
+          "Magnificent tidal river and backwaters flowing into the Arabian Sea",
+          "Idyllic sunset vantage points along Ullal and Jeppinamogaru riverbanks",
+          "Fresh river fish cuisine and waterfront dining nearby",
+          "Historic bridges offering iconic railway and highway river vistas"
+        ]
+      },
+      "quickFacts": [
+        {
+          "label": "Entry Fee",
+          "value": "Free Riverbank Access"
+        },
+        {
+          "label": "Timings",
+          "value": "6:00 AM - 7:00 PM"
+        },
+        {
+          "label": "Boating Availability",
+          "value": "Country boat rides available on site"
+        },
+        {
+          "label": "Distance from City",
+          "value": "6 km from Mangalore Center"
+        },
+        {
+          "label": "Confluence",
+          "value": "Merges with Gurupura at Bengre Estuary"
+        },
+        {
+          "label": "Ideal Visit Duration",
+          "value": "1 to 2 Hours"
+        }
+      ],
+      "gallery": [
+        {
+          "id": "1",
+          "image": "/ref-card-netravati.jpg",
+          "caption": "Netravati River Scenic Waterfront",
+          "tag": "River"
+        },
+        {
+          "id": "2",
+          "image": "/panambur.avif",
+          "caption": "Estuary Sunset Reflections",
+          "tag": "Twilight"
+        },
+        {
+          "id": "3",
+          "image": "/ref-card-sultan.jpg",
+          "caption": "Mangrove Islands along the River",
+          "tag": "Nature"
+        }
+      ],
+      "thingsToDo": [
+        {
+          "id": "1",
+          "title": "River Boat Cruise",
+          "description": "Glide along quiet backwaters observing local fishermen and mangrove shores.",
+          "icon": "waves"
+        },
+        {
+          "id": "2",
+          "title": "Estuary Sunset Viewing",
+          "description": "Witness the sky turns fiery orange over the wide water currents.",
+          "icon": "sun"
+        },
+        {
+          "id": "3",
+          "title": "Sample Fresh Seafood",
+          "description": "Enjoy freshly prepared Anjal, Pomfret, and coastal delicacies at riverside shacks.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "4",
+          "title": "Bird Watching",
+          "description": "Spot coastal egrets, kingfishers, and migratory river birds.",
+          "icon": "car"
+        }
+      ]
+    },
+    "sultan-battery": {
+      "hero": {
+        "title": "Sultan",
+        "titleHighlight": "Battery",
+        "category": "Cultural",
+        "description": "A historic miniature fortress and watchtower constructed by Tipu Sultan, offering ferry crossings and panoramic waterfront trails.",
+        "backdropImage": "/ref-card-sultan.jpg",
+        "location": "Boloor, Mangalore",
+        "bestTime": "Oct to March • 4:30 PM",
+        "popularFor": "Tipu's Watchtower & Ferry Crossing",
+        "idealDuration": "1 - 2 Hours",
+        "videoUrl": "https://www.youtube.com/embed/9No-FiEInLA?autoplay=1"
+      },
+      "overview": {
+        "badge": "HISTORIC WATCHTOWER",
+        "title": "About Sultan Battery",
+        "p1": "Built out of black stone in 1784 by Tipu Sultan, Sultan Battery was designed to prevent British warships from sailing up the Gurupura River into Mangalore. Resembling a miniature fort with mounting places for cannons, it offers an imposing view of the river mouth.",
+        "p2": "Today, it is a bustling recreational hub where travelers can climb the old watchtower, take scenic motorboat rides, or board the river passenger ferry to reach the golden beaches of Tannirbhavi in minutes.",
+        "highlights": [
+          "Historic 18th-century black stone defense watchtower built by Tipu Sultan",
+          "Cannon vantage points overlooking the Gurupura River inlet",
+          "Popular ferry terminal connecting directly to Tannirbhavi Beach",
+          "Water sports, jet ski rides, and scenic waterfront promenade"
+        ]
+      },
+      "quickFacts": [
+        {
+          "label": "Entry Fee",
+          "value": "Free Watchtower Entry"
+        },
+        {
+          "label": "Timings",
+          "value": "9:00 AM - 9:00 PM Daily"
+        },
+        {
+          "label": "Ferry Ride Fee",
+          "value": "₹10 to ₹20 per passenger"
+        },
+        {
+          "label": "Distance from City",
+          "value": "4 km from Central Mangalore"
+        },
+        {
+          "label": "Accessibility",
+          "value": "City Bus #16 or Autos from State Bank"
+        },
+        {
+          "label": "Ideal Visit Duration",
+          "value": "1 to 2 Hours"
+        }
+      ],
+      "gallery": [
+        {
+          "id": "1",
+          "image": "/ref-card-sultan.jpg",
+          "caption": "Sultan Battery Watchtower & Cannon Embankments",
+          "tag": "Fortress"
+        },
+        {
+          "id": "2",
+          "image": "/sulthan.avif",
+          "caption": "Gurupura River Waterfront Pier",
+          "tag": "Waterfront"
+        },
+        {
+          "id": "3",
+          "image": "/ref-card-tannirbhavi.jpg",
+          "caption": "Ferry Boat Point to Tannirbhavi",
+          "tag": "Ferry"
+        }
+      ],
+      "thingsToDo": [
+        {
+          "id": "1",
+          "title": "Climb the Watchtower",
+          "description": "Step up the stone steps for sweeping views of the river and port entrance.",
+          "icon": "sun"
+        },
+        {
+          "id": "2",
+          "title": "Hop on the Ferry to Tannirbhavi",
+          "description": "Cross the scenic Gurupura River on a short local boat ride to the beach.",
+          "icon": "waves"
+        },
+        {
+          "id": "3",
+          "title": "River Boating & Water Sports",
+          "description": "Rent a speedboat or jet ski along the calm river waters.",
+          "icon": "sparkles"
+        },
+        {
+          "id": "4",
+          "title": "Evening Promenade Walks",
+          "description": "Stroll down the paved riverfront path lined with street snack vendors.",
+          "icon": "car"
+        }
+      ]
+    }
+  }
+}
