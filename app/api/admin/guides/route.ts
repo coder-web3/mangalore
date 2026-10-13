@@ -46,11 +46,12 @@ export async function POST(request: Request) {
     }
 
     // 2. Listing & Catalog Update: { type: "listing", listingHero: ..., listingCatalog: ... }
-    if (body.type === "listing" && (body.listingHero || body.listingCatalog)) {
+    if (body.type === "listing" && (body.listingHero || body.listingCatalog || body.articlesSection)) {
       const updatedData: GuidesData = {
         ...current,
         listingHero: body.listingHero || current.listingHero,
         listingCatalog: body.listingCatalog || current.listingCatalog,
+        articlesSection: body.articlesSection || current.articlesSection,
       };
       await saveGuidesData(updatedData);
       return NextResponse.json({

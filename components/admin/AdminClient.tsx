@@ -100,7 +100,7 @@ export default function AdminClient({
   const [homepageTab, setHomepageTab] = useState<HomepageTab>("hero");
   const [placesTab, setPlacesTab] = useState<"hero" | "cards">("hero");
   const [famousPlacesTab, setFamousPlacesTab] = useState<"hero" | "cards">("hero");
-  const [guidesTab, setGuidesTab] = useState<"hero" | "guides">("guides");
+  const [guidesTab, setGuidesTab] = useState<"hero" | "guides" | "articles">("articles");
   const [aboutSubTab, setAboutSubTab] = useState<
     "hero" | "story" | "different" | "vision" | "team"
   >("hero");
@@ -371,6 +371,7 @@ export default function AdminClient({
             type: "listing",
             listingHero: guidesData.listingHero,
             listingCatalog: guidesData.listingCatalog,
+            articlesSection: guidesData.articlesSection,
           }),
         });
         if (!res.ok) throw new Error("Failed to save local guides directory");
@@ -909,6 +910,7 @@ export default function AdminClient({
                 {!isSidebarCollapsed && expandedMenus.guides && (
                   <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5">
                     {[
+                      { id: "articles", label: "Travel Articles & Stories" },
                       { id: "guides", label: "Guide Profiles" },
                       { id: "hero", label: "Hero & Polaroids" },
                     ].map((item) => (
@@ -917,7 +919,7 @@ export default function AdminClient({
                         type="button"
                         onClick={() => {
                           setActiveSection("guides");
-                          setGuidesTab(item.id as "hero" | "guides");
+                          setGuidesTab(item.id as "hero" | "guides" | "articles");
                           setIsMobileMenuOpen(false);
                         }}
                         className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${

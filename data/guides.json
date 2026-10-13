@@ -189,5 +189,142 @@
         "available": true
       }
     ]
+  },
+  "articlesSection": {
+    "articles": [
+      {
+        "id": "beach-guide-top-10",
+        "slug": "top-10-beautiful-beaches-in-mangalore",
+        "title": "Top 10 Beautiful Beaches in Mangalore",
+        "category": "beaches",
+        "categoryLabel": "Beaches",
+        "categoryIcon": "beach",
+        "date": "October 12, 2025",
+        "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        "excerpt": "Explore the most stunning beaches in Mangalore, from popular spots to hidden gems along the coast.",
+        "readLink": "/places-to-visit/panambur-beach"
+      },
+      {
+        "id": "must-try-seafood",
+        "slug": "must-try-mangalore-seafood-dishes",
+        "title": "Must-Try Mangalore Seafood Dishes",
+        "category": "food",
+        "categoryLabel": "Food",
+        "categoryIcon": "food",
+        "date": "October 10, 2025",
+        "image": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=800&q=80",
+        "excerpt": "A complete guide to the local seafood specialties you must try while visiting Mangalore.",
+        "readLink": "/#food"
+      },
+      {
+        "id": "famous-temples-guide",
+        "slug": "famous-temples-in-mangalore",
+        "title": "Famous Temples in Mangalore",
+        "category": "temples",
+        "categoryLabel": "Temples",
+        "categoryIcon": "temple",
+        "date": "October 8, 2025",
+        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80",
+        "excerpt": "Discover the historic and spiritual temples in Mangalore, known for their architecture and cultural significance.",
+        "readLink": "/places-to-visit/kadri-manjunatha-temple"
+      },
+      {
+        "id": "first-time-travel-guide",
+        "slug": "mangalore-travel-guide-for-first-time-visitors",
+        "title": "Mangalore Travel Guide for First-Time Visitors",
+        "category": "tips",
+        "categoryLabel": "Travel Tips",
+        "categoryIcon": "tips",
+        "date": "October 5, 2025",
+        "image": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80",
+        "excerpt": "Useful tips on how to plan your trip, what to explore and the best time to visit Mangalore.",
+        "readLink": "/places-to-visit"
+      },
+      {
+        "id": "festivals-experience",
+        "slug": "festivals-of-mangalore-you-should-experience",
+        "title": "Festivals of Mangalore You Should Experience",
+        "category": "culture",
+        "categoryLabel": "Culture",
+        "categoryIcon": "culture",
+        "date": "October 2, 2025",
+        "image": "https://images.unsplash.com/photo-1609137144822-094186536545?auto=format&fit=crop&w=800&q=80",
+        "excerpt": "From religious celebrations to cultural events, explore the vibrant festivals of Mangalore.",
+        "readLink": "/#art-history"
+      },
+      {
+        "id": "rivers-backwaters-guide",
+        "slug": "beautiful-rivers-and-backwaters-near-mangalore",
+        "title": "Beautiful Rivers and Backwaters Near Mangalore",
+        "category": "nature",
+        "categoryLabel": "Nature",
+        "categoryIcon": "nature",
+        "date": "September 28, 2025",
+        "image": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        "excerpt": "Explore the serene rivers, backwaters and scenic spots perfect for a peaceful getaway near Mangalore.",
+        "readLink": "/places-to-visit"
+      }
+    ],
+    "categories": [
+      {
+        "id": "beaches",
+        "label": "Beaches",
+        "icon": "beach",
+        "articleCount": "24 Articles"
+      },
+      {
+        "id": "culture",
+        "label": "Culture",
+        "icon": "culture",
+        "articleCount": "10 Articles"
+      },
+      {
+        "id": "temples",
+        "label": "Temples",
+        "icon": "temple",
+        "articleCount": "12 Articles"
+      },
+      {
+        "id": "tips",
+        "label": "Travel Tips",
+        "icon": "tips",
+        "articleCount": "14 Articles"
+      },
+      {
+        "id": "food",
+        "label": "Food",
+        "icon": "food",
+        "articleCount": "18 Articles"
+      },
+      {
+        "id": "festivals",
+        "label": "Festivals",
+        "icon": "festivals",
+        "articleCount": "8 Articles"
+      }
+    ],
+    "popularPosts": [
+      {
+        "id": "pop-1",
+        "title": "Top 10 Beautiful Beaches in Mangalore",
+        "date": "October 12, 2025",
+        "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80",
+        "link": "/places-to-visit/panambur-beach"
+      },
+      {
+        "id": "pop-2",
+        "title": "Must-Try Mangalore Seafood Dishes",
+        "date": "October 10, 2025",
+        "image": "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=300&q=80",
+        "link": "/#food"
+      },
+      {
+        "id": "pop-3",
+        "title": "Famous Temples in Mangalore",
+        "date": "October 8, 2025",
+        "image": "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=300&q=80",
+        "link": "/places-to-visit/kadri-manjunatha-temple"
+      }
+    ]
   }
 }

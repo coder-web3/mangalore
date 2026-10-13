@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import GuidesHeroSection from "@/components/GuidesHeroSection";
+import GuidesArticlesSection from "@/components/GuidesArticlesSection";
 import GuidesCatalogSection from "@/components/GuidesCatalogSection";
 import { GuidesData } from "@/lib/cms";
 
@@ -14,14 +15,20 @@ export default function GuidesClientWrapper({ guidesData }: GuidesClientWrapperP
 
   return (
     <>
-      {/* Hero Section with Functional Category Filtering Pills & Stats */}
+      {/* 1. Hero Section */}
       <GuidesHeroSection
-        activeTab={selectedCategory}
-        onSelectTab={(cat) => setSelectedCategory(cat)}
         heroData={guidesData.listingHero}
+        showFloatingTabs={false}
       />
 
-      {/* Verified Local Guides Catalog */}
+      {/* 2. Travel Articles & Guides Section (Matches user's exact uploaded design) */}
+      <GuidesArticlesSection
+        articles={guidesData.articlesSection?.articles}
+        categories={guidesData.articlesSection?.categories}
+        popularPosts={guidesData.articlesSection?.popularPosts}
+      />
+
+      {/* 3. Verified Native Local Guides Directory */}
       <GuidesCatalogSection
         selectedCategory={selectedCategory}
         onSelectCategory={(cat) => setSelectedCategory(cat)}

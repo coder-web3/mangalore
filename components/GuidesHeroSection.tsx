@@ -60,12 +60,14 @@ interface GuidesHeroSectionProps {
   activeTab?: string;
   onSelectTab?: (tabId: string) => void;
   heroData?: GuidesListingHeroData;
+  showFloatingTabs?: boolean;
 }
 
 export default function GuidesHeroSection({
   activeTab = "all",
   onSelectTab,
   heroData,
+  showFloatingTabs = false,
 }: GuidesHeroSectionProps) {
   const [internalTab, setInternalTab] = useState("all");
   const [selectedImage, setSelectedImage] = useState<{
@@ -291,52 +293,56 @@ export default function GuidesHeroSection({
         </div>
       </div>
 
-      {/* 2. Floating Filter Tabs Bar (Positioned outside overflow-hidden canvas to prevent clipping) */}
-      <div className="relative z-30 mx-auto w-full max-w-[1600px] px-3 sm:px-6 lg:px-8 xl:px-12 -mt-7 sm:-mt-8 md:-mt-9">
-        <div className="rounded-2xl sm:rounded-[24px] bg-white shadow-2xl shadow-slate-900/15 border border-slate-100 p-1.5 sm:p-2">
-          <div className="flex items-center justify-between overflow-x-auto scrollbar-none divide-x divide-slate-100 min-w-[720px] lg:min-w-0">
-            {guideCategories.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = currentTab === tab.id;
+      {/* 2. Floating Filter Tabs Bar (Optional) */}
+      {showFloatingTabs && (
+        <>
+          <div className="relative z-30 mx-auto w-full max-w-[1600px] px-3 sm:px-6 lg:px-8 xl:px-12 -mt-7 sm:-mt-8 md:-mt-9">
+            <div className="rounded-2xl sm:rounded-[24px] bg-white shadow-2xl shadow-slate-900/15 border border-slate-100 p-1.5 sm:p-2">
+              <div className="flex items-center justify-between overflow-x-auto scrollbar-none divide-x divide-slate-100 min-w-[720px] lg:min-w-0">
+                {guideCategories.map((tab) => {
+                  const Icon = tab.icon;
+                  const isActive = currentTab === tab.id;
 
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => handleTabClick(tab.id)}
-                  className={`relative flex-1 flex flex-col items-center justify-center py-2.5 sm:py-3.5 px-2 sm:px-3 rounded-xl transition-all duration-200 group text-center cursor-pointer ${
-                    isActive
-                      ? "bg-orange-50/70 text-[#ff5411] font-bold shadow-sm"
-                      : "text-slate-700 hover:text-[#ff5411] hover:bg-slate-50/80 font-medium"
-                  }`}
-                  title={`Filter by ${tab.label}`}
-                >
-                  <div
-                    className={`mb-1.5 flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center transition-transform duration-200 group-hover:scale-110 ${
-                      isActive
-                        ? "text-[#ff5411]"
-                        : "text-slate-700 group-hover:text-[#ff5411]"
-                    }`}
-                  >
-                    <Icon className="h-5 w-5 sm:h-6 sm:w-6 stroke-[1.9]" />
-                  </div>
+                  return (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => handleTabClick(tab.id)}
+                      className={`relative flex-1 flex flex-col items-center justify-center py-2.5 sm:py-3.5 px-2 sm:px-3 rounded-xl transition-all duration-200 group text-center cursor-pointer ${
+                        isActive
+                          ? "bg-orange-50/70 text-[#ff5411] font-bold shadow-sm"
+                          : "text-slate-700 hover:text-[#ff5411] hover:bg-slate-50/80 font-medium"
+                      }`}
+                      title={`Filter by ${tab.label}`}
+                    >
+                      <div
+                        className={`mb-1.5 flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center transition-transform duration-200 group-hover:scale-110 ${
+                          isActive
+                            ? "text-[#ff5411]"
+                            : "text-slate-700 group-hover:text-[#ff5411]"
+                        }`}
+                      >
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6 stroke-[1.9]" />
+                      </div>
 
-                  <span className="text-[11px] sm:text-xs tracking-tight whitespace-nowrap">
-                    {tab.label}
-                  </span>
+                      <span className="text-[11px] sm:text-xs tracking-tight whitespace-nowrap">
+                        {tab.label}
+                      </span>
 
-                  {isActive && (
-                    <span className="absolute bottom-1 left-3 right-3 h-[3px] rounded-full bg-[#ff5411]" />
-                  )}
-                </button>
-              );
-            })}
+                      {isActive && (
+                        <span className="absolute bottom-1 left-3 right-3 h-[3px] rounded-full bg-[#ff5411]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Spacer to give room for the floating tab bar overlap */}
-      <div className="h-6 sm:h-8 md:h-10 bg-white" />
+          {/* Spacer to give room for the floating tab bar overlap */}
+          <div className="h-6 sm:h-8 md:h-10 bg-white" />
+        </>
+      )}
 
       {/* Lightbox Modal */}
       {selectedImage && (

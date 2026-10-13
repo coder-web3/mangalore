@@ -20,14 +20,15 @@ import {
   ChevronDown,
   ChevronUp,
 } from "lucide-react";
-import { GuidesData, GuideItemData } from "@/lib/cms";
+import { GuidesData, GuideItemData, GuideArticleItem } from "@/lib/cms";
 import ImageUploader from "@/components/admin/ImageUploader";
+import { BookOpen } from "lucide-react";
 
 interface GuidesAdminProps {
   data: GuidesData;
   onChange: (updated: GuidesData) => void;
-  activeSubTab?: "hero" | "guides";
-  onSubTabChange?: (tab: "hero" | "guides") => void;
+  activeSubTab?: "hero" | "guides" | "articles";
+  onSubTabChange?: (tab: "hero" | "guides" | "articles") => void;
 }
 
 export default function GuidesAdmin({
@@ -36,11 +37,12 @@ export default function GuidesAdmin({
   activeSubTab = "guides",
   onSubTabChange,
 }: GuidesAdminProps) {
-  const [internalSubTab, setInternalSubTab] = useState<"hero" | "guides">("guides");
+  const [internalSubTab, setInternalSubTab] = useState<"hero" | "guides" | "articles">("guides");
   const [expandedGuideIndex, setExpandedGuideIndex] = useState<number | null>(0);
+  const [expandedArticleIndex, setExpandedArticleIndex] = useState<number | null>(0);
 
   const subTab = activeSubTab || internalSubTab;
-  const setSubTab = (tab: "hero" | "guides") => {
+  const setSubTab = (tab: "hero" | "guides" | "articles") => {
     if (onSubTabChange) onSubTabChange(tab);
     setInternalSubTab(tab);
   };
@@ -184,10 +186,43 @@ export default function GuidesAdmin({
     }
   };
 
+  const updateArticle = (index: number, field: keyof GuideArticleItem, val: any) => {
+    const currentArticles = data.articlesSection?.articles || [];
+    const updated = [...currentArticles];
+    updated[index] = {
+      ...updated[index],
+      [field]: val,
+    };
+    onChange({
+      ...data,
+      articlesSection: {
+        ...(data.articlesSection || {
+          articles: [],
+          categories: [],
+          popularPosts: [],
+        }),
+        articles: updated,
+      },
+    });
+  };
+
   return (
     <div className="space-y-6">
       {/* Subtabs Switcher */}
       <div className="flex border-b border-slate-200">
+        <button
+          type="button"
+          onClick={() => setSubTab("articles")}
+          className={`flex items-center gap-2 px-5 py-3 text-xs sm:text-sm font-bold border-b-2 transition-colors cursor-pointer ${
+            subTab === "articles"
+              ? "border-[#ff5e15] text-[#ff5e15]"
+              : "border-transparent text-slate-500 hover:text-slate-800"
+          }`}
+        >
+          <BookOpen className="h-4 w-4" />
+          <span>Travel Articles & Stories ({data.articlesSection?.articles?.length || 6})</span>
+        </button>
+
         <button
           type="button"
           onClick={() => setSubTab("guides")}
@@ -761,6 +796,173 @@ export default function GuidesAdmin({
                               )
                             }
                             placeholder="Kadri Temple Chronicles, Ghee Roast Trails, Estuary Kayaking"
+                            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#ff5e15]"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* SUBTAB 3: TRAVEL ARTICLES & STORIES */}
+      {subTab === "articles" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
+            <h3 className="text-sm font-bold text-slate-800 mb-2 flex items-center gap-2">
+              <BookOpen className="h-4 w-4 text-[#ff5e15]" />
+              <span>Travel Articles & Local Guides Stories</span>
+            </h3>
+            <p className="text-xs text-slate-500">
+              Manage the 6 featured travel guides and stories displayed in the 2-column catalog section on /local-guides.
+            </p>
+          </div>
+
+          {/* Articles Accordion List */}
+          <div className="space-y-4">
+            {(data.articlesSection?.articles || []).map((article, index) => {
+              const isExpanded = expandedArticleIndex === index;
+
+              return (
+                <div
+                  key={article.id || index}
+                  className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm transition-all"
+                >
+                  <div
+                    onClick={() => setExpandedArticleIndex(isExpanded ? null : index)}
+                    className="p-4 sm:p-5 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50 transition-colors select-none"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <div className="relative h-12 w-16 rounded-xl overflow-hidden bg-slate-900 shrink-0 border border-slate-200">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={article.image}
+                          alt={article.title}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-sm text-slate-900">
+                            {article.title}
+                          </span>
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-100 text-[#ff5e15]">
+                            {article.categoryLabel}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-500 line-clamp-1">
+                          {article.date} • {article.excerpt}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="p-1 text-slate-400">
+                      {isExpanded ? (
+                        <ChevronUp className="h-5 w-5" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5" />
+                      )}
+                    </div>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="p-5 sm:p-6 border-t border-slate-200 bg-slate-50/50 space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div className="sm:col-span-2">
+                          <label className="block text-xs font-semibold text-slate-700 mb-1">
+                            Article Title
+                          </label>
+                          <input
+                            type="text"
+                            value={article.title}
+                            onChange={(e) => updateArticle(index, "title", e.target.value)}
+                            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#ff5e15]"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-semibold text-slate-700 mb-1">
+                            Category
+                          </label>
+                          <select
+                            value={article.category}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              const catMap: Record<string, string> = {
+                                beaches: "Beaches",
+                                food: "Food",
+                                temples: "Temples",
+                                tips: "Travel Tips",
+                                culture: "Culture",
+                                festivals: "Festivals",
+                                nature: "Nature",
+                              };
+                              updateArticle(index, "category", val);
+                              if (catMap[val]) {
+                                updateArticle(index, "categoryLabel", catMap[val]);
+                              }
+                            }}
+                            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#ff5e15]"
+                          >
+                            <option value="beaches">Beaches</option>
+                            <option value="food">Food</option>
+                            <option value="temples">Temples</option>
+                            <option value="tips">Travel Tips</option>
+                            <option value="culture">Culture</option>
+                            <option value="festivals">Festivals</option>
+                            <option value="nature">Nature</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-semibold text-slate-700 mb-1">
+                            Published Date
+                          </label>
+                          <input
+                            type="text"
+                            value={article.date}
+                            onChange={(e) => updateArticle(index, "date", e.target.value)}
+                            placeholder="e.g. October 12, 2025"
+                            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#ff5e15]"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-semibold text-slate-700 mb-1">
+                            Target Read Link
+                          </label>
+                          <input
+                            type="text"
+                            value={article.readLink || ""}
+                            onChange={(e) => updateArticle(index, "readLink", e.target.value)}
+                            placeholder="/places-to-visit/panambur-beach"
+                            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#ff5e15]"
+                          />
+                        </div>
+
+                        <div className="sm:col-span-2 lg:col-span-3">
+                          <label className="block text-xs font-semibold text-slate-700 mb-1">
+                            Article Image
+                          </label>
+                          <ImageUploader
+                            currentImage={article.image}
+                            onImageSelected={(url) => updateArticle(index, "image", url)}
+                            label={`${article.title} Image`}
+                          />
+                        </div>
+
+                        <div className="sm:col-span-2 lg:col-span-3">
+                          <label className="block text-xs font-semibold text-slate-700 mb-1">
+                            Summary / Excerpt
+                          </label>
+                          <textarea
+                            rows={2}
+                            value={article.excerpt}
+                            onChange={(e) => updateArticle(index, "excerpt", e.target.value)}
                             className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs text-slate-800 bg-white focus:outline-none focus:border-[#ff5e15]"
                           />
                         </div>

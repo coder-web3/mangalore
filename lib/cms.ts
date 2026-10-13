@@ -792,7 +792,42 @@ export interface GuidesListingCatalogData {
   guides: GuideItemData[];
 }
 
+export interface GuideArticleItem {
+  id: string;
+  slug?: string;
+  title: string;
+  category: "beaches" | "food" | "temples" | "tips" | "culture" | "festivals" | "nature" | string;
+  categoryLabel: string;
+  categoryIcon: "beach" | "food" | "temple" | "tips" | "culture" | "festivals" | "nature";
+  date: string;
+  image: string;
+  excerpt: string;
+  readLink?: string;
+}
+
+export interface GuideSidebarCategory {
+  id: string;
+  label: string;
+  icon: "beach" | "culture" | "temple" | "tips" | "food" | "festivals";
+  articleCount: string;
+}
+
+export interface GuidePopularPost {
+  id: string;
+  title: string;
+  date: string;
+  image: string;
+  link?: string;
+}
+
+export interface GuidesArticlesSectionData {
+  articles: GuideArticleItem[];
+  categories: GuideSidebarCategory[];
+  popularPosts: GuidePopularPost[];
+}
+
 export interface GuidesData {
   listingHero: GuidesListingHeroData;
   listingCatalog: GuidesListingCatalogData;
+  articlesSection?: GuidesArticlesSectionData;
 }
