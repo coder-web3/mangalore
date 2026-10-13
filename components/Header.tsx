@@ -28,7 +28,7 @@ export default function Header() {
     { name: "Experiences", href: "/#destinations", active: false },
     { name: "Blog", href: "/#guides", active: false },
     { name: "Gallery", href: "/#gallery", active: false },
-    { name: "About", href: "/#about", active: false },
+    { name: "About", href: "/about", active: pathname === "/about" },
     { name: "Contact", href: "/contact", active: pathname === "/contact" },
   ];
 
