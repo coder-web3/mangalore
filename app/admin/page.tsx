@@ -6,6 +6,7 @@ import {
   getAboutData,
   getContactData,
   getGuidesData,
+  getBlogDetailsData,
 } from "@/lib/cms-server";
 import AdminClient from "@/components/admin/AdminClient";
 
@@ -20,15 +21,23 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
-  const [homepageData, placesData, famousPlacesData, aboutData, contactData, guidesData] =
-    await Promise.all([
-      getHomepageData(),
-      getPlacesData(),
-      getFamousPlacesData(),
-      getAboutData(),
-      getContactData(),
-      getGuidesData(),
-    ]);
+  const [
+    homepageData,
+    placesData,
+    famousPlacesData,
+    aboutData,
+    contactData,
+    guidesData,
+    blogDetailsData,
+  ] = await Promise.all([
+    getHomepageData(),
+    getPlacesData(),
+    getFamousPlacesData(),
+    getAboutData(),
+    getContactData(),
+    getGuidesData(),
+    getBlogDetailsData(),
+  ]);
 
   return (
     <AdminClient
@@ -38,6 +47,7 @@ export default async function AdminPage() {
       initialAboutData={aboutData}
       initialContactData={contactData}
       initialGuidesData={guidesData}
+      initialBlogDetailsData={blogDetailsData}
     />
   );
 }

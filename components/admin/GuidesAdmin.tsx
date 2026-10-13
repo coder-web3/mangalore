@@ -20,6 +20,7 @@ import {
   ChevronDown,
   ChevronUp,
   ExternalLink,
+  ArrowRight,
 } from "lucide-react";
 import { GuidesData, GuideItemData, GuideArticleItem } from "@/lib/cms";
 import ImageUploader from "@/components/admin/ImageUploader";
@@ -30,6 +31,7 @@ interface GuidesAdminProps {
   onChange: (updated: GuidesData) => void;
   activeSubTab?: "hero" | "guides" | "articles";
   onSubTabChange?: (tab: "hero" | "guides" | "articles") => void;
+  onEditBlogDetail?: (slug: string) => void;
 }
 
 export default function GuidesAdmin({
@@ -37,6 +39,7 @@ export default function GuidesAdmin({
   onChange,
   activeSubTab = "guides",
   onSubTabChange,
+  onEditBlogDetail,
 }: GuidesAdminProps) {
   const [internalSubTab, setInternalSubTab] = useState<"hero" | "guides" | "articles">("guides");
   const [expandedGuideIndex, setExpandedGuideIndex] = useState<number | null>(0);
@@ -968,19 +971,35 @@ export default function GuidesAdmin({
                           />
                         </div>
 
-                        <div className="sm:col-span-2 lg:col-span-3 flex items-center justify-between pt-3 border-t border-slate-200">
+                        <div className="sm:col-span-2 lg:col-span-3 flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-200">
                           <span className="text-[11px] font-mono text-slate-500">
                             Live URL: /blog/{article.slug || article.id}
                           </span>
-                          <a
-                            href={`/blog/${article.slug || article.id}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ff5e15] hover:underline"
-                          >
-                            <span>Open Blog Detail Page</span>
-                            <ExternalLink className="h-3.5 w-3.5" />
-                          </a>
+
+                          <div className="flex items-center gap-3">
+                            <a
+                              href={`/blog/${article.slug || article.id}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-[#ff5e15] hover:underline"
+                            >
+                              <span>Open Public Page</span>
+                              <ExternalLink className="h-3.5 w-3.5" />
+                            </a>
+
+                            {onEditBlogDetail && (
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  onEditBlogDetail(article.slug || article.id)
+                                }
+                                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#ff5e15] text-white text-xs font-bold hover:bg-[#ea4908] transition shadow-xs cursor-pointer"
+                              >
+                                <span>Edit Full Blog Post</span>
+                                <ArrowRight className="h-3.5 w-3.5" />
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>

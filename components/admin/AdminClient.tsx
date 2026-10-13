@@ -36,14 +36,24 @@ import {
   Clock,
   Laptop,
   Users,
+  BookOpen,
 } from "lucide-react";
-import { HomepageData, PlacesData, AboutData, ContactData, GuidesData } from "@/lib/cms";
+import {
+  HomepageData,
+  PlacesData,
+  AboutData,
+  ContactData,
+  GuidesData,
+  BlogDetailData,
+  getDefaultBlogDetail,
+} from "@/lib/cms";
 import HomepageAdmin, { HomepageTab } from "@/components/admin/HomepageAdmin";
 import PlacesListingAdmin from "@/components/admin/PlacesListingAdmin";
 import PlaceDetailAdmin from "@/components/admin/PlaceDetailAdmin";
 import AboutAdmin from "@/components/admin/AboutAdmin";
 import ContactAdmin from "@/components/admin/ContactAdmin";
 import GuidesAdmin from "@/components/admin/GuidesAdmin";
+import BlogDetailAdmin from "@/components/admin/BlogDetailAdmin";
 
 interface AdminClientProps {
   initialHomepageData: HomepageData;
@@ -52,6 +62,7 @@ interface AdminClientProps {
   initialAboutData: AboutData;
   initialContactData: ContactData;
   initialGuidesData: GuidesData;
+  initialBlogDetailsData?: Record<string, BlogDetailData>;
 }
 
 export type AdminSection =
@@ -59,6 +70,7 @@ export type AdminSection =
   | "places"
   | "famousPlaces"
   | "guides"
+  | "blogDetail"
   | "detail"
   | "famousDetail"
   | "about"
@@ -71,6 +83,7 @@ export default function AdminClient({
   initialAboutData,
   initialContactData,
   initialGuidesData,
+  initialBlogDetailsData = {},
 }: AdminClientProps) {
   // CMS Data States
   const [data, setData] = useState<HomepageData>(initialHomepageData);
@@ -79,6 +92,7 @@ export default function AdminClient({
   const [guidesData, setGuidesData] = useState<GuidesData>(initialGuidesData);
   const [aboutData, setAboutData] = useState<AboutData>(initialAboutData);
   const [contactData, setContactData] = useState<ContactData>(initialContactData);
+  const [blogDetailsData, setBlogDetailsData] = useState<Record<string, BlogDetailData>>(initialBlogDetailsData);
 
   // Status & Notifications
   const [saving, setSaving] = useState(false);
@@ -95,6 +109,7 @@ export default function AdminClient({
   const [activeSection, setActiveSection] = useState<AdminSection>("homepage");
   const [selectedDetailSlug, setSelectedDetailSlug] = useState<string>("panambur-beach");
   const [selectedFamousDetailSlug, setSelectedFamousDetailSlug] = useState<string>("panambur-beach");
+  const [selectedBlogSlug, setSelectedBlogSlug] = useState<string>("top-10-beautiful-beaches-in-mangalore");
 
   // Subtab synchronization
   const [homepageTab, setHomepageTab] = useState<HomepageTab>("hero");
@@ -118,6 +133,7 @@ export default function AdminClient({
     places: true,
     famousPlaces: true,
     guides: true,
+    blogDetail: true,
     detail: false,
     famousDetail: false,
     about: true,
@@ -201,6 +217,13 @@ export default function AdminClient({
 
   const placesList = placesData.listingCatalog?.places || [];
   const famousPlacesList = famousPlacesData.listingCatalog?.places || [];
+  const articlesFromGuides = guidesData?.articlesSection?.articles || [];
+  const allBlogSlugs = Array.from(
+    new Set([
+      ...Object.keys(blogDetailsData),
+      ...articlesFromGuides.map((a) => a.slug || a.id),
+    ])
+  );
 
   const getPublicLink = () => {
     switch (activeSection) {
@@ -210,6 +233,8 @@ export default function AdminClient({
         return "/famous-tourist-places";
       case "guides":
         return "/local-guides";
+      case "blogDetail":
+        return `/blog/${selectedBlogSlug}`;
       case "detail":
         return `/places-to-visit/${selectedDetailSlug}`;
       case "famousDetail":
@@ -231,6 +256,10 @@ export default function AdminClient({
         return "Famous Tourist Places";
       case "guides":
         return "Local Guides Directory";
+      case "blogDetail": {
+        const art = blogDetailsData[selectedBlogSlug];
+        return art ? `${art.title} (Blog Post)` : "Blog Detail Pages";
+      }
       case "detail": {
         const place = placesList.find((p) => p.slug === selectedDetailSlug);
         return place ? `${place.name} Detail Page` : "Place Detail Pages";
@@ -256,6 +285,8 @@ export default function AdminClient({
         return "Manage hero banner, polaroid showcase, and famous tourist destination catalog cards.";
       case "guides":
         return "Manage hero banner, polaroids, verified guide headshots, specialties, rates, and direct WhatsApp contacts (/local-guides).";
+      case "blogDetail":
+        return "Edit full narrative story sections, pro tips, cover image, author profile, fast facts, and traveler FAQs (/blog).";
       case "detail":
         return "Customize overview story, facts, gallery photos and things to do for this destination (/places-to-visit).";
       case "famousDetail":
@@ -378,6 +409,22 @@ export default function AdminClient({
         setMessage({
           type: "success",
           text: "Local Guides directory saved & published live!",
+        });
+      } else if (activeSection === "blogDetail") {
+        const articlePayload =
+          blogDetailsData[selectedBlogSlug] || getDefaultBlogDetail(selectedBlogSlug);
+        const res = await fetch("/api/admin/blog-details", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            slug: selectedBlogSlug,
+            article: articlePayload,
+          }),
+        });
+        if (!res.ok) throw new Error("Failed to save blog post detail");
+        setMessage({
+          type: "success",
+          text: `Blog article "${articlePayload.title || selectedBlogSlug}" saved & published live!`,
         });
       } else if (activeSection === "contact") {
         const res = await fetch("/api/admin/contact", {
@@ -935,7 +982,81 @@ export default function AdminClient({
                 )}
               </div>
 
-              {/* 5. PLACE DETAIL PAGES */}
+              {/* 5. BLOG POST DETAIL PAGES */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("blogDetail");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "blogDetail"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Blog Post Detail Pages"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <BookOpen className="h-4 w-4 shrink-0 text-emerald-500" />
+                    {!isSidebarCollapsed && (
+                      <span className="truncate">Blog Detail Pages</span>
+                    )}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold">
+                        {allBlogSlugs.length} Posts
+                      </span>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSubmenu("blogDetail");
+                        }}
+                        className="p-0.5 rounded hover:bg-black/10 dark:hover:bg-white/10"
+                      >
+                        {expandedMenus.blogDetail ? (
+                          <ChevronUp className="h-3 w-3" />
+                        ) : (
+                          <ChevronDown className="h-3 w-3" />
+                        )}
+                      </button>
+                    </div>
+                  )}
+                </button>
+
+                {!isSidebarCollapsed && (expandedMenus.blogDetail || activeSection === "blogDetail") && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5 max-h-48 overflow-y-auto">
+                    {allBlogSlugs.map((slug) => {
+                      const article = blogDetailsData[slug];
+                      const title = article ? article.title : slug;
+                      return (
+                        <button
+                          key={slug}
+                          type="button"
+                          onClick={() => {
+                            setActiveSection("blogDetail");
+                            setSelectedBlogSlug(slug);
+                            setIsMobileMenuOpen(false);
+                          }}
+                          className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer truncate ${
+                            activeSection === "blogDetail" && selectedBlogSlug === slug
+                              ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                              : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                          }`}
+                        >
+                          {title}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* 6. PLACE DETAIL PAGES */}
               <div className="space-y-1">
                 <button
                   type="button"
@@ -1392,6 +1513,32 @@ export default function AdminClient({
                 onChange={setGuidesData}
                 activeSubTab={guidesTab}
                 onSubTabChange={setGuidesTab}
+                onEditBlogDetail={(slug) => {
+                  setSelectedBlogSlug(slug);
+                  setActiveSection("blogDetail");
+                }}
+              />
+            )}
+
+            {activeSection === "blogDetail" && (
+              <BlogDetailAdmin
+                blogDetails={blogDetailsData}
+                selectedSlug={selectedBlogSlug}
+                onSelectSlug={setSelectedBlogSlug}
+                allArticleSlugs={allBlogSlugs}
+                onChangeArticle={(slug, updated) => {
+                  setBlogDetailsData((prev) => ({
+                    ...prev,
+                    [slug]: updated,
+                  }));
+                }}
+                onAddNewArticle={(newArticle) => {
+                  setBlogDetailsData((prev) => ({
+                    ...prev,
+                    [newArticle.slug]: newArticle,
+                  }));
+                  setSelectedBlogSlug(newArticle.slug);
+                }}
               />
             )}
 
