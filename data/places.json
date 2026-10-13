@@ -507,7 +507,7 @@
         "titleHighlight": "Hill Garden",
         "category": "Viewpoints",
         "description": "Visit Light House Hill in Hampankatta, Mangaluru, a historic city landmark featuring a peaceful garden, scenic surroundings, and views towards the Arabian Sea. It is a lovely stop for a relaxing walk and exploring the city's heritage.",
-        "backdropImage": "/uploads/1791872775849-kadri.heif",
+        "backdropImage": "/uploads/1791875129981-hero-lighthouse--1-.heif",
         "location": "Hampankatta, Mangalore",
         "bestTime": "October to March • Late Afternoon",
         "popularFor": "City Views, Garden Walks & Heritage ",
@@ -555,9 +555,9 @@
       "gallery": [
         {
           "id": "1",
-          "image": "/ref-card-lighthouse.jpg",
-          "caption": "Light House Hill Gardens & Tower",
-          "tag": "Watchtower"
+          "image": "/uploads/1791874175729-lighthouse.heif",
+          "caption": "Kaup Lighthouse and Scenic Rocky Shoreline",
+          "tag": "Lighthouse"
         },
         {
           "id": "2",
@@ -568,8 +568,8 @@
         {
           "id": "3",
           "image": "/ref-card-netravati.jpg",
-          "caption": "Sunset Glow over Coastal Skyline",
-          "tag": "Sunset"
+          "caption": "Honavar Lighthouse Tower Surrounded by Greenery",
+          "tag": "Lighthouse"
         }
       ],
       "thingsToDo": [
@@ -604,8 +604,8 @@
         "title": "Netravati",
         "titleHighlight": "River",
         "category": "Rivers",
-        "description": "The sacred lifeline of coastal Karnataka, famous for scenic boat rides, tranquil backwaters, and breathtaking bridge sunsets.",
-        "backdropImage": "/ref-card-netravati.jpg",
+        "description": "Discover the beautiful Netravati River in coastal Karnataka, known for its scenic riverbanks, peaceful waters, lush surroundings, and its connection to the cultural life of Mangaluru.",
+        "backdropImage": "/uploads/1791876120038-kaup-lighthouse--hero.heif",
         "location": "Ullal / Mangalore Riverbanks",
         "bestTime": "Oct to March • Sunrise & Sunset",
         "popularFor": "River Cruises & Estuary Sunset",
@@ -615,39 +615,39 @@
       "overview": {
         "badge": "SCENIC BACKWATERS",
         "title": "About Netravati River",
-        "p1": "Originating in the Western Ghats of Kudremukh, the Netravati River winds majestically through Dakshina Kannada before uniting with the Gurupura River and flowing into the Arabian Sea. It forms Mangalore's most scenic waterfront estuary.",
-        "p2": "Along its banks, fishermen cast traditional nets while visitors take soothing boat rides, relish fresh coastal seafood, and watch twilight reflections shimmer across the tranquil waters.",
+        "p1": "Originating in the Western Ghats near Kudremukh, the Netravati River flows through Karnataka’s Dakshina Kannada region before joining the Gurupura River near Mangaluru and reaching the Arabian Sea. The river plays an important role in the region’s natural landscape, supporting local communities, agriculture, and diverse ecosystems. Its scenic riverbanks and coastal estuary make it a notable feature of Mangaluru.",
+        "p2": "The Netravati River offers opportunities to enjoy peaceful waterfront views, observe local fishing activities, and photograph the beautiful coastal scenery. The estuary near Ullal is particularly appealing around sunset, when the river and sea create a picturesque setting. Visitors can explore nearby riverside areas and enjoy local seafood, while checking boat availability and safety conditions before planning water activities.",
         "highlights": [
-          "Magnificent tidal river and backwaters flowing into the Arabian Sea",
-          "Idyllic sunset vantage points along Ullal and Jeppinamogaru riverbanks",
-          "Fresh river fish cuisine and waterfront dining nearby",
-          "Historic bridges offering iconic railway and highway river vistas"
+          "Scenic river flowing from the Western Ghats to the Arabian Sea",
+          "Beautiful estuary views near Ullal and the Mangaluru coast",
+          "Traditional fishing activities and local coastal culture",
+          "Peaceful waterfront scenery and sunset photography opportunities"
         ]
       },
       "quickFacts": [
         {
           "label": "Entry Fee",
-          "value": "Free Riverbank Access"
+          "value": "Free Access to Public Riverside Areas"
         },
         {
           "label": "Timings",
-          "value": "6:00 AM - 7:00 PM"
+          "value": "Accessible During Daylight; Check Local Access"
         },
         {
           "label": "Boating Availability",
-          "value": "Country boat rides available on site"
+          "value": "Boat Rides Subject to Local Availability"
         },
         {
           "label": "Distance from City",
-          "value": "6 km from Mangalore Center"
+          "value": "Approx. 6 km from Central Mangaluru; Depends on Location"
         },
         {
           "label": "Confluence",
-          "value": "Merges with Gurupura at Bengre Estuary"
+          "value": "Joins the Gurupura River Near Mangaluru"
         },
         {
           "label": "Ideal Visit Duration",
-          "value": "1 to 2 Hours"
+          "value": "1–2 Hours"
         }
       ],
       "gallery": [
@@ -702,7 +702,7 @@
         "title": "Sultan",
         "titleHighlight": "Bathery",
         "category": "Cultural",
-        "description": "A historic miniature fortress and watchtower constructed by Tipu Sultan, offering ferry crossings and panoramic waterfront trails.",
+        "description": "Explore Sultan Battery in Boloor, Mangaluru, a historic stone watchtower built during Tipu Sultan’s rule. Discover its coastal defence history, enjoy views of the Gurupura River, and visit the nearby ferry point for a scenic journey towards Tannirbhavi Beach.",
         "backdropImage": "/ref-card-sultan.jpg",
         "location": "Boloor, Mangalore",
         "bestTime": "Oct to March • 4:30 PM",
@@ -713,13 +713,13 @@
       "overview": {
         "badge": "HISTORIC WATCHTOWER",
         "title": "About Sultan Battery",
-        "p1": "Built out of black stone in 1784 by Tipu Sultan, Sultan Battery was designed to prevent British warships from sailing up the Gurupura River into Mangalore. Resembling a miniature fort with mounting places for cannons, it offers an imposing view of the river mouth.",
-        "p2": "Today, it is a bustling recreational hub where travelers can climb the old watchtower, take scenic motorboat rides, or board the river passenger ferry to reach the golden beaches of Tannirbhavi in minutes.",
+        "p1": "Sultan Battery is a historic stone watchtower located in Boloor, Mangaluru, Karnataka. Built in 1784 during the reign of Tipu Sultan, it served as a coastal defence structure intended to guard the entrance to the Gurupura River against enemy vessels. Its distinctive dark stone architecture and strategic riverside location make it an important landmark in Mangaluru's history.",
+        "p2": "Today, Sultan Battery is a popular stop for visitors interested in local history and coastal scenery. Travellers can admire the old watchtower, enjoy views of the Gurupura River, and explore the nearby waterfront. A ferry service from the surrounding area may provide access towards Tannirbhavi Beach, depending on current operations. The site is ideal for a short visit, photography, and learning about Mangaluru's maritime past.",
         "highlights": [
-          "Historic 18th-century black stone defense watchtower built by Tipu Sultan",
-          "Cannon vantage points overlooking the Gurupura River inlet",
-          "Popular ferry terminal connecting directly to Tannirbhavi Beach",
-          "Water sports, jet ski rides, and scenic waterfront promenade"
+          "Historic stone watchtower built during Tipu Sultan’s reign in 1784",
+          "Strategic location overlooking the Gurupura River entrance",
+          "Popular landmark for heritage exploration and photography",
+          "Nearby ferry access towards Tannirbhavi Beach, subject to availability"
         ]
       },
       "quickFacts": [

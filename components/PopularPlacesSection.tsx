@@ -148,7 +148,7 @@ export default function PopularPlacesSection({
   });
 
   return (
-    <section className="relative w-full bg-[#f8fbff] py-10 sm:py-14 lg:py-16 overflow-hidden">
+    <section id="places-catalog" className="relative w-full bg-[#f8fbff] py-10 sm:py-14 lg:py-16 overflow-hidden scroll-mt-24">
       <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Section Header */}
         <div className="mb-8 sm:mb-10 max-w-3xl">

@@ -33,17 +33,13 @@ export default function Header() {
   ];
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
-        isScrolled ? "pt-2 pb-1.5" : "pt-3 sm:pt-4 pb-2"
-      }`}
-    >
+    <header className="sticky top-0 z-40 w-full px-4 sm:px-6 lg:px-8 pt-2.5 pb-2 transition-colors duration-200">
       <div className="mx-auto max-w-[1600px]">
         <nav
-          className={`relative flex items-center justify-between rounded-full border bg-white/95 px-5 backdrop-blur-md transition-all duration-300 sm:px-7 ${
+          className={`relative flex items-center justify-between rounded-full border bg-white/95 px-5 backdrop-blur-md transition-shadow duration-300 sm:px-7 py-2 sm:py-2.5 ${
             isScrolled
-              ? "py-2 sm:py-2.5 shadow-xl shadow-slate-900/10 border-slate-300/80 bg-white/98"
-              : "py-2.5 sm:py-3 shadow-lg shadow-slate-900/5 border-slate-200/80"
+              ? "shadow-xl shadow-slate-900/10 border-slate-300/80 bg-white/98"
+              : "shadow-lg shadow-slate-900/5 border-slate-200/80"
           }`}
           aria-label="Main Navigation"
         >
