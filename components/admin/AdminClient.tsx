@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Save,
@@ -21,9 +21,23 @@ import {
   Home,
   Info,
   MessageSquare,
+  Sun,
+  Moon,
+  ChevronLeft,
+  ChevronRight,
+  Menu,
+  X,
+  ExternalLink,
+  ChevronDown,
+  ChevronUp,
+  Sliders,
+  Check,
+  FileText,
+  Clock,
+  Laptop,
 } from "lucide-react";
 import { HomepageData, PlacesData, AboutData, ContactData } from "@/lib/cms";
-import ImageUploader from "@/components/admin/ImageUploader";
+import HomepageAdmin, { HomepageTab } from "@/components/admin/HomepageAdmin";
 import PlacesListingAdmin from "@/components/admin/PlacesListingAdmin";
 import PlaceDetailAdmin from "@/components/admin/PlaceDetailAdmin";
 import AboutAdmin from "@/components/admin/AboutAdmin";
@@ -36,34 +50,96 @@ interface AdminClientProps {
   initialContactData: ContactData;
 }
 
+export type AdminSection = "homepage" | "places" | "detail" | "about" | "contact";
+
 export default function AdminClient({
   initialHomepageData,
   initialPlacesData,
   initialAboutData,
   initialContactData,
 }: AdminClientProps) {
+  // CMS Data States
   const [data, setData] = useState<HomepageData>(initialHomepageData);
   const [placesData, setPlacesData] = useState<PlacesData>(initialPlacesData);
   const [aboutData, setAboutData] = useState<AboutData>(initialAboutData);
   const [contactData, setContactData] = useState<ContactData>(initialContactData);
+
+  // Status & Notifications
   const [saving, setSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState<string>("Ready");
   const [message, setMessage] = useState<{
     type: "success" | "error";
     text: string;
   } | null>(null);
 
-  // Top Section: "homepage" | "places" | "detail" | "about" | "contact"
-  const [activeSection, setActiveSection] = useState<
-    "homepage" | "places" | "detail" | "about" | "contact"
-  >("homepage");
+  // Theme Mode: "lite" | "dark"
+  const [theme, setTheme] = useState<"lite" | "dark">("lite");
 
-  // Which place detail page is currently being edited
+  // Navigation State
+  const [activeSection, setActiveSection] = useState<AdminSection>("homepage");
   const [selectedDetailSlug, setSelectedDetailSlug] = useState<string>("panambur-beach");
 
-  // Homepage internal sub-tabs
-  const [activeTab, setActiveTab] = useState<
-    "hero" | "destinations" | "whyChooseUs" | "tasteMangalore" | "cta"
+  // Subtab synchronization
+  const [homepageTab, setHomepageTab] = useState<HomepageTab>("hero");
+  const [placesTab, setPlacesTab] = useState<"hero" | "cards">("hero");
+  const [aboutSubTab, setAboutSubTab] = useState<
+    "hero" | "story" | "different" | "vision" | "team"
   >("hero");
+  const [contactSubTab, setContactSubTab] = useState<
+    "hero" | "quickInfo" | "form" | "widgets"
+  >("hero");
+
+  // Sidebar Layout States
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Expanded submenu state in sidebar
+  const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({
+    homepage: true,
+    places: true,
+    detail: false,
+    about: true,
+    contact: true,
+  });
+
+  const toggleSubmenu = (section: string) => {
+    setExpandedMenus((prev) => ({ ...prev, [section]: !prev[section] }));
+  };
+
+  // Load theme preference on mount
+  useEffect(() => {
+    try {
+      const savedTheme = localStorage.getItem("mangalore_admin_theme");
+      if (savedTheme === "dark" || savedTheme === "lite") {
+        setTheme(savedTheme);
+      }
+    } catch {
+      // Local storage not available
+    }
+  }, []);
+
+  const handleThemeChange = (newTheme: "lite" | "dark") => {
+    setTheme(newTheme);
+    try {
+      localStorage.setItem("mangalore_admin_theme", newTheme);
+    } catch {
+      // Ignore
+    }
+  };
+
+  // Keyboard shortcut: Ctrl+S or Cmd+S to Save & Publish
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+        e.preventDefault();
+        handleSave();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeSection, data, placesData, aboutData, contactData]);
+
+  const placesList = placesData.listingCatalog?.places || [];
 
   const getPublicLink = () => {
     switch (activeSection) {
@@ -80,18 +156,35 @@ export default function AdminClient({
     }
   };
 
-  const getSectionLabel = () => {
+  const getSectionTitle = () => {
     switch (activeSection) {
       case "places":
         return "Places to Visit Listing";
-      case "detail":
-        return "Place Detail Pages";
+      case "detail": {
+        const place = placesList.find((p) => p.slug === selectedDetailSlug);
+        return place ? `${place.name} Detail Page` : "Place Detail Pages";
+      }
       case "about":
         return "About Us Page";
       case "contact":
         return "Contact Page";
       default:
-        return "Homepage";
+        return "Homepage Editor";
+    }
+  };
+
+  const getSectionDescription = () => {
+    switch (activeSection) {
+      case "places":
+        return "Manage page hero, polaroid photos, badges, search tags and destination cards.";
+      case "detail":
+        return "Customize overview story, facts, gallery photos and things to do for this destination.";
+      case "about":
+        return "Edit hero metrics, story collage, difference pillars, vision statement, and team.";
+      case "contact":
+        return "Update location cards, contact numbers, email, interactive map, and promo banner.";
+      default:
+        return "Configure hero banners, destinations, value points, food guide, and tour inquiry info.";
     }
   };
 
@@ -147,1013 +240,717 @@ export default function AdminClient({
               : "Place detail page changes & gallery saved and published live!",
         });
       }
+
+      const now = new Date();
+      setLastSaved(
+        `${now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+      );
       setTimeout(() => setMessage(null), 5000);
-    } catch (err) {
-      setMessage({ type: "error", text: "Failed to save changes. Try again." });
+    } catch {
+      setMessage({ type: "error", text: "Failed to save changes. Please try again." });
     } finally {
       setSaving(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
-      {/* Top Admin Navbar */}
-      <header className="sticky top-0 z-40 border-b border-slate-800 bg-slate-900/90 backdrop-blur-md px-4 sm:px-8 py-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+    <div
+      className={`min-h-screen flex flex-col transition-colors duration-200 ${
+        theme === "lite" ? "admin-lite bg-slate-50 text-slate-800" : "bg-[#090d16] text-slate-100"
+      }`}
+    >
+      {/* ================= TOP NAVIGATION BAR ================= */}
+      <header
+        className={`sticky top-0 z-40 h-16 border-b transition-colors px-4 sm:px-6 flex items-center justify-between gap-4 backdrop-blur-md ${
+          theme === "lite"
+            ? "bg-white/95 border-slate-200/90 shadow-xs"
+            : "bg-[#0c121e]/90 border-slate-800/80"
+        }`}
+      >
+        {/* Left: Mobile Toggle & Breadcrumbs */}
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-600 text-white shadow-md shadow-orange-600/30 font-bold">
-            M
-          </div>
-          <div>
-            <h1 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-              Mangalore Tours CMS
-              <span className="text-[11px] px-2 py-0.5 rounded-full bg-orange-500/20 text-orange-400 border border-orange-500/30">
-                {getSectionLabel()}
-              </span>
-            </h1>
-            <p className="text-[11px] text-slate-400">
-              Live Content Editor & Device Media Uploader
-            </p>
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-orange-500 cursor-pointer"
+            aria-label="Toggle Navigation"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+            className="hidden md:flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-orange-500 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition cursor-pointer"
+            title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          >
+            {isSidebarCollapsed ? (
+              <ChevronRight className="h-4 w-4" />
+            ) : (
+              <ChevronLeft className="h-4 w-4" />
+            )}
+          </button>
+
+          {/* Breadcrumb Trail */}
+          <div className="flex items-center gap-2 text-xs">
+            <span className="font-semibold text-slate-400 hidden sm:inline">Mangalore CMS</span>
+            <span className="text-slate-300 dark:text-slate-600 hidden sm:inline">/</span>
+            <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span>{getSectionTitle()}</span>
+              <span className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            </span>
           </div>
         </div>
 
-        {/* Section Switcher Tabs */}
-        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-950/80 border border-slate-800 self-center sm:self-auto overflow-x-auto max-w-full">
-          <button
-            type="button"
-            onClick={() => setActiveSection("homepage")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-              activeSection === "homepage"
-                ? "bg-orange-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
+        {/* Right: Theme Switcher, Preview, Save Action */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          {/* Theme Mode Toggle Pill */}
+          <div
+            className={`flex items-center p-1 rounded-xl border transition-all ${
+              theme === "lite"
+                ? "bg-slate-100 border-slate-200"
+                : "bg-slate-900 border-slate-800"
             }`}
           >
-            <Home className="h-3.5 w-3.5" />
-            <span>Homepage</span>
-          </button>
+            <button
+              type="button"
+              onClick={() => handleThemeChange("lite")}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                theme === "lite"
+                  ? "bg-white text-orange-600 shadow-xs"
+                  : "text-slate-400 hover:text-slate-200"
+              }`}
+              title="Switch to Lite Version"
+            >
+              <Sun className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Lite</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => handleThemeChange("dark")}
+              className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold transition cursor-pointer ${
+                theme === "dark"
+                  ? "bg-slate-800 text-orange-400 shadow-xs"
+                  : "text-slate-500 hover:text-slate-700"
+              }`}
+              title="Switch to Dark Version"
+            >
+              <Moon className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">Dark</span>
+            </button>
+          </div>
 
-          <button
-            type="button"
-            onClick={() => setActiveSection("places")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-              activeSection === "places"
-                ? "bg-orange-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
-            }`}
-          >
-            <Compass className="h-3.5 w-3.5" />
-            <span>Places Listing</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveSection("detail")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-              activeSection === "detail"
-                ? "bg-orange-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
-            }`}
-          >
-            <Palmtree className="h-3.5 w-3.5" />
-            <span>Detail Pages</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveSection("about")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-              activeSection === "about"
-                ? "bg-orange-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
-            }`}
-          >
-            <Info className="h-3.5 w-3.5" />
-            <span>About Page</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setActiveSection("contact")}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
-              activeSection === "contact"
-                ? "bg-orange-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-white"
-            }`}
-          >
-            <MessageSquare className="h-3.5 w-3.5" />
-            <span>Contact Page</span>
-          </button>
-        </div>
-
-        <div className="flex items-center gap-3 justify-end">
+          {/* Public Preview Button */}
           <Link
             href={getPublicLink()}
             target="_blank"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl border border-slate-700 bg-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-700 transition"
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition ${
+              theme === "lite"
+                ? "bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-orange-600 shadow-xs"
+                : "bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800 hover:text-white"
+            }`}
           >
             <Eye className="h-3.5 w-3.5" />
-            <span>View Public Page</span>
+            <span className="hidden sm:inline">View Public</span>
+            <ExternalLink className="h-3 w-3 opacity-60" />
           </Link>
 
+          {/* Save & Publish Button */}
           <button
             type="button"
             onClick={handleSave}
             disabled={saving}
-            className="inline-flex items-center gap-2 rounded-xl bg-orange-600 hover:bg-orange-500 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-orange-600/25 transition disabled:opacity-50 cursor-pointer"
+            className="inline-flex items-center gap-2 rounded-xl bg-orange-600 hover:bg-orange-500 px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-white shadow-md shadow-orange-600/25 hover:shadow-orange-600/35 transition-all disabled:opacity-50 cursor-pointer text-white-force"
           >
             {saving ? (
-              <RefreshCw className="h-4 w-4 animate-spin" />
+              <RefreshCw className="h-4 w-4 animate-spin text-white-force" />
             ) : (
-              <Save className="h-4 w-4" />
+              <Save className="h-4 w-4 text-white-force" />
             )}
-            <span>{saving ? "Publishing..." : "Save & Publish"}</span>
+            <span className="text-white-force">
+              {saving ? "Publishing..." : "Save & Publish"}
+            </span>
           </button>
         </div>
       </header>
 
-      {/* Status Alert Banner */}
+      {/* ================= STATUS NOTIFICATION BANNER ================= */}
       {message && (
         <div
-          className={`px-4 sm:px-8 py-3 text-xs sm:text-sm flex items-center gap-2 border-b ${
+          className={`px-4 sm:px-8 py-2.5 text-xs sm:text-sm flex items-center justify-between border-b transition-all ${
             message.type === "success"
-              ? "bg-emerald-950/80 border-emerald-800 text-emerald-200"
+              ? theme === "lite"
+                ? "bg-emerald-50 border-emerald-200 text-emerald-800"
+                : "bg-emerald-950/80 border-emerald-800 text-emerald-200"
+              : theme === "lite"
+              ? "bg-red-50 border-red-200 text-red-800"
               : "bg-red-950/80 border-red-800 text-red-200"
           }`}
         >
-          {message.type === "success" ? (
-            <CheckCircle2 className="h-4 w-4 text-emerald-400" />
-          ) : (
-            <AlertCircle className="h-4 w-4 text-red-400" />
-          )}
-          <span>{message.text}</span>
+          <div className="flex items-center gap-2">
+            {message.type === "success" ? (
+              <CheckCircle2 className="h-4 w-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            ) : (
+              <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 shrink-0" />
+            )}
+            <span className="font-medium">{message.text}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setMessage(null)}
+            className="text-xs opacity-70 hover:opacity-100 cursor-pointer"
+          >
+            Dismiss
+          </button>
         </div>
       )}
 
-      {/* Main Workspace */}
-      <div className="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        {activeSection === "places" ? (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-7 shadow-xl">
-            <PlacesListingAdmin
-              data={placesData}
-              onChange={setPlacesData}
-              onEditDetailPage={(slug) => {
-                setSelectedDetailSlug(slug);
-                setActiveSection("detail");
-              }}
-            />
-          </div>
-        ) : activeSection === "detail" ? (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-7 shadow-xl">
-            <PlaceDetailAdmin
-              data={placesData}
-              onChange={setPlacesData}
-              selectedSlug={selectedDetailSlug}
-              onSelectSlug={setSelectedDetailSlug}
-            />
-          </div>
-        ) : activeSection === "about" ? (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-7 shadow-xl">
-            <AboutAdmin data={aboutData} onChange={setAboutData} />
-          </div>
-        ) : activeSection === "contact" ? (
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-7 shadow-xl">
-            <ContactAdmin data={contactData} onChange={setContactData} />
-          </div>
-        ) : (
-          <div className="flex flex-col md:flex-row gap-6">
-            {/* Left Sidebar Navigation */}
-            <aside className="w-full md:w-64 shrink-0">
-              <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-2 space-y-1">
-            <button
-              onClick={() => setActiveTab("hero")}
-              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition cursor-pointer text-left ${
-                activeTab === "hero"
-                  ? "bg-orange-600 text-white shadow-md shadow-orange-600/20"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-              }`}
-            >
-              <Sparkles className="h-4 w-4" />
-              <span>Hero Banner</span>
-            </button>
+      {/* ================= MAIN DASHBOARD BODY ================= */}
+      <div className="flex-1 flex">
+        {/* ================= LEFT MASTER SIDEBAR ================= */}
+        {/* Mobile backdrop */}
+        {isMobileMenuOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-black/50 backdrop-blur-xs md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
 
-            <button
-              onClick={() => setActiveTab("destinations")}
-              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition cursor-pointer text-left ${
-                activeTab === "destinations"
-                  ? "bg-orange-600 text-white shadow-md shadow-orange-600/20"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-              }`}
+        <aside
+          className={`fixed md:sticky top-16 z-40 md:z-30 h-[calc(100vh-4rem)] shrink-0 border-r transition-all duration-200 flex flex-col justify-between overflow-y-auto ${
+            theme === "lite"
+              ? "bg-white border-slate-200/90 shadow-xs"
+              : "bg-[#0b101a] border-slate-800/80"
+          } ${isSidebarCollapsed ? "md:w-18" : "md:w-72"} ${
+            isMobileMenuOpen
+              ? "translate-x-0 w-72 left-0 shadow-2xl"
+              : "-translate-x-full md:translate-x-0"
+          }`}
+        >
+          {/* Sidebar Top: Logo & Navigation */}
+          <div className="p-3.5 space-y-4">
+            {/* Brand Card */}
+            <div
+              className={`p-3 rounded-2xl border flex items-center gap-3 ${
+                theme === "lite"
+                  ? "bg-gradient-to-br from-orange-50 to-slate-50 border-orange-100"
+                  : "bg-slate-900/60 border-slate-800"
+              } ${isSidebarCollapsed ? "justify-center p-2" : ""}`}
             >
-              <MapPin className="h-4 w-4" />
-              <span>Popular Destinations</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab("whyChooseUs")}
-              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition cursor-pointer text-left ${
-                activeTab === "whyChooseUs"
-                  ? "bg-orange-600 text-white shadow-md shadow-orange-600/20"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-              }`}
-            >
-              <Layers className="h-4 w-4" />
-              <span>Why Choose Us</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab("tasteMangalore")}
-              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition cursor-pointer text-left ${
-                activeTab === "tasteMangalore"
-                  ? "bg-orange-600 text-white shadow-md shadow-orange-600/20"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-              }`}
-            >
-              <Utensils className="h-4 w-4" />
-              <span>Taste of Mangalore</span>
-            </button>
-
-            <button
-              onClick={() => setActiveTab("cta")}
-              className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition cursor-pointer text-left ${
-                activeTab === "cta"
-                  ? "bg-orange-600 text-white shadow-md shadow-orange-600/20"
-                  : "text-slate-400 hover:text-white hover:bg-slate-800/60"
-              }`}
-            >
-              <PhoneCall className="h-4 w-4" />
-              <span>CTA & Contact Info</span>
-            </button>
-          </div>
-
-          <div className="mt-4 p-4 rounded-2xl border border-slate-800/80 bg-slate-900/30 text-[11px] text-slate-400 space-y-2">
-            <div className="flex items-center gap-2 text-slate-300 font-semibold">
-              <ShieldCheck className="h-4 w-4 text-emerald-400" />
-              <span>Instant Server Preloaded</span>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-orange-600 to-amber-500 text-white font-black text-lg shadow-md shadow-orange-500/30 text-white-force">
+                M
+              </div>
+              {!isSidebarCollapsed && (
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <h2 className="text-xs font-black tracking-tight text-slate-900 dark:text-white truncate">
+                      MANGALORE CMS
+                    </h2>
+                    <span className="text-[9px] font-extrabold uppercase px-1.5 py-0.2 rounded-full bg-orange-500/15 text-orange-600 dark:text-orange-400 border border-orange-500/20">
+                      LIVE
+                    </span>
+                  </div>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
+                    Enterprise Visual CMS
+                  </p>
+                </div>
+              )}
             </div>
-            <p>
-              Pre-rendered instantly without client fetch delay. Click <b>Upload Device</b> next to any image to change visuals on the fly.
-            </p>
+
+            {/* Menu List */}
+            <nav className="space-y-1.5">
+              {!isSidebarCollapsed && (
+                <span className="block px-2 text-[10px] font-black uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1">
+                  Website Pages
+                </span>
+              )}
+
+              {/* 1. HOMEPAGE */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("homepage");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "homepage"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Homepage"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Home className="h-4 w-4 shrink-0" />
+                    {!isSidebarCollapsed && <span className="truncate">Homepage</span>}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSubmenu("homepage");
+                      }}
+                      className="p-1 rounded-md opacity-70 hover:opacity-100"
+                    >
+                      {expandedMenus.homepage ? (
+                        <ChevronUp className="h-3.5 w-3.5" />
+                      ) : (
+                        <ChevronDown className="h-3.5 w-3.5" />
+                      )}
+                    </button>
+                  )}
+                </button>
+
+                {/* Homepage Submenu */}
+                {!isSidebarCollapsed && expandedMenus.homepage && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5">
+                    {[
+                      { id: "hero", label: "Hero Banner" },
+                      { id: "destinations", label: "Top Destinations" },
+                      { id: "whyChooseUs", label: "Why Choose Us" },
+                      { id: "tasteMangalore", label: "Taste of Mangalore" },
+                      { id: "cta", label: "Tour CTA & Contact" },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("homepage");
+                          setHomepageTab(item.id as HomepageTab);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
+                          activeSection === "homepage" && homepageTab === item.id
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 2. PLACES LISTING */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("places");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "places"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Places to Visit Listing"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Compass className="h-4 w-4 shrink-0" />
+                    {!isSidebarCollapsed && (
+                      <span className="truncate">Places Listing</span>
+                    )}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-slate-200/60 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                      8 Cards
+                    </span>
+                  )}
+                </button>
+
+                {!isSidebarCollapsed && expandedMenus.places && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5">
+                    {[
+                      { id: "hero", label: "Hero & Polaroids" },
+                      { id: "cards", label: "Places Catalog Cards" },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("places");
+                          setPlacesTab(item.id as "hero" | "cards");
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
+                          activeSection === "places" && placesTab === item.id
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 3. PLACE DETAIL PAGES */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("detail");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "detail"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Place Detail Pages"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Palmtree className="h-4 w-4 shrink-0" />
+                    {!isSidebarCollapsed && (
+                      <span className="truncate">Detail Pages</span>
+                    )}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSubmenu("detail");
+                      }}
+                      className="p-1 rounded-md opacity-70 hover:opacity-100"
+                    >
+                      {expandedMenus.detail ? (
+                        <ChevronUp className="h-3.5 w-3.5" />
+                      ) : (
+                        <ChevronDown className="h-3.5 w-3.5" />
+                      )}
+                    </button>
+                  )}
+                </button>
+
+                {/* Place Detail Submenu with all 8 places */}
+                {!isSidebarCollapsed && (expandedMenus.detail || activeSection === "detail") && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5 max-h-48 overflow-y-auto">
+                    {placesList.map((place) => (
+                      <button
+                        key={place.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("detail");
+                          setSelectedDetailSlug(place.slug || "panambur-beach");
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer truncate ${
+                          activeSection === "detail" && selectedDetailSlug === place.slug
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {place.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 4. ABOUT US PAGE */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("about");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "about"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="About Us Page"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <Info className="h-4 w-4 shrink-0" />
+                    {!isSidebarCollapsed && <span className="truncate">About Page</span>}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSubmenu("about");
+                      }}
+                      className="p-1 rounded-md opacity-70 hover:opacity-100"
+                    >
+                      {expandedMenus.about ? (
+                        <ChevronUp className="h-3.5 w-3.5" />
+                      ) : (
+                        <ChevronDown className="h-3.5 w-3.5" />
+                      )}
+                    </button>
+                  )}
+                </button>
+
+                {!isSidebarCollapsed && expandedMenus.about && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5">
+                    {[
+                      { id: "hero", label: "Hero & Stats" },
+                      { id: "story", label: "Our Story & Collage" },
+                      { id: "different", label: "What Makes Us Different" },
+                      { id: "vision", label: "Our Vision Statement" },
+                      { id: "team", label: "Team & Mission Pillars" },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("about");
+                          setAboutSubTab(
+                            item.id as "hero" | "story" | "different" | "vision" | "team"
+                          );
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
+                          activeSection === "about" && aboutSubTab === item.id
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* 5. CONTACT PAGE */}
+              <div className="space-y-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveSection("contact");
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    activeSection === "contact"
+                      ? "bg-orange-600 text-white shadow-sm shadow-orange-600/30 text-white-force"
+                      : theme === "lite"
+                      ? "text-slate-700 hover:bg-slate-100"
+                      : "text-slate-300 hover:bg-slate-800/60 hover:text-white"
+                  } ${isSidebarCollapsed ? "justify-center px-2" : ""}`}
+                  title="Contact Page"
+                >
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <MessageSquare className="h-4 w-4 shrink-0" />
+                    {!isSidebarCollapsed && (
+                      <span className="truncate">Contact Page</span>
+                    )}
+                  </div>
+                  {!isSidebarCollapsed && (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleSubmenu("contact");
+                      }}
+                      className="p-1 rounded-md opacity-70 hover:opacity-100"
+                    >
+                      {expandedMenus.contact ? (
+                        <ChevronUp className="h-3.5 w-3.5" />
+                      ) : (
+                        <ChevronDown className="h-3.5 w-3.5" />
+                      )}
+                    </button>
+                  )}
+                </button>
+
+                {!isSidebarCollapsed && expandedMenus.contact && (
+                  <div className="ml-5 pl-2 border-l border-slate-200 dark:border-slate-800 space-y-0.5 pt-0.5">
+                    {[
+                      { id: "hero", label: "Hero Banner" },
+                      { id: "quickInfo", label: "4 Quick Info Cards" },
+                      { id: "form", label: "Form Section Copy" },
+                      { id: "widgets", label: "Map & Custom Tour Banner" },
+                    ].map((item) => (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => {
+                          setActiveSection("contact");
+                          setContactSubTab(
+                            item.id as "hero" | "quickInfo" | "form" | "widgets"
+                          );
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
+                          activeSection === "contact" && contactSubTab === item.id
+                            ? "text-orange-600 dark:text-orange-400 font-bold bg-orange-500/10"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </nav>
+          </div>
+
+          {/* Sidebar Footer: Status & Shortcuts */}
+          <div
+            className={`p-3.5 border-t space-y-2.5 ${
+              theme === "lite" ? "border-slate-200/80 bg-slate-50/50" : "border-slate-800/80 bg-slate-950/40"
+            }`}
+          >
+            {!isSidebarCollapsed && (
+              <div className="space-y-1.5 text-[11px]">
+                <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>System Sync</span>
+                  </span>
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">
+                    {lastSaved}
+                  </span>
+                </div>
+                <div className="text-[10px] text-slate-400 dark:text-slate-500 flex items-center justify-between">
+                  <span>Shortcut</span>
+                  <kbd className="px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-[10px] font-mono">
+                    Ctrl + S
+                  </kbd>
+                </div>
+              </div>
+            )}
+
+            <button
+              type="button"
+              onClick={handleSave}
+              disabled={saving}
+              className={`w-full flex items-center justify-center gap-2 rounded-xl py-2 px-3 text-xs font-bold transition cursor-pointer ${
+                theme === "lite"
+                  ? "bg-orange-50 hover:bg-orange-100 text-orange-700 border border-orange-200"
+                  : "bg-slate-900 hover:bg-slate-800 text-orange-400 border border-slate-800"
+              }`}
+            >
+              <Save className="h-3.5 w-3.5" />
+              {!isSidebarCollapsed && (
+                <span>{saving ? "Publishing..." : "Quick Save"}</span>
+              )}
+            </button>
           </div>
         </aside>
 
-        {/* Right Form Editor Panel */}
-        <main className="flex-1 min-w-0">
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-7 shadow-xl">
-            {/* 1. HERO SECTION FORM */}
-            {activeTab === "hero" && (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-lg font-bold text-white mb-1">Hero Section Settings</h2>
-                  <p className="text-xs text-slate-400">Edit banner headlines, text, action links, and slide background images.</p>
+        {/* ================= WORKSPACE CONTENT ================= */}
+        <main className="flex-1 min-w-0 p-4 sm:p-6 lg:p-8 space-y-6">
+          {/* Top Page Overview Card */}
+          <div
+            className={`p-5 sm:p-6 rounded-2xl border transition-all ${
+              theme === "lite"
+                ? "bg-white border-slate-200/90 shadow-xs"
+                : "bg-slate-900/60 border-slate-800/80 shadow-xl"
+            }`}
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="h-2 w-2 rounded-full bg-orange-500" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-orange-600 dark:text-orange-400">
+                    ACTIVE EDITOR
+                  </span>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Top Eyebrow Badge</label>
-                    <input
-                      type="text"
-                      value={data.hero.badge}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          hero: { ...data.hero, badge: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Main Heading (Line 1)</label>
-                    <input
-                      type="text"
-                      value={data.hero.titleLine1}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          hero: { ...data.hero, titleLine1: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Heading Highlight (Underlined / Colored)</label>
-                    <input
-                      type="text"
-                      value={data.hero.titleHighlight}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          hero: { ...data.hero, titleHighlight: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Hero Description Paragraph</label>
-                    <textarea
-                      rows={3}
-                      value={data.hero.description}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          hero: { ...data.hero, description: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Button Text</label>
-                    <input
-                      type="text"
-                      value={data.hero.ctaText}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          hero: { ...data.hero, ctaText: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Button Link</label>
-                    <input
-                      type="text"
-                      value={data.hero.ctaLink}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          hero: { ...data.hero, ctaLink: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-orange-500"
-                    />
-                  </div>
-                </div>
-
-                {/* Slides Manager with Device Upload */}
-                <div className="pt-4 border-t border-slate-800">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-sm font-bold text-white">Hero Background Slides</h3>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const newSlide = {
-                          image: "/kadri.avif",
-                          badgeTitle: "New Location",
-                          badgeLocation: "Mangalore",
-                        };
-                        setData({
-                          ...data,
-                          hero: {
-                            ...data.hero,
-                            slides: [...data.hero.slides, newSlide],
-                          },
-                        });
-                      }}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-orange-400 cursor-pointer"
-                    >
-                      <Plus className="h-3.5 w-3.5" />
-                      <span>Add Slide</span>
-                    </button>
-                  </div>
-
-                  <div className="space-y-4">
-                    {data.hero.slides.map((slide, idx) => (
-                      <div
-                        key={idx}
-                        className="p-4 rounded-xl border border-slate-800 bg-slate-800/40 space-y-3"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-orange-400">Slide #{idx + 1}</span>
-                          {data.hero.slides.length > 1 && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                const updated = data.hero.slides.filter((_, i) => i !== idx);
-                                setData({
-                                  ...data,
-                                  hero: { ...data.hero, slides: updated },
-                                });
-                              }}
-                              className="text-slate-500 hover:text-red-400 transition cursor-pointer"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </button>
-                          )}
-                        </div>
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-[11px] text-slate-400 mb-1">Place Title</label>
-                            <input
-                              type="text"
-                              value={slide.badgeTitle}
-                              onChange={(e) => {
-                                const updated = [...data.hero.slides];
-                                updated[idx].badgeTitle = e.target.value;
-                                setData({
-                                  ...data,
-                                  hero: { ...data.hero, slides: updated },
-                                });
-                              }}
-                              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-[11px] text-slate-400 mb-1">Location Subtitle</label>
-                            <input
-                              type="text"
-                              value={slide.badgeLocation}
-                              onChange={(e) => {
-                                const updated = [...data.hero.slides];
-                                updated[idx].badgeLocation = e.target.value;
-                                setData({
-                                  ...data,
-                                  hero: { ...data.hero, slides: updated },
-                                });
-                              }}
-                              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Image Device Uploader */}
-                        <ImageUploader
-                          label="Slide Image (or Upload from Device)"
-                          value={slide.image}
-                          onChange={(newUrl) => {
-                            const updated = [...data.hero.slides];
-                            updated[idx].image = newUrl;
-                            setData({
-                              ...data,
-                              hero: { ...data.hero, slides: updated },
-                            });
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                  {getSectionTitle()}
+                </h1>
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-2xl">
+                  {getSectionDescription()}
+                </p>
               </div>
+
+              {/* Status and Route Link Pill */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <Link
+                  href={getPublicLink()}
+                  target="_blank"
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition ${
+                    theme === "lite"
+                      ? "bg-slate-50 border-slate-200 text-slate-700 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200"
+                      : "bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700"
+                  }`}
+                >
+                  <Eye className="h-3.5 w-3.5" />
+                  <span>Preview URL: {getPublicLink()}</span>
+                  <ExternalLink className="h-3 w-3" />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Active Component Workspace Container */}
+          <div
+            className={`rounded-2xl border p-5 sm:p-7 transition-all ${
+              theme === "lite"
+                ? "bg-white border-slate-200/90 shadow-xs"
+                : "bg-slate-900/60 border-slate-800/80 shadow-xl"
+            }`}
+          >
+            {activeSection === "homepage" && (
+              <HomepageAdmin
+                data={data}
+                onChange={setData}
+                activeTab={homepageTab}
+                onTabChange={setHomepageTab}
+              />
             )}
 
-            {/* 2. POPULAR DESTINATIONS FORM */}
-            {activeTab === "destinations" && (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-lg font-bold text-white mb-1">Popular Destinations Section</h2>
-                  <p className="text-xs text-slate-400">Edit titles, handwritten script flourish, and destination photo cards with device upload.</p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Section Tag</label>
-                    <input
-                      type="text"
-                      value={data.popularDestinations.tag}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          popularDestinations: {
-                            ...data.popularDestinations,
-                            tag: e.target.value,
-                          },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Heading Prefix</label>
-                    <input
-                      type="text"
-                      value={data.popularDestinations.title}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          popularDestinations: {
-                            ...data.popularDestinations,
-                            title: e.target.value,
-                          },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Heading Highlight</label>
-                    <input
-                      type="text"
-                      value={data.popularDestinations.titleHighlight}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          popularDestinations: {
-                            ...data.popularDestinations,
-                            titleHighlight: e.target.value,
-                          },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Script Line 1 (Handwritten)</label>
-                    <input
-                      type="text"
-                      value={data.popularDestinations.scriptTop}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          popularDestinations: {
-                            ...data.popularDestinations,
-                            scriptTop: e.target.value,
-                          },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Description</label>
-                    <textarea
-                      rows={2}
-                      value={data.popularDestinations.description}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          popularDestinations: {
-                            ...data.popularDestinations,
-                            description: e.target.value,
-                          },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                </div>
-
-                {/* Destinations Cards Manager with Device Upload */}
-                <div className="pt-4 border-t border-slate-800">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-sm font-bold text-white">Destination Cards ({data.popularDestinations.destinations.length})</h3>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const nextNum = (data.popularDestinations.destinations.length + 1).toString().padStart(2, "0");
-                        const newDest = {
-                          id: Date.now().toString(),
-                          number: nextNum,
-                          name: "New Tourist Spot",
-                          location: "Mangalore",
-                          image: "/panambur.avif",
-                        };
-                        setData({
-                          ...data,
-                          popularDestinations: {
-                            ...data.popularDestinations,
-                            destinations: [...data.popularDestinations.destinations, newDest],
-                          },
-                        });
-                      }}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-orange-400 cursor-pointer"
-                    >
-                      <Plus className="h-3.5 w-3.5" />
-                      <span>Add Destination</span>
-                    </button>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {data.popularDestinations.destinations.map((dest, idx) => (
-                      <div
-                        key={dest.id || idx}
-                        className="p-4 rounded-xl border border-slate-800 bg-slate-800/40 space-y-3"
-                      >
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-orange-400">Card #{idx + 1} ({dest.number})</span>
-                          {data.popularDestinations.destinations.length > 1 && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                const updated = data.popularDestinations.destinations.filter((_, i) => i !== idx);
-                                setData({
-                                  ...data,
-                                  popularDestinations: {
-                                    ...data.popularDestinations,
-                                    destinations: updated,
-                                  },
-                                });
-                              }}
-                              className="text-slate-500 hover:text-red-400 transition cursor-pointer"
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </button>
-                          )}
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-[11px] text-slate-400 mb-1">Place Name</label>
-                            <input
-                              type="text"
-                              value={dest.name}
-                              onChange={(e) => {
-                                const updated = [...data.popularDestinations.destinations];
-                                updated[idx].name = e.target.value;
-                                setData({
-                                  ...data,
-                                  popularDestinations: {
-                                    ...data.popularDestinations,
-                                    destinations: updated,
-                                  },
-                                });
-                              }}
-                              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white"
-                            />
-                          </div>
-                          <div>
-                            <label className="block text-[11px] text-slate-400 mb-1">Location Subtitle</label>
-                            <input
-                              type="text"
-                              value={dest.location}
-                              onChange={(e) => {
-                                const updated = [...data.popularDestinations.destinations];
-                                updated[idx].location = e.target.value;
-                                setData({
-                                  ...data,
-                                  popularDestinations: {
-                                    ...data.popularDestinations,
-                                    destinations: updated,
-                                  },
-                                });
-                              }}
-                              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Image Device Uploader */}
-                        <ImageUploader
-                          label="Destination Photo"
-                          value={dest.image}
-                          onChange={(newUrl) => {
-                            const updated = [...data.popularDestinations.destinations];
-                            updated[idx].image = newUrl;
-                            setData({
-                              ...data,
-                              popularDestinations: {
-                                ...data.popularDestinations,
-                                destinations: updated,
-                              },
-                            });
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            {activeSection === "places" && (
+              <PlacesListingAdmin
+                data={placesData}
+                onChange={setPlacesData}
+                activeSubTab={placesTab}
+                onSubTabChange={setPlacesTab}
+                onEditDetailPage={(slug) => {
+                  setSelectedDetailSlug(slug);
+                  setActiveSection("detail");
+                }}
+              />
             )}
 
-            {/* 3. WHY CHOOSE US FORM */}
-            {activeTab === "whyChooseUs" && (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-lg font-bold text-white mb-1">Why Choose Us Points</h2>
-                  <p className="text-xs text-slate-400">Manage headline and individual feature cards.</p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Section Tag</label>
-                    <input
-                      type="text"
-                      value={data.whyChooseUs.tag}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          whyChooseUs: { ...data.whyChooseUs, tag: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Section Heading</label>
-                    <input
-                      type="text"
-                      value={data.whyChooseUs.title}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          whyChooseUs: { ...data.whyChooseUs, title: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Section Subtitle</label>
-                    <textarea
-                      rows={2}
-                      value={data.whyChooseUs.description}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          whyChooseUs: { ...data.whyChooseUs, description: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-800">
-                  <h3 className="text-sm font-bold text-white mb-3">Feature Cards (4 Value Points)</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {data.whyChooseUs.features.map((item, idx) => (
-                      <div
-                        key={item.id}
-                        className="p-4 rounded-xl border border-slate-800 bg-slate-800/40 space-y-2.5"
-                      >
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-orange-400">
-                          Point #{idx + 1}
-                        </span>
-                        <div>
-                          <label className="block text-[11px] text-slate-400 mb-1">Title</label>
-                          <input
-                            type="text"
-                            value={item.title}
-                            onChange={(e) => {
-                              const updated = [...data.whyChooseUs.features];
-                              updated[idx].title = e.target.value;
-                              setData({
-                                ...data,
-                                whyChooseUs: { ...data.whyChooseUs, features: updated },
-                              });
-                            }}
-                            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-[11px] text-slate-400 mb-1">Description</label>
-                          <textarea
-                            rows={2}
-                            value={item.description}
-                            onChange={(e) => {
-                              const updated = [...data.whyChooseUs.features];
-                              updated[idx].description = e.target.value;
-                              setData({
-                                ...data,
-                                whyChooseUs: { ...data.whyChooseUs, features: updated },
-                              });
-                            }}
-                            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white"
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            {activeSection === "detail" && (
+              <PlaceDetailAdmin
+                data={placesData}
+                onChange={setPlacesData}
+                selectedSlug={selectedDetailSlug}
+                onSelectSlug={setSelectedDetailSlug}
+              />
             )}
 
-            {/* 4. TASTE MANGALORE FORM */}
-            {activeTab === "tasteMangalore" && (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-lg font-bold text-white mb-1">Taste of Mangalore</h2>
-                  <p className="text-xs text-slate-400">Edit culinary section copy and upload device photos for each category.</p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Section Tag</label>
-                    <input
-                      type="text"
-                      value={data.tasteMangalore.tag}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          tasteMangalore: { ...data.tasteMangalore, tag: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Section Heading</label>
-                    <input
-                      type="text"
-                      value={data.tasteMangalore.title}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          tasteMangalore: { ...data.tasteMangalore, title: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">Description</label>
-                    <textarea
-                      rows={2}
-                      value={data.tasteMangalore.description}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          tasteMangalore: { ...data.tasteMangalore, description: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-800/70 px-3.5 py-2.5 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-800">
-                  <h3 className="text-sm font-bold text-white mb-3">Food Categories & Images</h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {data.tasteMangalore.categories.map((cat, idx) => (
-                      <div
-                        key={cat.id}
-                        className="p-4 rounded-xl border border-slate-800 bg-slate-800/40 space-y-3"
-                      >
-                        <div>
-                          <label className="block text-[11px] text-slate-400 mb-1">Category Name</label>
-                          <input
-                            type="text"
-                            value={cat.title}
-                            onChange={(e) => {
-                              const updated = [...data.tasteMangalore.categories];
-                              updated[idx].title = e.target.value;
-                              setData({
-                                ...data,
-                                tasteMangalore: { ...data.tasteMangalore, categories: updated },
-                              });
-                            }}
-                            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-xs text-white"
-                          />
-                        </div>
-
-                        {/* Image Device Uploader */}
-                        <ImageUploader
-                          label="Cuisine Photo"
-                          value={cat.image}
-                          onChange={(newUrl) => {
-                            const updated = [...data.tasteMangalore.categories];
-                            updated[idx].image = newUrl;
-                            setData({
-                              ...data,
-                              tasteMangalore: { ...data.tasteMangalore, categories: updated },
-                            });
-                          }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+            {activeSection === "about" && (
+              <AboutAdmin
+                data={aboutData}
+                onChange={setAboutData}
+                activeSubTab={aboutSubTab}
+                onSubTabChange={setAboutSubTab}
+              />
             )}
 
-            {/* 5. CTA & CONTACT INFO */}
-            {activeTab === "cta" && (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-lg font-bold text-white mb-1">Call to Action & Contact Banners</h2>
-                  <p className="text-xs text-slate-400">Update enquiry phone numbers, email, and booking headlines.</p>
-                </div>
-
-                <div className="p-4 rounded-xl border border-slate-800 bg-slate-800/30 space-y-3">
-                  <h3 className="text-xs font-bold uppercase text-orange-400">Plan Trip Banner</h3>
-                  <div>
-                    <label className="block text-[11px] text-slate-400 mb-1">Banner Title</label>
-                    <input
-                      type="text"
-                      value={data.planTripCTA.title}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          planTripCTA: { ...data.planTripCTA, title: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] text-slate-400 mb-1">Description</label>
-                    <textarea
-                      rows={2}
-                      value={data.planTripCTA.description}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          planTripCTA: { ...data.planTripCTA, description: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] text-slate-400 mb-1">Button Label</label>
-                    <input
-                      type="text"
-                      value={data.planTripCTA.buttonText}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          planTripCTA: { ...data.planTripCTA, buttonText: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                </div>
-
-                <div className="p-4 rounded-xl border border-slate-800 bg-slate-800/30 space-y-3">
-                  <h3 className="text-xs font-bold uppercase text-orange-400">Tour Enquiry Contact Banner</h3>
-                  <div>
-                    <label className="block text-[11px] text-slate-400 mb-1">Title</label>
-                    <input
-                      type="text"
-                      value={data.tourEnquiryCTA.title}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          tourEnquiryCTA: { ...data.tourEnquiryCTA, title: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[11px] text-slate-400 mb-1">Subtitle</label>
-                    <input
-                      type="text"
-                      value={data.tourEnquiryCTA.subtitle}
-                      onChange={(e) =>
-                        setData({
-                          ...data,
-                          tourEnquiryCTA: { ...data.tourEnquiryCTA, subtitle: e.target.value },
-                        })
-                      }
-                      className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-[11px] text-slate-400 mb-1">Phone Number</label>
-                      <input
-                        type="text"
-                        value={data.tourEnquiryCTA.phone}
-                        onChange={(e) =>
-                          setData({
-                            ...data,
-                            tourEnquiryCTA: { ...data.tourEnquiryCTA, phone: e.target.value },
-                          })
-                        }
-                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[11px] text-slate-400 mb-1">Email Address</label>
-                      <input
-                        type="text"
-                        value={data.tourEnquiryCTA.email}
-                        onChange={(e) =>
-                          setData({
-                            ...data,
-                            tourEnquiryCTA: { ...data.tourEnquiryCTA, email: e.target.value },
-                          })
-                        }
-                        className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs sm:text-sm text-white"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
+            {activeSection === "contact" && (
+              <ContactAdmin
+                data={contactData}
+                onChange={setContactData}
+                activeSubTab={contactSubTab}
+                onSubTabChange={setContactSubTab}
+              />
             )}
           </div>
         </main>
       </div>
-    )}
-  </div>
-</div>
+    </div>
   );
 }

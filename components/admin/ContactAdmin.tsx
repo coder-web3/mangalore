@@ -16,12 +16,25 @@ import ImageUploader from "@/components/admin/ImageUploader";
 interface ContactAdminProps {
   data: ContactData;
   onChange: (updated: ContactData) => void;
+  activeSubTab?: "hero" | "quickInfo" | "form" | "widgets";
+  onSubTabChange?: (tab: "hero" | "quickInfo" | "form" | "widgets") => void;
 }
 
-export default function ContactAdmin({ data, onChange }: ContactAdminProps) {
-  const [subTab, setSubTab] = useState<
+export default function ContactAdmin({
+  data,
+  onChange,
+  activeSubTab,
+  onSubTabChange,
+}: ContactAdminProps) {
+  const [internalSubTab, setInternalSubTab] = useState<
     "hero" | "quickInfo" | "form" | "widgets"
   >("hero");
+
+  const subTab = activeSubTab || internalSubTab;
+  const setSubTab = (tab: "hero" | "quickInfo" | "form" | "widgets") => {
+    if (onSubTabChange) onSubTabChange(tab);
+    setInternalSubTab(tab);
+  };
 
   const updateHero = (field: string, val: any) => {
     onChange({

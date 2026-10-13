@@ -100,3 +100,133 @@ body {
   left: 180%;
   transition: left 0.75s ease-in-out;
 }
+
+/* =========================================================================
+   PREMIUM CMS ADMIN DASHBOARD — LITE VERSION & THEME SYSTEM
+   ========================================================================= */
+
+.admin-lite {
+  --admin-canvas: #f8fafc;
+  --admin-card-bg: #ffffff;
+  --admin-card-subtle: #f1f5f9;
+  --admin-card-border: #e2e8f0;
+  --admin-input-border: #cbd5e1;
+  --admin-text-heading: #0f172a;
+  --admin-text-body: #334155;
+  --admin-text-muted: #64748b;
+  background-color: #f8fafc !important;
+  color: #334155 !important;
+}
+
+/* Background transforms in Lite Version */
+.admin-lite .bg-slate-950 {
+  background-color: #f8fafc !important;
+}
+
+.admin-lite .bg-slate-900 {
+  background-color: #ffffff !important;
+}
+
+.admin-lite .bg-slate-900\/90,
+.admin-lite .bg-slate-900\/80,
+.admin-lite .bg-slate-900\/70,
+.admin-lite .bg-slate-900\/60,
+.admin-lite .bg-slate-900\/50,
+.admin-lite .bg-slate-900\/40,
+.admin-lite .bg-slate-900\/30 {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.admin-lite .bg-slate-950\/80,
+.admin-lite .bg-slate-950\/90,
+.admin-lite .bg-slate-950\/60 {
+  background-color: #f1f5f9 !important;
+}
+
+.admin-lite .bg-slate-800,
+.admin-lite .bg-slate-800\/80,
+.admin-lite .bg-slate-800\/70,
+.admin-lite .bg-slate-800\/60,
+.admin-lite .bg-slate-800\/50,
+.admin-lite .bg-slate-800\/40,
+.admin-lite .bg-slate-800\/30 {
+  background-color: #f8fafc !important;
+}
+
+/* Borders in Lite Version */
+.admin-lite .border-slate-800,
+.admin-lite .border-slate-800\/80,
+.admin-lite .border-slate-800\/60,
+.admin-lite .border-slate-800\/50 {
+  border-color: #e2e8f0 !important;
+}
+
+.admin-lite .border-slate-700,
+.admin-lite .border-slate-700\/80 {
+  border-color: #cbd5e1 !important;
+}
+
+/* Text in Lite Version */
+.admin-lite .text-white {
+  color: #0f172a !important;
+}
+
+.admin-lite .text-slate-100,
+.admin-lite .text-slate-200,
+.admin-lite .text-slate-300 {
+  color: #1e293b !important;
+}
+
+.admin-lite .text-slate-400 {
+  color: #64748b !important;
+}
+
+.admin-lite .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Preserves White text in Saturated Colored elements */
+.admin-lite .bg-orange-600,
+.admin-lite .bg-orange-600 *,
+.admin-lite .bg-orange-500,
+.admin-lite .bg-orange-500 *,
+.admin-lite .bg-emerald-600,
+.admin-lite .bg-emerald-600 *,
+.admin-lite .bg-red-600,
+.admin-lite .bg-red-600 *,
+.admin-lite .text-white-force {
+  color: #ffffff !important;
+}
+
+.admin-lite .bg-orange-600 {
+  background-color: #ea580c !important;
+}
+
+.admin-lite .bg-orange-500 {
+  background-color: #f97316 !important;
+}
+
+/* Inputs, Textareas and Dropdowns in Lite Version */
+.admin-lite input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+.admin-lite textarea,
+.admin-lite select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !important;
+}
+
+.admin-lite input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+.admin-lite textarea:focus,
+.admin-lite select:focus {
+  border-color: #ea580c !important;
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.12) !important;
+  outline: none !important;
+}
+
+.admin-lite input::placeholder,
+.admin-lite textarea::placeholder {
+  color: #94a3b8 !important;
+}
+

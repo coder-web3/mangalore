@@ -20,12 +20,25 @@ import ImageUploader from "@/components/admin/ImageUploader";
 interface AboutAdminProps {
   data: AboutData;
   onChange: (updated: AboutData) => void;
+  activeSubTab?: "hero" | "story" | "different" | "vision" | "team";
+  onSubTabChange?: (tab: "hero" | "story" | "different" | "vision" | "team") => void;
 }
 
-export default function AboutAdmin({ data, onChange }: AboutAdminProps) {
-  const [subTab, setSubTab] = useState<
+export default function AboutAdmin({
+  data,
+  onChange,
+  activeSubTab,
+  onSubTabChange,
+}: AboutAdminProps) {
+  const [internalSubTab, setInternalSubTab] = useState<
     "hero" | "story" | "different" | "vision" | "team"
   >("hero");
+
+  const subTab = activeSubTab || internalSubTab;
+  const setSubTab = (tab: "hero" | "story" | "different" | "vision" | "team") => {
+    if (onSubTabChange) onSubTabChange(tab);
+    setInternalSubTab(tab);
+  };
 
   const updateHero = (field: string, val: any) => {
     onChange({

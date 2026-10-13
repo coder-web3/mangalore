@@ -21,14 +21,24 @@ interface PlacesListingAdminProps {
   data: PlacesData;
   onChange: (updated: PlacesData) => void;
   onEditDetailPage?: (slug: string) => void;
+  activeSubTab?: "hero" | "cards";
+  onSubTabChange?: (tab: "hero" | "cards") => void;
 }
 
 export default function PlacesListingAdmin({
   data,
   onChange,
   onEditDetailPage,
+  activeSubTab,
+  onSubTabChange,
 }: PlacesListingAdminProps) {
-  const [subTab, setSubTab] = useState<"hero" | "cards">("hero");
+  const [internalSubTab, setInternalSubTab] = useState<"hero" | "cards">("hero");
+
+  const subTab = activeSubTab || internalSubTab;
+  const setSubTab = (tab: "hero" | "cards") => {
+    if (onSubTabChange) onSubTabChange(tab);
+    setInternalSubTab(tab);
+  };
 
   const updateHero = (field: string, val: any) => {
     onChange({
