@@ -272,7 +272,7 @@ export default function PlacesCatalog({
               {/* Image Frame */}
               <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-slate-100">
                 <Image
-                  src={place.image}
+                  src={place.image && place.image.trim() !== "" ? place.image : "/ref-card-panambur.jpg"}
                   alt={place.title}
                   fill
                   unoptimized

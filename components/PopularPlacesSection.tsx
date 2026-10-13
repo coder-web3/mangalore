@@ -103,6 +103,25 @@ const sidebarCategoryDefinitions = [
   { id: "food", label: "Food & Markets", icon: UtensilsCrossed },
 ];
 
+function getCategoryFallbackImage(category?: string): string {
+  switch (category) {
+    case "beaches":
+      return "/ref-card-panambur.jpg";
+    case "temples":
+      return "/ref-card-kadri.jpg";
+    case "rivers":
+      return "/ref-card-netravati.jpg";
+    case "hills":
+      return "/ref-card-lighthouse.jpg";
+    case "cultural":
+      return "/ref-card-sultan.jpg";
+    case "nature":
+      return "/uploads/1791865355543-backwaters_1200x800.jpg";
+    default:
+      return "/ref-card-panambur.jpg";
+  }
+}
+
 interface PopularPlacesSectionProps {
   selectedCategory?: string;
   onSelectCategory?: (cat: string) => void;
@@ -179,6 +198,10 @@ export default function PopularPlacesSection({
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
               {filteredPlaces.map((place) => {
                 const isLiked = likedCards[place.id];
+                const cardImage =
+                  place.image && place.image.trim() !== ""
+                    ? place.image
+                    : getCategoryFallbackImage(place.category);
 
                 return (
                   <div
@@ -187,7 +210,7 @@ export default function PopularPlacesSection({
                   >
                     {/* Background Place Photo */}
                     <Image
-                      src={place.image}
+                      src={cardImage}
                       alt={place.name}
                       fill
                       unoptimized
