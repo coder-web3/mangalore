@@ -4,20 +4,20 @@
     "titleLine1": "Must-Visit Attractions &",
     "titleHighlight": "Coastal Wonders",
     "description": "Explore pristine golden beaches, century-old historic temples, breathtaking river views, lush hilltops and authentic coastal culture in coastal Karnataka.",
-    "backdropImage": "/uploads/1791865851797-5-days-beach-holiday-tour.jpg",
+    "backdropImage": "/uploads/1791865251264-hero_mangalore_2000x1200.heif",
     "galleryCards": [
       {
         "id": "beach-coast",
         "title": "Panambur Beach Coast",
         "subtitle": "Arabian Sea • Mangalore",
-        "image": "/panambur.avif",
+        "image": "/uploads/1791865355543-backwaters_1200x800.jpg",
         "link": "/places-to-visit/panambur-beach"
       },
       {
         "id": "kadri-temple",
         "title": "Kadri Manjunath Temple",
         "subtitle": "Historic Heritage • Kadri",
-        "image": "/kadri.avif",
+        "image": "/uploads/1791865359374-temple_1200x800.jpg",
         "link": "/places-to-visit/kadri-manjunath-temple"
       }
     ]
@@ -113,8 +113,8 @@
       "title": "Panambur",
       "titleHighlight": "Beach",
       "category": "Beaches",
-      "description": "Experience the golden sands, exciting water sports and mesmerising sunsets at Panambur Beach, one of the most popular beaches in Mangalore.",
-      "backdropImage": "/panambur-hero-backdrop.jpg",
+      "description": "Discover the golden sands of Panambur Beach in Mangalore, enjoy exciting water sports, stunning Arabian Sea views and beautiful sunsets along Karnataka’s coastline.",
+      "backdropImage": "/uploads/1791865463951-panambur-beach-sunset-escape.heif",
       "location": "Mangalore, Karnataka, India",
       "bestTime": "Oct to March",
       "popularFor": "Sunset, Water Sports",
@@ -124,13 +124,13 @@
     "overview": {
       "badge": "DISCOVER PANAMBUR",
       "title": "About Panambur Beach",
-      "p1": "Panambur Beach is widely regarded as one of the cleanest and safest beaches in India. Located adjacent to the New Mangalore Port, this picturesque destination attracts thousands of tourists every week for its lively beach carnival atmosphere, thrilling water sports, and tranquil sunset views over the Arabian Sea.",
-      "p2": "Known for hosting the world-famous International Kite Festival, Panambur boasts certified lifeguards, jet skiing, camel & horse rides, and an array of beachside shacks serving fresh Mangalorean seafood and snacks.",
+      "p1": "Panambur Beach is one of Mangalore’s popular coastal destinations, known for its golden sands, scenic Arabian Sea views and beautiful sunsets. Located near New Mangalore Port in Karnataka, the beach attracts visitors looking to enjoy the sea breeze, relax along the shoreline and experience the lively atmosphere of Mangalore’s coastline.",
+      "p2": "Panambur Beach is known for its beach activities, seasonal kite festival events and opportunities to enjoy the coastal scenery. Visitors can explore the sandy shoreline, capture sunset photographs and discover nearby food stalls serving local snacks and seafood. Water sports and other activities may be available depending on the season, weather and operator schedules.",
       "highlights": [
-        "Cleanest Beach with Lifeguards",
-        "Jet Ski, Parasailing & Boat Rides",
-        "Famous International Kite Festival",
-        "Beach Shacks & Seafood Delicacies"
+        "Golden Sands & Scenic Coastline",
+        "Sunset Views Over the Arabian Sea",
+        "Seasonal Kite Festival & Beach Events",
+        "Beach Activities & Local Seafood"
       ]
     },
     "quickFacts": [
@@ -212,8 +212,8 @@
         "title": "Panambur",
         "titleHighlight": "Beach",
         "category": "Beaches",
-        "description": "Experience the golden sands, exciting water sports and mesmerising sunsets at Panambur Beach, one of the most popular beaches in Mangalore.",
-        "backdropImage": "/panambur-hero-backdrop.jpg",
+        "description": "Discover the golden sands of Panambur Beach in Mangalore, enjoy exciting water sports, stunning Arabian Sea views and beautiful sunsets along Karnataka’s coastline.",
+        "backdropImage": "/uploads/1791865463951-panambur-beach-sunset-escape.heif",
         "location": "Mangalore, Karnataka, India",
         "bestTime": "Oct to March",
         "popularFor": "Sunset, Water Sports",
@@ -223,13 +223,13 @@
       "overview": {
         "badge": "DISCOVER PANAMBUR",
         "title": "About Panambur Beach",
-        "p1": "Panambur Beach is widely regarded as one of the cleanest and safest beaches in India. Located adjacent to the New Mangalore Port, this picturesque destination attracts thousands of tourists every week for its lively beach carnival atmosphere, thrilling water sports, and tranquil sunset views over the Arabian Sea.",
-        "p2": "Known for hosting the world-famous International Kite Festival, Panambur boasts certified lifeguards, jet skiing, camel & horse rides, and an array of beachside shacks serving fresh Mangalorean seafood and snacks.",
+        "p1": "Panambur Beach is one of Mangalore’s popular coastal destinations, known for its golden sands, scenic Arabian Sea views and beautiful sunsets. Located near New Mangalore Port in Karnataka, the beach attracts visitors looking to enjoy the sea breeze, relax along the shoreline and experience the lively atmosphere of Mangalore’s coastline.",
+        "p2": "Panambur Beach is known for its beach activities, seasonal kite festival events and opportunities to enjoy the coastal scenery. Visitors can explore the sandy shoreline, capture sunset photographs and discover nearby food stalls serving local snacks and seafood. Water sports and other activities may be available depending on the season, weather and operator schedules.",
         "highlights": [
-          "Cleanest Beach with Lifeguards",
-          "Jet Ski, Parasailing & Boat Rides",
-          "Famous International Kite Festival",
-          "Beach Shacks & Seafood Delicacies"
+          "Golden Sands & Scenic Coastline",
+          "Sunset Views Over the Arabian Sea",
+          "Seasonal Kite Festival & Beach Events",
+          "Beach Activities & Local Seafood"
         ]
       },
       "quickFacts": [
