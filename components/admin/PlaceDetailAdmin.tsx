@@ -16,6 +16,10 @@ import {
   Video,
   ExternalLink,
   ChevronDown,
+  Car,
+  Calendar,
+  Lightbulb,
+  HelpCircle,
 } from "lucide-react";
 import {
   PlacesData,
@@ -65,7 +69,16 @@ export default function PlaceDetailAdmin({
 
   // Sub-tabs for the detail editor
   const [subTab, setSubTab] = useState<
-    "hero" | "overview" | "facts" | "gallery" | "thingsToDo"
+    | "hero"
+    | "overview"
+    | "facts"
+    | "gallery"
+    | "thingsToDo"
+    | "howToReach"
+    | "bestTime"
+    | "nearby"
+    | "tips"
+    | "faqs"
   >("hero");
 
   // Get or initialize detail for activeSlug
@@ -73,17 +86,25 @@ export default function PlaceDetailAdmin({
     (p) => p.slug === activeSlug || p.id === activeSlug
   );
 
+  const defaultPlaceFallback = getDefaultPlaceDetail(
+    matchedPlace || {
+      name: activeSlug,
+      category: "Beaches",
+      description: "Coastal tourist destination in Mangalore",
+    }
+  );
+
   const currentDetail: PanamburDetailData =
     data.placeDetails?.[activeSlug] ||
     (activeSlug === "panambur-beach" && data.panamburDetail
       ? data.panamburDetail
-      : getDefaultPlaceDetail(
-          matchedPlace || {
-            name: activeSlug,
-            category: "Beaches",
-            description: "Coastal tourist destination in Mangalore",
-          }
-        ));
+      : defaultPlaceFallback);
+
+  const howToReachData = currentDetail.howToReach || defaultPlaceFallback.howToReach!;
+  const bestTimeData = currentDetail.bestTimeSection || defaultPlaceFallback.bestTimeSection!;
+  const nearbyPlacesData = currentDetail.nearbyPlaces || defaultPlaceFallback.nearbyPlaces!;
+  const travelTipsData = currentDetail.travelTips || defaultPlaceFallback.travelTips!;
+  const faqsData = currentDetail.faqs || defaultPlaceFallback.faqs!;
 
   const updateCurrentDetail = (updatedDetail: PanamburDetailData) => {
     const updatedDetailsMap = {
@@ -261,6 +282,134 @@ export default function PlaceDetailAdmin({
     });
   };
 
+  // Updaters for 5 New Sections
+  const updateHowToReach = (field: string, val: any) => {
+    updateCurrentDetail({
+      ...currentDetail,
+      howToReach: {
+        ...howToReachData,
+        [field]: val,
+      },
+    });
+  };
+
+  const updateReachMode = (idx: number, field: string, val: string) => {
+    const updatedModes = [...howToReachData.modes];
+    updatedModes[idx] = { ...updatedModes[idx], [field]: val };
+    updateHowToReach("modes", updatedModes);
+  };
+
+  const updateBestTime = (field: string, val: any) => {
+    updateCurrentDetail({
+      ...currentDetail,
+      bestTimeSection: {
+        ...bestTimeData,
+        [field]: val,
+      },
+    });
+  };
+
+  const updateSeason = (idx: number, field: string, val: any) => {
+    const updatedSeasons = [...bestTimeData.seasons];
+    updatedSeasons[idx] = { ...updatedSeasons[idx], [field]: val };
+    updateBestTime("seasons", updatedSeasons);
+  };
+
+  const updateNearby = (field: string, val: any) => {
+    updateCurrentDetail({
+      ...currentDetail,
+      nearbyPlaces: {
+        ...nearbyPlacesData,
+        [field]: val,
+      },
+    });
+  };
+
+  const updateNearbyPlace = (idx: number, field: string, val: string) => {
+    const updatedPlaces = [...nearbyPlacesData.places];
+    updatedPlaces[idx] = { ...updatedPlaces[idx], [field]: val };
+    updateNearby("places", updatedPlaces);
+  };
+
+  const addNearbyPlace = () => {
+    const newPlace = {
+      id: Date.now().toString(),
+      name: "New Nearby Attraction",
+      distance: "5 km away",
+      travelTime: "10 mins drive",
+      category: "Sightseeing",
+      image: "/panambur.avif",
+      link: "/places-to-visit",
+    };
+    updateNearby("places", [...nearbyPlacesData.places, newPlace]);
+  };
+
+  const removeNearbyPlace = (idx: number) => {
+    const updatedPlaces = nearbyPlacesData.places.filter((_, i) => i !== idx);
+    updateNearby("places", updatedPlaces);
+  };
+
+  const updateTravelTips = (field: string, val: any) => {
+    updateCurrentDetail({
+      ...currentDetail,
+      travelTips: {
+        ...travelTipsData,
+        [field]: val,
+      },
+    });
+  };
+
+  const updateTip = (idx: number, field: string, val: string) => {
+    const updatedTips = [...travelTipsData.tips];
+    updatedTips[idx] = { ...updatedTips[idx], [field]: val };
+    updateTravelTips("tips", updatedTips);
+  };
+
+  const addTip = () => {
+    const newTip = {
+      id: Date.now().toString(),
+      title: "New Practical Travel Advice",
+      description: "Helpful suggestion for travelers visiting this attraction.",
+      category: "General",
+    };
+    updateTravelTips("tips", [...travelTipsData.tips, newTip]);
+  };
+
+  const removeTip = (idx: number) => {
+    const updatedTips = travelTipsData.tips.filter((_, i) => i !== idx);
+    updateTravelTips("tips", updatedTips);
+  };
+
+  const updateFaqs = (field: string, val: any) => {
+    updateCurrentDetail({
+      ...currentDetail,
+      faqs: {
+        ...faqsData,
+        [field]: val,
+      },
+    });
+  };
+
+  const updateFaq = (idx: number, field: string, val: string) => {
+    const updatedItems = [...faqsData.items];
+    updatedItems[idx] = { ...updatedItems[idx], [field]: val };
+    updateFaqs("items", updatedItems);
+  };
+
+  const addFaq = () => {
+    const newFaq = {
+      id: Date.now().toString(),
+      question: `Is parking available at ${matchedPlace?.name || "this place"}?`,
+      answer: "Yes, designated vehicle parking spaces are available on site with nominal charges.",
+    };
+    updateFaqs("items", [...faqsData.items, newFaq]);
+  };
+
+  const removeFaq = (idx: number) => {
+    const updatedItems = faqsData.items.filter((_, i) => i !== idx);
+    updateFaqs("items", updatedItems);
+  };
+
   const currentDisplayName =
     matchedPlace?.name ||
     `${currentDetail.hero.title} ${currentDetail.hero.titleHighlight}`.trim();
@@ -397,6 +546,61 @@ export default function PlaceDetailAdmin({
             }`}
           >
             Things to Do ({(currentDetail.thingsToDo || []).length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setSubTab("howToReach")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              subTab === "howToReach"
+                ? "bg-orange-600 text-white shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            How to Reach
+          </button>
+          <button
+            type="button"
+            onClick={() => setSubTab("bestTime")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              subTab === "bestTime"
+                ? "bg-orange-600 text-white shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Best Time
+          </button>
+          <button
+            type="button"
+            onClick={() => setSubTab("nearby")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              subTab === "nearby"
+                ? "bg-orange-600 text-white shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Nearby ({nearbyPlacesData.places.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setSubTab("tips")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              subTab === "tips"
+                ? "bg-orange-600 text-white shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            Travel Tips ({travelTipsData.tips.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setSubTab("faqs")}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
+              subTab === "faqs"
+                ? "bg-orange-600 text-white shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            FAQs ({faqsData.items.length})
           </button>
         </div>
       </div>
@@ -882,6 +1086,651 @@ export default function PlaceDetailAdmin({
                     rows={2}
                     value={item.description}
                     onChange={(e) => updateThingToDo(idx, "description", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 8. HOW TO REACH TAB */}
+      {subTab === "howToReach" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-4">
+            <h3 className="text-sm font-bold text-white flex items-center gap-2">
+              <Car className="h-4 w-4 text-orange-400" />
+              How to Reach Settings
+            </h3>
+            <p className="text-xs text-slate-400">
+              Customize airport, railway, city bus, and road connectivity guidelines.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Badge
+                </label>
+                <input
+                  type="text"
+                  value={howToReachData.badge}
+                  onChange={(e) => updateHowToReach("badge", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Title
+                </label>
+                <input
+                  type="text"
+                  value={howToReachData.title}
+                  onChange={(e) => updateHowToReach("title", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Intro Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={howToReachData.description}
+                  onChange={(e) => updateHowToReach("description", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 4 Transit Mode Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {howToReachData.modes.map((mode, idx) => (
+              <div
+                key={mode.id || idx}
+                className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-3"
+              >
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <span className="text-xs font-bold text-orange-400">
+                    Mode #{idx + 1} ({mode.icon.toUpperCase()})
+                  </span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-bold">
+                    {mode.distance}
+                  </span>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Mode Title
+                  </label>
+                  <input
+                    type="text"
+                    value={mode.title}
+                    onChange={(e) => updateReachMode(idx, "title", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Distance / Travel Time Tag
+                  </label>
+                  <input
+                    type="text"
+                    value={mode.distance}
+                    onChange={(e) => updateReachMode(idx, "distance", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Transit Details & Tips
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={mode.description}
+                    onChange={(e) => updateReachMode(idx, "description", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 9. BEST TIME TO VISIT TAB */}
+      {subTab === "bestTime" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-4">
+            <h3 className="text-sm font-bold text-white flex items-center gap-2">
+              <Calendar className="h-4 w-4 text-orange-400" />
+              Best Time to Visit Settings
+            </h3>
+            <p className="text-xs text-slate-400">
+              Manage recommended seasons, peak climate timings, and seasonal breakdowns.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Badge
+                </label>
+                <input
+                  type="text"
+                  value={bestTimeData.badge}
+                  onChange={(e) => updateBestTime("badge", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Title
+                </label>
+                <input
+                  type="text"
+                  value={bestTimeData.title}
+                  onChange={(e) => updateBestTime("title", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Intro Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={bestTimeData.description}
+                  onChange={(e) => updateBestTime("description", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Recommended Season Banner
+                </label>
+                <input
+                  type="text"
+                  value={bestTimeData.recommendedSeason}
+                  onChange={(e) => updateBestTime("recommendedSeason", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Ideal Time of Day Banner
+                </label>
+                <input
+                  type="text"
+                  value={bestTimeData.idealTimeOfDay}
+                  onChange={(e) => updateBestTime("idealTimeOfDay", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 3 Seasons Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {bestTimeData.seasons.map((season, idx) => (
+              <div
+                key={season.id || idx}
+                className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-3"
+              >
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <span className="text-xs font-bold text-orange-400">
+                    {season.name}
+                  </span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-bold">
+                    {season.temp}
+                  </span>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Months Active
+                  </label>
+                  <input
+                    type="text"
+                    value={season.months}
+                    onChange={(e) => updateSeason(idx, "months", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Temperature Range
+                  </label>
+                  <input
+                    type="text"
+                    value={season.temp}
+                    onChange={(e) => updateSeason(idx, "temp", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Status Tag
+                  </label>
+                  <input
+                    type="text"
+                    value={season.status}
+                    onChange={(e) => updateSeason(idx, "status", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Season Description
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={season.description}
+                    onChange={(e) => updateSeason(idx, "description", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 10. NEARBY PLACES TAB */}
+      {subTab === "nearby" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-orange-400" />
+                  Nearby Attractions Settings
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Manage attractions travelers can combine with this visit.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={addNearbyPlace}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white shadow-sm transition cursor-pointer"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                <span>Add Attraction</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Badge
+                </label>
+                <input
+                  type="text"
+                  value={nearbyPlacesData.badge}
+                  onChange={(e) => updateNearby("badge", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Title
+                </label>
+                <input
+                  type="text"
+                  value={nearbyPlacesData.title}
+                  onChange={(e) => updateNearby("title", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Intro Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={nearbyPlacesData.description}
+                  onChange={(e) => updateNearby("description", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Nearby Places Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {nearbyPlacesData.places.map((place, idx) => (
+              <div
+                key={place.id || idx}
+                className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-3"
+              >
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <span className="text-xs font-bold text-orange-400">
+                    Place #{idx + 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeNearbyPlace(idx)}
+                    className="p-1 rounded text-red-400 hover:bg-red-950/40 transition cursor-pointer"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Attraction Name
+                  </label>
+                  <input
+                    type="text"
+                    value={place.name}
+                    onChange={(e) => updateNearbyPlace(idx, "name", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-2">
+                  <div>
+                    <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                      Distance
+                    </label>
+                    <input
+                      type="text"
+                      value={place.distance}
+                      onChange={(e) => updateNearbyPlace(idx, "distance", e.target.value)}
+                      className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                      Travel Time
+                    </label>
+                    <input
+                      type="text"
+                      value={place.travelTime}
+                      onChange={(e) => updateNearbyPlace(idx, "travelTime", e.target.value)}
+                      className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Category Tag
+                  </label>
+                  <input
+                    type="text"
+                    value={place.category}
+                    onChange={(e) => updateNearbyPlace(idx, "category", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Page Route Link
+                  </label>
+                  <input
+                    type="text"
+                    value={place.link || ""}
+                    onChange={(e) => updateNearbyPlace(idx, "link", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <ImageUploader
+                  label="Thumbnail Photo"
+                  value={place.image}
+                  onChange={(newUrl) => updateNearbyPlace(idx, "image", newUrl)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 11. TRAVEL TIPS TAB */}
+      {subTab === "tips" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Lightbulb className="h-4 w-4 text-orange-400" />
+                  Travel Tips Settings
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Manage practical guidelines, attire, and safety advice.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={addTip}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white shadow-sm transition cursor-pointer"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                <span>Add Tip</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Badge
+                </label>
+                <input
+                  type="text"
+                  value={travelTipsData.badge}
+                  onChange={(e) => updateTravelTips("badge", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Title
+                </label>
+                <input
+                  type="text"
+                  value={travelTipsData.title}
+                  onChange={(e) => updateTravelTips("title", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Intro Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={travelTipsData.description}
+                  onChange={(e) => updateTravelTips("description", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Travel Tips Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {travelTipsData.tips.map((tip, idx) => (
+              <div
+                key={tip.id || idx}
+                className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-3"
+              >
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <span className="text-xs font-bold text-orange-400">Tip #{idx + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => removeTip(idx)}
+                    className="p-1 rounded text-red-400 hover:bg-red-950/40 transition cursor-pointer"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Tip Title
+                  </label>
+                  <input
+                    type="text"
+                    value={tip.title}
+                    onChange={(e) => updateTip(idx, "title", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Category Tag
+                  </label>
+                  <input
+                    type="text"
+                    value={tip.category || "General"}
+                    onChange={(e) => updateTip(idx, "category", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Advice Details
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={tip.description}
+                    onChange={(e) => updateTip(idx, "description", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 12. FREQUENTLY ASKED QUESTIONS TAB */}
+      {subTab === "faqs" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 space-y-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <HelpCircle className="h-4 w-4 text-orange-400" />
+                  Frequently Asked Questions (FAQs)
+                </h3>
+                <p className="text-xs text-slate-400 mt-0.5">
+                  Add and modify common questions travelers ask about this place.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={addFaq}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold text-white shadow-sm transition cursor-pointer"
+              >
+                <Plus className="h-3.5 w-3.5" />
+                <span>Add FAQ</span>
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Badge
+                </label>
+                <input
+                  type="text"
+                  value={faqsData.badge}
+                  onChange={(e) => updateFaqs("badge", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Section Title
+                </label>
+                <input
+                  type="text"
+                  value={faqsData.title}
+                  onChange={(e) => updateFaqs("title", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Intro Description
+                </label>
+                <textarea
+                  rows={2}
+                  value={faqsData.description}
+                  onChange={(e) => updateFaqs("description", e.target.value)}
+                  className="w-full rounded-xl border border-slate-700 bg-slate-800 px-3 py-2 text-xs sm:text-sm text-white focus:border-orange-500 focus:outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ Items List */}
+          <div className="space-y-3">
+            {faqsData.items.map((faq, idx) => (
+              <div
+                key={faq.id || idx}
+                className="rounded-2xl border border-slate-800 bg-slate-900/70 p-4 space-y-3"
+              >
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <span className="text-xs font-bold text-orange-400">
+                    Question #{idx + 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeFaq(idx)}
+                    className="p-1 rounded text-red-400 hover:bg-red-950/40 transition cursor-pointer"
+                  >
+                    <Trash2 className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Question Text
+                  </label>
+                  <input
+                    type="text"
+                    value={faq.question}
+                    onChange={(e) => updateFaq(idx, "question", e.target.value)}
+                    className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-[11px] font-semibold text-slate-300 block mb-1">
+                    Answer Details
+                  </label>
+                  <textarea
+                    rows={3}
+                    value={faq.answer}
+                    onChange={(e) => updateFaq(idx, "answer", e.target.value)}
                     className="w-full rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1.5 text-xs text-white focus:border-orange-500 focus:outline-none"
                   />
                 </div>

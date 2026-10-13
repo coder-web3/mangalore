@@ -150,12 +150,95 @@ export interface ThingToDoData {
   icon?: string;
 }
 
+export interface ReachModeItem {
+  id: string;
+  icon: "plane" | "train" | "bus" | "car";
+  title: string;
+  distance: string;
+  description: string;
+}
+
+export interface HowToReachData {
+  badge: string;
+  title: string;
+  description: string;
+  modes: ReachModeItem[];
+}
+
+export interface SeasonInfoItem {
+  id: string;
+  name: string;
+  months: string;
+  temp: string;
+  status: string;
+  description: string;
+  highlight?: boolean;
+}
+
+export interface BestTimeData {
+  badge: string;
+  title: string;
+  description: string;
+  recommendedSeason: string;
+  idealTimeOfDay: string;
+  seasons: SeasonInfoItem[];
+}
+
+export interface NearbyPlaceItem {
+  id: string;
+  name: string;
+  distance: string;
+  travelTime: string;
+  category: string;
+  image: string;
+  link?: string;
+}
+
+export interface NearbyPlacesData {
+  badge: string;
+  title: string;
+  description: string;
+  places: NearbyPlaceItem[];
+}
+
+export interface TravelTipItem {
+  id: string;
+  title: string;
+  description: string;
+  category?: string;
+}
+
+export interface TravelTipsData {
+  badge: string;
+  title: string;
+  description: string;
+  tips: TravelTipItem[];
+}
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+export interface FAQSectionData {
+  badge: string;
+  title: string;
+  description: string;
+  items: FAQItem[];
+}
+
 export interface PanamburDetailData {
   hero: PanamburHeroData;
   overview: PanamburOverviewData;
   quickFacts: QuickFactData[];
   gallery: GalleryImageItem[];
   thingsToDo: ThingToDoData[];
+  howToReach?: HowToReachData;
+  bestTimeSection?: BestTimeData;
+  nearbyPlaces?: NearbyPlacesData;
+  travelTips?: TravelTipsData;
+  faqs?: FAQSectionData;
 }
 
 export type PlaceDetailHeroData = PanamburHeroData;
@@ -262,6 +345,183 @@ export function getDefaultPlaceDetail(place: {
         icon: "car",
       },
     ],
+    howToReach: {
+      badge: "CONNECTIVITY & COMMUTE",
+      title: `How to Reach ${place.name}`,
+      description: `Easily accessible from Mangalore city center, airport, and major transport terminals by private vehicle, taxi, or public bus.`,
+      modes: [
+        {
+          id: "1",
+          icon: "plane",
+          title: "By Air (Mangalore International Airport)",
+          distance: "Approx. 12 - 15 km",
+          description: "Prepaid taxis, app-based cabs, and rental cars connect directly from Bajpe Airport terminal.",
+        },
+        {
+          id: "2",
+          icon: "train",
+          title: "By Train (Mangalore Central / Junction)",
+          distance: "Approx. 8 - 11 km",
+          description: "Both major railway stations offer prepaid auto-rickshaws, city cabs, and bus connectivity.",
+        },
+        {
+          id: "3",
+          icon: "bus",
+          title: "By Public Bus (State Bank Bus Stand)",
+          distance: "Direct City Routes",
+          description: "Frequent city buses ply along the main highway routes with nearby bus stops within walking distance.",
+        },
+        {
+          id: "4",
+          icon: "car",
+          title: "By Car / Auto-Rickshaw",
+          distance: "Well-paved highway",
+          description: "Direct road access via NH 66 / city arterial roads with designated parking spaces for vehicles.",
+        },
+      ],
+    },
+    bestTimeSection: {
+      badge: "SEASONS & TIMINGS",
+      title: `Best Time to Visit ${place.name}`,
+      description: "Mangalore features a tropical coastal climate with pleasant weather during winter and post-monsoon months.",
+      recommendedSeason: "October to March (Pleasant Breeze & Sunshine)",
+      idealTimeOfDay: "Early Morning (6:30 AM - 9:00 AM) or Late Afternoon (4:30 PM - 6:45 PM)",
+      seasons: [
+        {
+          id: "1",
+          name: "Winter / Post-Monsoon",
+          months: "October - February",
+          temp: "22°C - 30°C",
+          status: "Peak Season • Best Time",
+          description: "Pleasant sea breeze, clear blue skies, and comfortable conditions for sightseeing and photography.",
+          highlight: true,
+        },
+        {
+          id: "2",
+          name: "Summer",
+          months: "March - May",
+          temp: "28°C - 35°C",
+          status: "Warm & Tropical",
+          description: "Warm weather during midday. Mornings and evenings are ideal for coastal walks and sunsets.",
+          highlight: false,
+        },
+        {
+          id: "3",
+          name: "Monsoon",
+          months: "June - September",
+          temp: "24°C - 29°C",
+          status: "Heavy Rainfall",
+          description: "Lush green coastal atmosphere, dramatic skies, and refreshing showers. Outdoor activities depend on rainfall.",
+          highlight: false,
+        },
+      ],
+    },
+    nearbyPlaces: {
+      badge: "EXPLORE MORE",
+      title: `Nearby Attractions Around ${place.name}`,
+      description: "Combine your itinerary with these top-rated sightseeing destinations situated nearby.",
+      places: [
+        {
+          id: "1",
+          name: "Panambur Beach",
+          distance: "8 km away",
+          travelTime: "15 mins drive",
+          category: "Coastline & Water Sports",
+          image: "/panambur.avif",
+          link: "/places-to-visit/panambur-beach",
+        },
+        {
+          id: "2",
+          name: "Tannirbhavi Beach & Tree Park",
+          distance: "6.5 km away",
+          travelTime: "12 mins drive",
+          category: "Pine Trees & Sunset Shore",
+          image: "/ref-card-panambur.jpg",
+          link: "/places-to-visit/tannirbhavi-beach",
+        },
+        {
+          id: "3",
+          name: "Kadri Manjunatha Temple",
+          distance: "7 km away",
+          travelTime: "15 mins drive",
+          category: "Historic Heritage & Architecture",
+          image: "/kadri.avif",
+          link: "/places-to-visit/kadri-manjunatha-temple",
+        },
+        {
+          id: "4",
+          name: "Sultan Battery Watchtower",
+          distance: "5 km away",
+          travelTime: "10 mins drive",
+          category: "Historical Monument & Ferry",
+          image: "/ref-card-sultan.jpg",
+          link: "/places-to-visit/sultan-battery",
+        },
+      ],
+    },
+    travelTips: {
+      badge: "LOCAL ADVICE",
+      title: `Practical Travel Tips for ${place.name}`,
+      description: "Essential suggestions to make your visit comfortable, memorable, and safe.",
+      tips: [
+        {
+          id: "1",
+          title: "Sun Protection & Hydration",
+          description: "Carry sunglasses, wide-brim hat, and sunscreen. Drink fresh tender coconut water from local stalls.",
+          category: "Weather",
+        },
+        {
+          id: "2",
+          title: "Comfortable Footwear",
+          description: "Wear slip-resistant sandals or easy slip-on walking shoes suitable for sandy shores and paved paths.",
+          category: "Attire",
+        },
+        {
+          id: "3",
+          title: "Safety & Local Regulations",
+          description: "Follow safety guidelines and respect local heritage decorum or lifeguard advisories.",
+          category: "Safety",
+        },
+        {
+          id: "4",
+          title: "Best Sunset Timings",
+          description: "Arrive at least 45 minutes before scheduled sunset to secure prime photography viewpoints.",
+          category: "Photography",
+        },
+      ],
+    },
+    faqs: {
+      badge: "COMMON QUESTIONS",
+      title: `Frequently Asked Questions About ${place.name}`,
+      description: "Quick answers to help you plan your travel itinerary effortlessly.",
+      items: [
+        {
+          id: "1",
+          question: `Is there an entry fee to visit ${place.name}?`,
+          answer: "Entry is generally free for visitors. Standard nominal parking charges apply if arriving by car or two-wheeler.",
+        },
+        {
+          id: "2",
+          question: `What are the typical operating hours?`,
+          answer: "Most outdoor and coastal attractions are accessible from 6:00 AM until 7:30 PM. Temples typically close between 1:00 PM and 4:00 PM.",
+        },
+        {
+          id: "3",
+          question: "Is public transportation easily available?",
+          answer: "Yes, Mangalore city has excellent bus and auto-rickshaw connectivity with frequent services throughout the day.",
+        },
+        {
+          id: "4",
+          question: "Are food stalls and refreshments available on site?",
+          answer: "Yes, you will find stalls serving authentic coastal snacks, fresh fruit juices, tender coconut, and Mangalorean delicacies.",
+        },
+        {
+          id: "5",
+          question: "Is the location suitable for families and children?",
+          answer: "Absolutely. The location offers family-friendly paths, scenic views, and relaxed seating spots suitable for all age groups.",
+        },
+      ],
+    },
   };
 }
 

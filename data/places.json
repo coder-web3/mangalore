@@ -162,19 +162,19 @@
     "gallery": [
       {
         "id": "1",
-        "image": "/uploads/1791866333238-new1.png",
+        "image": "/uploads/1791869984390-new1.heif",
         "caption": "Panambur Beach Golden Coast",
         "tag": "Golden Sands"
       },
       {
         "id": "2",
-        "image": "/uploads/1791866351654-new2.png",
+        "image": "/uploads/1791869989356-new2.heif",
         "caption": "Panambur Beach Waves & Shoreline",
         "tag": "Coastline"
       },
       {
         "id": "3",
-        "image": "/uploads/1791866429833-new3.png",
+        "image": "/uploads/1791869993424-new3.heif",
         "caption": "Panambur Beach Spectacular Sunset",
         "tag": "Sunset Views"
       }
@@ -261,19 +261,19 @@
       "gallery": [
         {
           "id": "1",
-          "image": "/uploads/1791866333238-new1.png",
+          "image": "/uploads/1791869984390-new1.heif",
           "caption": "Panambur Beach Golden Coast",
           "tag": "Golden Sands"
         },
         {
           "id": "2",
-          "image": "/uploads/1791866351654-new2.png",
+          "image": "/uploads/1791869989356-new2.heif",
           "caption": "Panambur Beach Waves & Shoreline",
           "tag": "Coastline"
         },
         {
           "id": "3",
-          "image": "/uploads/1791866429833-new3.png",
+          "image": "/uploads/1791869993424-new3.heif",
           "caption": "Panambur Beach Spectacular Sunset",
           "tag": "Sunset Views"
         }
@@ -353,27 +353,27 @@
         },
         {
           "label": "Best Time to Visit",
-          "value": "Late afternoon until sunset"
+          "value": "Late Afternoon Till Sunset"
         }
       ],
       "gallery": [
         {
           "id": "1",
-          "image": "/ref-card-tannirbhavi.jpg",
-          "caption": "Tannirbhavi Shoreline & Pine Shadows",
+          "image": "/uploads/1791870325644-img2--1-.heif",
+          "caption": "Peaceful Shoreline at Thannirbhavi Beach",
           "tag": "Shoreline"
         },
         {
           "id": "2",
-          "image": "/tannirbhavi.avif",
-          "caption": "Golden Sunset on Calm Sands",
-          "tag": "Sunset"
+          "image": "/uploads/1791870201773-img--1-.heif",
+          "caption": "Fishing Boats and Beachside Benches at Thannirbhavi Beach",
+          "tag": "Coastal Scenery"
         },
         {
           "id": "3",
-          "image": "/panambur-sunset-scenery.jpg",
-          "caption": "Tannirbhavi Evening Horizon",
-          "tag": "Vistas"
+          "image": "/uploads/1791870052826-sunset1.heif",
+          "caption": "Golden Sunset over the Arabian Sea at Thannirbhavi Beach",
+          "tag": "Sunset"
         }
       ],
       "thingsToDo": [

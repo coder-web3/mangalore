@@ -7,10 +7,26 @@
     "ctaText": "Explore Places",
     "ctaLink": "/places-to-visit",
     "slides": [
-      { "image": "/kadri.avif", "badgeTitle": "Kadri Temple", "badgeLocation": "Mangalore" },
-      { "image": "/nitk.avif", "badgeTitle": "NITK Beach", "badgeLocation": "Mangalore" },
-      { "image": "/milagrees.avif", "badgeTitle": "Milagres Church", "badgeLocation": "Mangalore" },
-      { "image": "/kudroli.avif", "badgeTitle": "Kudroli Temple", "badgeLocation": "Mangalore" }
+      {
+        "image": "/kadri.avif",
+        "badgeTitle": "Kadri Temple",
+        "badgeLocation": "Mangalore"
+      },
+      {
+        "image": "/nitk.avif",
+        "badgeTitle": "NITK Beach",
+        "badgeLocation": "Mangalore"
+      },
+      {
+        "image": "/milagrees.avif",
+        "badgeTitle": "Milagres Church",
+        "badgeLocation": "Mangalore"
+      },
+      {
+        "image": "/kudroli.avif",
+        "badgeTitle": "Kudroli Temple",
+        "badgeLocation": "Mangalore"
+      }
     ]
   },
   "popularDestinations": {
@@ -21,12 +37,48 @@
     "scriptTop": "Beaches, Culture, Nature",
     "scriptBottom": "and More...",
     "destinations": [
-      { "id": "1", "number": "01", "name": "Panambur Beach", "location": "Mangalore", "image": "/panambur.avif" },
-      { "id": "2", "number": "02", "name": "Tannirbhavi Beach", "location": "Mangalore", "image": "/tannirbhavi.avif" },
-      { "id": "3", "number": "03", "name": "Someshwar Beach", "location": "Mangalore", "image": "/someshwar.avif" },
-      { "id": "4", "number": "04", "name": "Sultan Battery", "location": "Bantwal", "image": "/sulthan.avif" },
-      { "id": "5", "number": "05", "name": "Pilikula Nisargadhama", "location": "Moodushedde", "image": "/pilikula.avif" },
-      { "id": "6", "number": "06", "name": "Kadri Manjunath Temple", "location": "Mangalore", "image": "/kadri.avif" }
+      {
+        "id": "1",
+        "number": "01",
+        "name": "Panambur Beach",
+        "location": "Mangalore",
+        "image": "/panambur.avif"
+      },
+      {
+        "id": "2",
+        "number": "02",
+        "name": "Tannirbhavi Beach",
+        "location": "Mangalore",
+        "image": "/tannirbhavi.avif"
+      },
+      {
+        "id": "3",
+        "number": "03",
+        "name": "Someshwar Beach",
+        "location": "Mangalore",
+        "image": "/someshwar.avif"
+      },
+      {
+        "id": "4",
+        "number": "04",
+        "name": "Sultan Battery",
+        "location": "Bantwal",
+        "image": "/sulthan.avif"
+      },
+      {
+        "id": "5",
+        "number": "05",
+        "name": "Pilikula Nisargadhama",
+        "location": "Moodushedde",
+        "image": "/pilikula.avif"
+      },
+      {
+        "id": "6",
+        "number": "06",
+        "name": "Kadri Manjunath Temple",
+        "location": "Mangalore",
+        "image": "/kadri.avif"
+      }
     ]
   },
   "whyChooseUs": {
@@ -65,12 +117,36 @@
     "title": "Taste Mangalore",
     "description": "From authentic Mangalorean cuisine to cafés and seafood, explore the best places to eat in the city.",
     "categories": [
-      { "id": "mangalorean", "title": "Mangalorean Cuisine", "image": "/meals.avif" },
-      { "id": "seafood", "title": "Seafood", "image": "/seafood.avif" },
-      { "id": "cafes", "title": "Cafés & Bakeries", "image": "/cafe.avif" },
-      { "id": "restaurants", "title": "Restaurants", "image": "/restaurant.avif" },
-      { "id": "beverages", "title": "Juices & Beverages", "image": "/drinks.avif" },
-      { "id": "nightfood", "title": "Late-Night Food", "image": "/late-food.avif" }
+      {
+        "id": "mangalorean",
+        "title": "Mangalorean Cuisine",
+        "image": "/meals.avif"
+      },
+      {
+        "id": "seafood",
+        "title": "Seafood",
+        "image": "/seafood.avif"
+      },
+      {
+        "id": "cafes",
+        "title": "Cafés & Bakeries",
+        "image": "/cafe.avif"
+      },
+      {
+        "id": "restaurants",
+        "title": "Restaurants",
+        "image": "/restaurant.avif"
+      },
+      {
+        "id": "beverages",
+        "title": "Juices & Beverages",
+        "image": "/drinks.avif"
+      },
+      {
+        "id": "nightfood",
+        "title": "Late-Night Food",
+        "image": "/late-food.avif"
+      }
     ]
   },
   "planTripCTA": {
