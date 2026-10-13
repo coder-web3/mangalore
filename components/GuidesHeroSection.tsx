@@ -131,16 +131,6 @@ export default function GuidesHeroSection({
           }}
         />
 
-        {/* Diagonal Orange Ribbon Line Separator */}
-        <div className="hidden md:block absolute top-0 bottom-0 left-[49%] lg:left-[48%] xl:left-[46%] w-7 z-15 pointer-events-none">
-          <div
-            className="h-full w-6 bg-[#ff5e15] transform skew-x-[-18deg] origin-top shadow-xl shadow-orange-950/40"
-            style={{
-              clipPath: "polygon(0 0, 100% 0, 82% 100%, 0% 100%)",
-            }}
-          />
-        </div>
-
         {/* Content Container */}
         <div className="relative z-20 mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8 xl:px-12 pt-6 sm:pt-8 md:pt-10 pb-16 sm:pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
