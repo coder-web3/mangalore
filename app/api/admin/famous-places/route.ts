@@ -16,14 +16,71 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as PlacesData;
-    if (!body || !body.listingHero || !body.listingCatalog) {
+    const body = await request.json();
+    const current = await getFamousPlacesData();
+
+    // 1. Granular Single Famous Place Detail Update: { type: "detail", slug: string, detail: PanamburDetailData }
+    if (body.type === "detail" && body.slug && body.detail) {
+      const updatedDetails = {
+        ...(current.placeDetails || {}),
+        [body.slug]: body.detail,
+      };
+
+      const updatedData: PlacesData = {
+        ...current,
+        placeDetails: updatedDetails,
+      };
+
+      if (body.slug === "panambur-beach") {
+        updatedData.panamburDetail = body.detail;
+      }
+
+      await saveFamousPlacesData(updatedData);
+      return NextResponse.json({
+        success: true,
+        message: `Famous detail page for "${body.slug}" saved without conflicts!`,
+      });
+    }
+
+    // 2. Granular Listing Page Only Update: { type: "listing", listingHero: ..., listingCatalog: ... }
+    if (body.type === "listing" && body.listingHero && body.listingCatalog) {
+      const updatedData: PlacesData = {
+        ...current,
+        listingHero: body.listingHero,
+        listingCatalog: body.listingCatalog,
+      };
+      await saveFamousPlacesData(updatedData);
+      return NextResponse.json({
+        success: true,
+        message: "Famous places listing page saved without touching detail pages!",
+      });
+    }
+
+    // 3. Fallback / Full update with safety merge
+    const fullBody = body as PlacesData;
+    if (!fullBody || !fullBody.listingHero || !fullBody.listingCatalog) {
       return NextResponse.json(
         { error: "Invalid famous places data payload structure" },
         { status: 400 }
       );
     }
-    await saveFamousPlacesData(body);
+
+    const mergedDetails = {
+      ...(current.placeDetails || {}),
+      ...(fullBody.placeDetails || {}),
+    };
+
+    const finalData: PlacesData = {
+      ...current,
+      ...fullBody,
+      placeDetails: mergedDetails,
+    };
+
+    if (finalData.placeDetails["panambur-beach"]) {
+      finalData.panamburDetail = finalData.placeDetails["panambur-beach"];
+    }
+
+    await saveFamousPlacesData(finalData);
     return NextResponse.json({
       success: true,
       message: "Famous tourist places CMS updated successfully",

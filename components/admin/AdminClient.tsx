@@ -141,6 +141,44 @@ export default function AdminClient({
     }
   };
 
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const refreshLatestData = async () => {
+    setIsRefreshing(true);
+    try {
+      const [homeRes, placesRes, famousRes, aboutRes, contactRes] = await Promise.all([
+        fetch("/api/admin/homepage", { cache: "no-store" }),
+        fetch("/api/admin/places", { cache: "no-store" }),
+        fetch("/api/admin/famous-places", { cache: "no-store" }),
+        fetch("/api/admin/about", { cache: "no-store" }),
+        fetch("/api/admin/contact", { cache: "no-store" }),
+      ]);
+
+      if (homeRes.ok) setData(await homeRes.json());
+      if (placesRes.ok) setPlacesData(await placesRes.json());
+      if (famousRes.ok) setFamousPlacesData(await famousRes.json());
+      if (aboutRes.ok) setAboutData(await aboutRes.json());
+      if (contactRes.ok) setContactData(await contactRes.json());
+
+      const now = new Date();
+      setLastSaved(
+        `Synced at ${now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+      );
+      setMessage({
+        type: "success",
+        text: "Refreshed live data successfully! You now have the newest changes from all co-workers.",
+      });
+      setTimeout(() => setMessage(null), 4000);
+    } catch {
+      setMessage({
+        type: "error",
+        text: "Failed to reload latest data. Please check your internet connection.",
+      });
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
   // Keyboard shortcut: Ctrl+S or Cmd+S to Save & Publish
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -230,21 +268,75 @@ export default function AdminClient({
         if (!res.ok) throw new Error("Failed to save homepage");
         setMessage({
           type: "success",
-          text: "Homepage changes & device images saved and published live!",
+          text: "Homepage section changes saved & published live!",
         });
-      } else if (activeSection === "famousPlaces" || activeSection === "famousDetail") {
+      } else if (activeSection === "famousPlaces") {
         const res = await fetch("/api/admin/famous-places", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(famousPlacesData),
+          body: JSON.stringify({
+            type: "listing",
+            listingHero: famousPlacesData.listingHero,
+            listingCatalog: famousPlacesData.listingCatalog,
+          }),
         });
-        if (!res.ok) throw new Error("Failed to save famous places");
+        if (!res.ok) throw new Error("Failed to save famous places listing");
         setMessage({
           type: "success",
-          text:
-            activeSection === "famousPlaces"
-              ? "Famous Tourist Places listing & cards saved and published live!"
-              : "Famous Place detail page changes & gallery saved and published live!",
+          text: "Famous Tourist Places listing page saved without touching detail pages!",
+        });
+      } else if (activeSection === "famousDetail") {
+        const detailPayload =
+          famousPlacesData.placeDetails?.[selectedFamousDetailSlug] ||
+          (selectedFamousDetailSlug === "panambur-beach"
+            ? famousPlacesData.panamburDetail
+            : null);
+        const res = await fetch("/api/admin/famous-places", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "detail",
+            slug: selectedFamousDetailSlug,
+            detail: detailPayload,
+          }),
+        });
+        if (!res.ok) throw new Error("Failed to save famous place detail");
+        setMessage({
+          type: "success",
+          text: `"${selectedFamousDetailSlug}" detail page saved independently without conflict!`,
+        });
+      } else if (activeSection === "places") {
+        const res = await fetch("/api/admin/places", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "listing",
+            listingHero: placesData.listingHero,
+            listingCatalog: placesData.listingCatalog,
+          }),
+        });
+        if (!res.ok) throw new Error("Failed to save places listing");
+        setMessage({
+          type: "success",
+          text: "Places to Visit listing page saved without touching detail pages!",
+        });
+      } else if (activeSection === "detail") {
+        const detailPayload =
+          placesData.placeDetails?.[selectedDetailSlug] ||
+          (selectedDetailSlug === "panambur-beach" ? placesData.panamburDetail : null);
+        const res = await fetch("/api/admin/places", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "detail",
+            slug: selectedDetailSlug,
+            detail: detailPayload,
+          }),
+        });
+        if (!res.ok) throw new Error("Failed to save place detail");
+        setMessage({
+          type: "success",
+          text: `"${selectedDetailSlug}" detail page saved independently without conflict!`,
         });
       } else if (activeSection === "about") {
         const res = await fetch("/api/admin/about", {
@@ -255,7 +347,7 @@ export default function AdminClient({
         if (!res.ok) throw new Error("Failed to save about page");
         setMessage({
           type: "success",
-          text: "About Us page changes & images saved and published live!",
+          text: "About Us page changes saved & published live!",
         });
       } else if (activeSection === "contact") {
         const res = await fetch("/api/admin/contact", {
@@ -266,21 +358,7 @@ export default function AdminClient({
         if (!res.ok) throw new Error("Failed to save contact page");
         setMessage({
           type: "success",
-          text: "Contact page details & images saved and published live!",
-        });
-      } else {
-        const res = await fetch("/api/admin/places", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(placesData),
-        });
-        if (!res.ok) throw new Error("Failed to save places");
-        setMessage({
-          type: "success",
-          text:
-            activeSection === "places"
-              ? "Places to Visit listing page & polaroid cards saved and published live!"
-              : "Place detail page changes & gallery saved and published live!",
+          text: "Contact page details saved & published live!",
         });
       }
 
@@ -383,6 +461,22 @@ export default function AdminClient({
             </button>
           </div>
 
+          {/* Sync Latest Co-worker Updates Button */}
+          <button
+            type="button"
+            onClick={refreshLatestData}
+            disabled={isRefreshing}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition cursor-pointer ${
+              theme === "lite"
+                ? "bg-white border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-orange-600 shadow-xs"
+                : "bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800 hover:text-white"
+            }`}
+            title="Reload latest updates published by other co-workers"
+          >
+            <RefreshCw className={`h-3.5 w-3.5 ${isRefreshing ? "animate-spin text-orange-500" : ""}`} />
+            <span className="hidden sm:inline">Sync Latest</span>
+          </button>
+
           {/* Public Preview Button */}
           <Link
             href={getPublicLink()}
@@ -398,12 +492,13 @@ export default function AdminClient({
             <ExternalLink className="h-3 w-3 opacity-60" />
           </Link>
 
-          {/* Save & Publish Button */}
+          {/* Save Active Page Button */}
           <button
             type="button"
             onClick={handleSave}
             disabled={saving}
             className="inline-flex items-center gap-2 rounded-xl bg-orange-600 hover:bg-orange-500 px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-white shadow-md shadow-orange-600/25 hover:shadow-orange-600/35 transition-all disabled:opacity-50 cursor-pointer text-white-force"
+            title={`Publish changes for ${getSectionTitle()}`}
           >
             {saving ? (
               <RefreshCw className="h-4 w-4 animate-spin text-white-force" />
@@ -411,7 +506,7 @@ export default function AdminClient({
               <Save className="h-4 w-4 text-white-force" />
             )}
             <span className="text-white-force">
-              {saving ? "Publishing..." : "Save & Publish"}
+              {saving ? "Publishing..." : "Save Active Page"}
             </span>
           </button>
         </div>
@@ -1083,21 +1178,56 @@ export default function AdminClient({
                 </p>
               </div>
 
-              {/* Status and Route Link Pill */}
-              <div className="flex items-center gap-2 flex-wrap">
+              {/* Status, Route Link Pill, and Dedicated Page Save Action */}
+              <div className="flex items-center gap-2.5 flex-wrap">
                 <Link
                   href={getPublicLink()}
                   target="_blank"
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-semibold transition ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border text-xs font-semibold transition ${
                     theme === "lite"
                       ? "bg-slate-50 border-slate-200 text-slate-700 hover:bg-orange-50 hover:text-orange-600 hover:border-orange-200"
                       : "bg-slate-800/80 border-slate-700 text-slate-200 hover:bg-slate-700"
                   }`}
+                  title="View live public page"
                 >
                   <Eye className="h-3.5 w-3.5" />
-                  <span>Preview URL: {getPublicLink()}</span>
+                  <span className="truncate max-w-[170px] sm:max-w-xs">{getPublicLink()}</span>
                   <ExternalLink className="h-3 w-3" />
                 </Link>
+
+                {/* Conflict-Free Single Page Save Button */}
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  disabled={saving}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-500 text-white text-xs sm:text-sm font-bold shadow-md shadow-orange-600/30 transition-all disabled:opacity-50 cursor-pointer"
+                  title={`Save only ${getSectionTitle()} without overwriting other pages`}
+                >
+                  {saving ? (
+                    <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                  ) : (
+                    <Save className="h-3.5 w-3.5" />
+                  )}
+                  <span>
+                    {saving
+                      ? "Publishing..."
+                      : `Save ${
+                          activeSection === "detail"
+                            ? "This Attraction"
+                            : activeSection === "famousDetail"
+                            ? "This Famous Attraction"
+                            : activeSection === "places"
+                            ? "Places Listing"
+                            : activeSection === "famousPlaces"
+                            ? "Famous Listing"
+                            : activeSection === "about"
+                            ? "About Page"
+                            : activeSection === "contact"
+                            ? "Contact Page"
+                            : "Homepage"
+                        }`}
+                  </span>
+                </button>
               </div>
             </div>
           </div>

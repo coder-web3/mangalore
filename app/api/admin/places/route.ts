@@ -16,20 +16,71 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as PlacesData;
-    if (!body || !body.listingHero || !body.listingCatalog) {
+    const body = await request.json();
+    const current = await getPlacesData();
+
+    // 1. Granular Single Place Detail Update: { type: "detail", slug: string, detail: PanamburDetailData }
+    if (body.type === "detail" && body.slug && body.detail) {
+      const updatedDetails = {
+        ...(current.placeDetails || {}),
+        [body.slug]: body.detail,
+      };
+
+      const updatedData: PlacesData = {
+        ...current,
+        placeDetails: updatedDetails,
+      };
+
+      if (body.slug === "panambur-beach") {
+        updatedData.panamburDetail = body.detail;
+      }
+
+      await savePlacesData(updatedData);
+      return NextResponse.json({
+        success: true,
+        message: `Detail page for "${body.slug}" saved without conflicts!`,
+      });
+    }
+
+    // 2. Granular Listing Page Only Update: { type: "listing", listingHero: ..., listingCatalog: ... }
+    if (body.type === "listing" && body.listingHero && body.listingCatalog) {
+      const updatedData: PlacesData = {
+        ...current,
+        listingHero: body.listingHero,
+        listingCatalog: body.listingCatalog,
+      };
+      await savePlacesData(updatedData);
+      return NextResponse.json({
+        success: true,
+        message: "Places listing page saved without touching detail pages!",
+      });
+    }
+
+    // 3. Fallback / Full PlacesData update with safety merge
+    const fullBody = body as PlacesData;
+    if (!fullBody || !fullBody.listingHero || !fullBody.listingCatalog) {
       return NextResponse.json(
         { error: "Invalid places data payload structure" },
         { status: 400 }
       );
     }
-    // Ensure panamburDetail and placeDetails["panambur-beach"] stay synchronized
-    if (body.placeDetails && body.placeDetails["panambur-beach"]) {
-      body.panamburDetail = body.placeDetails["panambur-beach"];
-    } else if (body.panamburDetail && body.placeDetails && !body.placeDetails["panambur-beach"]) {
-      body.placeDetails["panambur-beach"] = body.panamburDetail;
+
+    const mergedDetails = {
+      ...(current.placeDetails || {}),
+      ...(fullBody.placeDetails || {}),
+    };
+
+    const finalData: PlacesData = {
+      ...current,
+      ...fullBody,
+      placeDetails: mergedDetails,
+    };
+
+    if (finalData.placeDetails["panambur-beach"]) {
+      finalData.panamburDetail = finalData.placeDetails["panambur-beach"];
     }
-    await savePlacesData(body);
+
+    await savePlacesData(finalData);
     return NextResponse.json({ success: true, message: "Places CMS updated successfully" });
   } catch (error) {
     return NextResponse.json(

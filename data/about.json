@@ -26,12 +26,12 @@
     "title": "Our Journey to Showcase",
     "titleHighlight": "Mangalore",
     "description": "Mangalore Tours was created with a simple vision — to bring together all the amazing places, experiences and local stories of Mangalore in one place. Whether you are a traveler, a local or someone planning a visit, we help you discover the real essence of this beautiful coastal city.",
-    "beachPhoto": "/uploads/1791876420747-lighthouse-sunset-over-a-curve.heif",
+    "beachPhoto": "/uploads/1791880709051-heritage-clock-tower-roundabou.heif",
     "beachBadgeTitle": "Mangalore",
     "beachBadgeSubtitle": "A city of beaches, temples and vibrant culture.",
     "templePhoto": "/uploads/1791876628773-twilight-glow-at-the-temple-go.heif",
     "templeBadge": "Heritage & Culture",
-    "sunsetPhoto": "/uploads/1791876819639-golden-sunset-over-a-tropical-.heif",
+    "sunsetPhoto": "/uploads/1791876420747-lighthouse-sunset-over-a-curve.heif",
     "sunsetBadge": "Beaches & Nature",
     "features": [
       {
@@ -88,7 +88,7 @@
     "title": "To Make Mangalore",
     "titleHighlight": "a Must-Visit Destination",
     "description": "We aim to inspire more people to explore Mangalore by showcasing its natural beauty, rich heritage, delicious food and unforgettable experiences.",
-    "backdropImage": "/about-vision-panorama.jpg",
+    "backdropImage": "/uploads/1791882209923-analysis-output-1.jpg",
     "quoteText": "“Mangalore is more than a place — it's an experience of nature, culture and warm people.”"
   },
   "team": {
@@ -96,7 +96,7 @@
     "title": "People Behind",
     "titleHighlight": "Mangalore Tours",
     "description": "A small team with a big passion for travel, exploration and our beautiful city.",
-    "teamPhoto": "/about-team-road.jpg",
+    "teamPhoto": "/uploads/1791880942341-bustling-indian-commercial-str.heif",
     "pillars": [
       {
         "id": "1",
