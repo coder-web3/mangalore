@@ -113,8 +113,8 @@ export default function AdminClient({
 
   // Subtab synchronization
   const [homepageTab, setHomepageTab] = useState<HomepageTab>("hero");
-  const [placesTab, setPlacesTab] = useState<"hero" | "cards">("hero");
-  const [famousPlacesTab, setFamousPlacesTab] = useState<"hero" | "cards">("hero");
+  const [placesTab, setPlacesTab] = useState<"hero" | "cards" | "map">("hero");
+  const [famousPlacesTab, setFamousPlacesTab] = useState<"hero" | "cards" | "map">("hero");
   const [guidesTab, setGuidesTab] = useState<"hero" | "guides" | "articles">("articles");
   const [aboutSubTab, setAboutSubTab] = useState<
     "hero" | "story" | "different" | "vision" | "team"
@@ -813,13 +813,14 @@ export default function AdminClient({
                     {[
                       { id: "hero", label: "Hero & Polaroids" },
                       { id: "cards", label: "Places Catalog Cards" },
+                      { id: "map", label: "Places Map Widget" },
                     ].map((item) => (
                       <button
                         key={item.id}
                         type="button"
                         onClick={() => {
                           setActiveSection("places");
-                          setPlacesTab(item.id as "hero" | "cards");
+                          setPlacesTab(item.id as "hero" | "cards" | "map");
                           setIsMobileMenuOpen(false);
                         }}
                         className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${
@@ -886,13 +887,14 @@ export default function AdminClient({
                     {[
                       { id: "hero", label: "Hero & Polaroids" },
                       { id: "cards", label: "Famous Places Cards" },
+                      { id: "map", label: "Places Map Widget" },
                     ].map((item) => (
                       <button
                         key={item.id}
                         type="button"
                         onClick={() => {
                           setActiveSection("famousPlaces");
-                          setFamousPlacesTab(item.id as "hero" | "cards");
+                          setFamousPlacesTab(item.id as "hero" | "cards" | "map");
                           setIsMobileMenuOpen(false);
                         }}
                         className={`w-full text-left px-2.5 py-1.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${

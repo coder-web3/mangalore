@@ -27,6 +27,13 @@
     "title": "Famous Tourist Places in",
     "titleHighlight": "Mangalore",
     "description": "Explore the most famous and must-visit attractions in and around Mangalore with practical travel timings, location info, and visitor ratings.",
+    "mapCard": {
+      "title": "Places Map",
+      "subtitle": "View all tourist places in Mangalore",
+      "buttonText": "View Full Map →",
+      "buttonLink": "https://maps.google.com/?q=Mangalore+Tourist+Places",
+      "image": "/ref-places-map.jpg"
+    },
     "places": [
       {
         "id": "famous-panambur",
@@ -157,6 +164,32 @@
         "location": "Govardhanagiri, Mudipu • Approximately 25 km from Mangalore",
         "rating": "4.7",
         "timings": "9:00 AM – 6:00 PM "
+      },
+      {
+        "id": "place-1791889048508",
+        "name": "Clock Tower, Mangalore",
+        "slug": "clock-tower-mangalore",
+        "category": "temples",
+        "categoryLabel": "Temples",
+        "categoryIcon": "temple",
+        "description": "Mangalore Clock Tower is a historic city landmark known for its distinctive architecture and connection to the city's heritage. Located near the busy Hampankatta area, it is a convenient stop for visitors exploring central Mangalore.",
+        "image": "",
+        "location": "Hampankatta, Mangalore",
+        "rating": "4.5",
+        "timings": "24 hours"
+      },
+      {
+        "id": "place-1791889161275",
+        "name": "Pilikula Nisargadhama",
+        "slug": "pilikula-nisargadhama",
+        "category": "nature",
+        "categoryLabel": "Nature",
+        "categoryIcon": "hill",
+        "description": "Pilikula Nisargadhama is a popular eco-tourism destination featuring a biological park, botanical garden, lake, heritage village, and recreational activities. Surrounded by greenery, it offers families and nature lovers a relaxing escape near Mangalore.",
+        "image": "",
+        "location": "Vamanjoor, Mangalore",
+        "rating": "4.6",
+        "timings": "10:00 AM to 5:30 PM"
       }
     ]
   },

@@ -391,35 +391,40 @@ export default function PopularPlacesSection({
                   </div>
                   <div>
                     <h4 className="text-xs font-extrabold text-[#0d1e38]">
-                      Places Map
+                      {catalogHeader?.mapCard?.title || "Places Map"}
                     </h4>
                     <p className="text-[10px] text-slate-400">
-                      View all tourist places in Mangalore
+                      {catalogHeader?.mapCard?.subtitle || "View all tourist places in Mangalore"}
                     </p>
                   </div>
                 </div>
 
                 <a
-                  href="https://maps.google.com/?q=Mangalore+Tourist+Places"
+                  href={catalogHeader?.mapCard?.buttonLink || "https://maps.google.com/?q=Mangalore+Tourist+Places"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-xl bg-[#0d1e38] hover:bg-slate-800 px-3 py-1.5 text-[10px] font-bold text-white transition shadow"
                 >
-                  View Full Map →
+                  {catalogHeader?.mapCard?.buttonText || "View Full Map →"}
                 </a>
               </div>
 
               {/* Map Illustration / Cropped Reference Map with Pin Spots */}
-              <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-slate-200/90 shadow-inner group cursor-pointer">
+              <a
+                href={catalogHeader?.mapCard?.buttonLink || "https://maps.google.com/?q=Mangalore+Tourist+Places"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block relative aspect-[16/10] w-full rounded-2xl overflow-hidden border border-slate-200/90 shadow-inner group cursor-pointer"
+              >
                 <Image
-                  src="/ref-places-map.jpg"
-                  alt="Mangalore Places Map"
+                  src={catalogHeader?.mapCard?.image || "/ref-places-map.jpg"}
+                  alt={catalogHeader?.mapCard?.title || "Mangalore Places Map"}
                   fill
                   unoptimized
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/10 hover:bg-transparent transition-colors" />
-              </div>
+              </a>
             </div>
           </div>
         </div>

@@ -199,12 +199,21 @@ export interface PlaceItemData {
   timings?: string;
 }
 
+export interface PlacesMapCardData {
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  image?: string;
+}
+
 export interface ListingCatalogData {
   tag: string;
   title: string;
   titleHighlight: string;
   description: string;
   places: PlaceItemData[];
+  mapCard?: PlacesMapCardData;
 }
 
 export interface PanamburHeroData {

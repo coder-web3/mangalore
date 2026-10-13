@@ -21,8 +21,8 @@ interface PlacesListingAdminProps {
   data: PlacesData;
   onChange: (updated: PlacesData) => void;
   onEditDetailPage?: (slug: string) => void;
-  activeSubTab?: "hero" | "cards";
-  onSubTabChange?: (tab: "hero" | "cards") => void;
+  activeSubTab?: "hero" | "cards" | "map";
+  onSubTabChange?: (tab: "hero" | "cards" | "map") => void;
   title?: string;
   description?: string;
   basePath?: string;
@@ -38,12 +38,29 @@ export default function PlacesListingAdmin({
   description,
   basePath = "/places-to-visit",
 }: PlacesListingAdminProps) {
-  const [internalSubTab, setInternalSubTab] = useState<"hero" | "cards">("hero");
+  const [internalSubTab, setInternalSubTab] = useState<"hero" | "cards" | "map">("hero");
 
   const subTab = activeSubTab || internalSubTab;
-  const setSubTab = (tab: "hero" | "cards") => {
+  const setSubTab = (tab: "hero" | "cards" | "map") => {
     if (onSubTabChange) onSubTabChange(tab);
     setInternalSubTab(tab);
+  };
+
+  const updateMapCard = (field: string, val: string) => {
+    onChange({
+      ...data,
+      listingCatalog: {
+        ...data.listingCatalog,
+        mapCard: {
+          title: data.listingCatalog.mapCard?.title || "Places Map",
+          subtitle: data.listingCatalog.mapCard?.subtitle || "View all tourist places in Mangalore",
+          buttonText: data.listingCatalog.mapCard?.buttonText || "View Full Map →",
+          buttonLink: data.listingCatalog.mapCard?.buttonLink || "https://maps.google.com/?q=Mangalore+Tourist+Places",
+          image: data.listingCatalog.mapCard?.image || "/ref-places-map.jpg",
+          [field]: val,
+        },
+      },
+    });
   };
 
   const updateHero = (field: string, val: any) => {
@@ -186,6 +203,18 @@ export default function PlacesListingAdmin({
             }`}
           >
             Tourist Places Cards ({data.listingCatalog.places.length})
+          </button>
+          <button
+            type="button"
+            onClick={() => setSubTab("map")}
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer flex items-center gap-1.5 ${
+              subTab === "map"
+                ? "bg-orange-600 text-white shadow"
+                : "text-slate-400 hover:text-white"
+            }`}
+          >
+            <MapPin className="h-3.5 w-3.5" />
+            <span>Places Map Widget</span>
           </button>
         </div>
       </div>
@@ -589,6 +618,102 @@ export default function PlacesListingAdmin({
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Tab 3: Places Map Interactive Card */}
+      {subTab === "map" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5 sm:p-6 space-y-5">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div className="flex items-center gap-2.5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-orange-500/10 text-orange-400 border border-orange-500/20">
+                  <MapPin className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-white">
+                    Places Map Widget Settings
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    Customize the map illustration / screenshot image, title, subtitle, and external map link shown on the listing page.
+                  </p>
+                </div>
+              </div>
+
+              <a
+                href={data.listingCatalog.mapCard?.buttonLink || "https://maps.google.com/?q=Mangalore+Tourist+Places"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 text-xs font-semibold text-slate-200 hover:text-white transition"
+              >
+                <span>Test Map Link</span>
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Card Title
+                </label>
+                <input
+                  type="text"
+                  value={data.listingCatalog.mapCard?.title || "Places Map"}
+                  onChange={(e) => updateMapCard("title", e.target.value)}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Card Subtitle
+                </label>
+                <input
+                  type="text"
+                  value={data.listingCatalog.mapCard?.subtitle || "View all tourist places in Mangalore"}
+                  onChange={(e) => updateMapCard("subtitle", e.target.value)}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Button Text
+                </label>
+                <input
+                  type="text"
+                  value={data.listingCatalog.mapCard?.buttonText || "View Full Map →"}
+                  onChange={(e) => updateMapCard("buttonText", e.target.value)}
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div>
+                <label className="text-xs font-semibold text-slate-300 block mb-1">
+                  Button Target URL (Google Maps or Custom Route)
+                </label>
+                <input
+                  type="text"
+                  value={data.listingCatalog.mapCard?.buttonLink || "https://maps.google.com/?q=Mangalore+Tourist+Places"}
+                  onChange={(e) => updateMapCard("buttonLink", e.target.value)}
+                  placeholder="https://maps.google.com/?q=..."
+                  className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-xs text-white focus:outline-none focus:border-orange-500"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="text-xs font-semibold text-slate-300 block mb-2">
+                  Map Illustration / Screenshot Image
+                </label>
+                <ImageUploader
+                  currentImage={data.listingCatalog.mapCard?.image || "/ref-places-map.jpg"}
+                  onImageSelected={(url) => updateMapCard("image", url)}
+                  label="Upload Places Map Image"
+                  aspectHint="Recommended: 16:10 or landscape format showing regional tourist spots and pins (JPEG, PNG, WebP up to 10MB)"
+                />
+              </div>
             </div>
           </div>
         </div>

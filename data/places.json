@@ -27,6 +27,13 @@
     "title": "Popular Tourist Places in",
     "titleHighlight": "Mangalore",
     "description": "Explore top-rated beaches, sacred temples, historic sites & viewpoints with practical visit details.",
+    "mapCard": {
+      "title": "Places Map",
+      "subtitle": "View all tourist places in Mangalore",
+      "buttonText": "View Full Map →",
+      "buttonLink": "https://maps.google.com/?q=Mangalore+Tourist+Places",
+      "image": "/ref-places-map.jpg"
+    },
     "places": [
       {
         "id": "panambur",
@@ -567,8 +574,8 @@
         },
         {
           "id": "3",
-          "image": "/ref-card-netravati.jpg",
-          "caption": "Honavar Lighthouse Tower Surrounded by Greenery",
+          "image": "/uploads/1791889117757-untitled-design--5-.heif",
+          "caption": "Picturesque Lighthouse and Rocky Coastal Landscape",
           "tag": "Lighthouse"
         }
       ],
