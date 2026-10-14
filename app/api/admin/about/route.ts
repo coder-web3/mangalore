@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getAboutData, saveAboutData } from "@/lib/cms-server";
 import { AboutData } from "@/lib/cms";
 
@@ -24,6 +25,8 @@ export async function POST(request: Request) {
       );
     }
     await saveAboutData(body);
+    revalidatePath("/about");
+    revalidatePath("/admin");
     return NextResponse.json({
       success: true,
       message: "About Us CMS updated successfully",

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getHomepageData, saveHomepageData } from "@/lib/cms-server";
 import { HomepageData } from "@/lib/cms";
 
@@ -24,6 +25,8 @@ export async function POST(request: Request) {
       );
     }
     await saveHomepageData(body);
+    revalidatePath("/");
+    revalidatePath("/admin");
     return NextResponse.json({ success: true, message: "Homepage updated successfully" });
   } catch (error) {
     return NextResponse.json(

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getContactData, saveContactData } from "@/lib/cms-server";
 import { ContactData } from "@/lib/cms";
 
@@ -24,6 +25,8 @@ export async function POST(request: Request) {
       );
     }
     await saveContactData(body);
+    revalidatePath("/contact");
+    revalidatePath("/admin");
     return NextResponse.json({
       success: true,
       message: "Contact CMS updated successfully",

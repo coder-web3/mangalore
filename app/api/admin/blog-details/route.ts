@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getBlogDetailsData, saveBlogDetailsData } from "@/lib/cms-server";
 import { BlogDetailData } from "@/lib/cms";
 
@@ -22,6 +23,9 @@ export async function POST(request: Request) {
     if (body.slug && body.article) {
       current[body.slug] = body.article as BlogDetailData;
       await saveBlogDetailsData(current);
+      revalidatePath(`/blog/${body.slug}`);
+      revalidatePath("/blog");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: `Blog article "${body.article.title || body.slug}" saved successfully!`,
@@ -30,6 +34,8 @@ export async function POST(request: Request) {
 
     if (body.blogDetails) {
       await saveBlogDetailsData(body.blogDetails);
+      revalidatePath("/blog");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: "All blog details saved successfully!",

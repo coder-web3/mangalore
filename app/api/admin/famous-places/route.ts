@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getFamousPlacesData, saveFamousPlacesData } from "@/lib/cms-server";
 import { PlacesData } from "@/lib/cms";
 
@@ -36,6 +37,9 @@ export async function POST(request: Request) {
       }
 
       await saveFamousPlacesData(updatedData);
+      revalidatePath(`/famous-tourist-places/${body.slug}`);
+      revalidatePath("/famous-tourist-places");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: `Famous detail page for "${body.slug}" saved without conflicts!`,
@@ -50,6 +54,8 @@ export async function POST(request: Request) {
         listingCatalog: body.listingCatalog,
       };
       await saveFamousPlacesData(updatedData);
+      revalidatePath("/famous-tourist-places");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: "Famous places listing page saved without touching detail pages!",
@@ -81,6 +87,8 @@ export async function POST(request: Request) {
     }
 
     await saveFamousPlacesData(finalData);
+    revalidatePath("/famous-tourist-places");
+    revalidatePath("/admin");
     return NextResponse.json({
       success: true,
       message: "Famous tourist places CMS updated successfully",

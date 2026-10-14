@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getGuidesData, saveGuidesData } from "@/lib/cms-server";
 import { GuidesData, GuideItemData } from "@/lib/cms";
 
@@ -39,6 +40,8 @@ export async function POST(request: Request) {
       };
 
       await saveGuidesData(updatedData);
+      revalidatePath("/local-guides");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: `Guide "${body.guide.name}" updated successfully!`,
@@ -54,6 +57,8 @@ export async function POST(request: Request) {
         articlesSection: body.articlesSection || current.articlesSection,
       };
       await saveGuidesData(updatedData);
+      revalidatePath("/local-guides");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: "Guides listing saved successfully!",
@@ -64,6 +69,8 @@ export async function POST(request: Request) {
     const fullBody = body as GuidesData;
     if (fullBody.listingHero && fullBody.listingCatalog) {
       await saveGuidesData(fullBody);
+      revalidatePath("/local-guides");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: "Local Guides CMS updated successfully!",

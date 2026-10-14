@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getPlacesData, savePlacesData } from "@/lib/cms-server";
 import { PlacesData } from "@/lib/cms";
 
@@ -36,6 +37,9 @@ export async function POST(request: Request) {
       }
 
       await savePlacesData(updatedData);
+      revalidatePath(`/places-to-visit/${body.slug}`);
+      revalidatePath("/places-to-visit");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: `Detail page for "${body.slug}" saved without conflicts!`,
@@ -50,6 +54,8 @@ export async function POST(request: Request) {
         listingCatalog: body.listingCatalog,
       };
       await savePlacesData(updatedData);
+      revalidatePath("/places-to-visit");
+      revalidatePath("/admin");
       return NextResponse.json({
         success: true,
         message: "Places listing page saved without touching detail pages!",
@@ -81,6 +87,8 @@ export async function POST(request: Request) {
     }
 
     await savePlacesData(finalData);
+    revalidatePath("/places-to-visit");
+    revalidatePath("/admin");
     return NextResponse.json({ success: true, message: "Places CMS updated successfully" });
   } catch (error) {
     return NextResponse.json(

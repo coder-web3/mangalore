@@ -408,7 +408,50 @@
           "description": "Relax on clean sandy banks under the soothing sea breeze.",
           "icon": "car"
         }
-      ]
+      ],
+      "nearbyPlaces": {
+        "badge": "EXPLORE MORE",
+        "title": "Nearby Attractions Around Tannirbhavi Beach",
+        "description": "Combine your itinerary with these top-rated sightseeing destinations situated nearby.",
+        "places": [
+          {
+            "id": "1",
+            "name": "Panambur Beach",
+            "distance": "8 km away",
+            "travelTime": "15 mins drive",
+            "category": "Coastline & Water Sports",
+            "image": "/panambur.avif",
+            "link": "/places-to-visit/panambur-beach"
+          },
+          {
+            "id": "2",
+            "name": "Tannirbhavi Beach & Tree Park",
+            "distance": "6.5 km away",
+            "travelTime": "12 mins drive",
+            "category": "Pine Trees & Sunset Shore",
+            "image": "/uploads/1791892730077-img2--1-.heif",
+            "link": "/places-to-visit/tannirbhavi-beach"
+          },
+          {
+            "id": "3",
+            "name": "Kadri Manjunatha Temple",
+            "distance": "7 km away",
+            "travelTime": "15 mins drive",
+            "category": "Historic Heritage & Architecture",
+            "image": "/kadri.avif",
+            "link": "/places-to-visit/kadri-manjunatha-temple"
+          },
+          {
+            "id": "4",
+            "name": "Sultan Battery Watchtower",
+            "distance": "5 km away",
+            "travelTime": "10 mins drive",
+            "category": "Historical Monument & Ferry",
+            "image": "/uploads/1791892769976-sulthan2.heif",
+            "link": "/places-to-visit/sultan-battery"
+          }
+        ]
+      }
     },
     "kadri-manjunath-temple": {
       "hero": {
@@ -506,7 +549,50 @@
           "description": "Relax in the nearby park, enjoy its greenery, and spend time exploring one of Mangaluru's popular outdoor spaces.",
           "icon": "car"
         }
-      ]
+      ],
+      "nearbyPlaces": {
+        "badge": "EXPLORE MORE",
+        "title": "Nearby Attractions Around Kadri Manjunath Temple",
+        "description": "Combine your itinerary with these top-rated sightseeing destinations situated nearby.",
+        "places": [
+          {
+            "id": "1",
+            "name": "Panambur Beach",
+            "distance": "8 km away",
+            "travelTime": "15 mins drive",
+            "category": "Coastline & Water Sports",
+            "image": "/panambur.avif",
+            "link": "/places-to-visit/panambur-beach"
+          },
+          {
+            "id": "2",
+            "name": "Tannirbhavi Beach & Tree Park",
+            "distance": "6.5 km away",
+            "travelTime": "12 mins drive",
+            "category": "Pine Trees & Sunset Shore",
+            "image": "/uploads/1791892707499-img--1-.heif",
+            "link": "/places-to-visit/tannirbhavi-beach"
+          },
+          {
+            "id": "3",
+            "name": "Kadri Manjunatha Temple",
+            "distance": "7 km away",
+            "travelTime": "15 mins drive",
+            "category": "Historic Heritage & Architecture",
+            "image": "/kadri.avif",
+            "link": "/places-to-visit/kadri-manjunatha-temple"
+          },
+          {
+            "id": "4",
+            "name": "Sultan Battery Watchtower",
+            "distance": "5 km away",
+            "travelTime": "10 mins drive",
+            "category": "Historical Monument & Ferry",
+            "image": "/uploads/1791892719807-sulthan2.heif",
+            "link": "/places-to-visit/sultan-battery"
+          }
+        ]
+      }
     },
     "lighthouse-hill-garden": {
       "hero": {
@@ -514,7 +600,7 @@
         "titleHighlight": "Hill Garden",
         "category": "Viewpoints",
         "description": "Visit Light House Hill in Hampankatta, Mangaluru, a historic city landmark featuring a peaceful garden, scenic surroundings, and views towards the Arabian Sea. It is a lovely stop for a relaxing walk and exploring the city's heritage.",
-        "backdropImage": "/uploads/1791875129981-hero-lighthouse--1-.heif",
+        "backdropImage": "/uploads/1791876120038-kaup-lighthouse--hero.heif",
         "location": "Hampankatta, Mangalore",
         "bestTime": "October to March • Late Afternoon",
         "popularFor": "City Views, Garden Walks & Heritage ",
@@ -604,7 +690,50 @@
           "description": "Walk down the hill to the world-famous painted chapel of St. Aloysius.",
           "icon": "waves"
         }
-      ]
+      ],
+      "nearbyPlaces": {
+        "badge": "EXPLORE MORE",
+        "title": "Nearby Attractions Around Light House Hill",
+        "description": "Combine your itinerary with these top-rated sightseeing destinations situated nearby.",
+        "places": [
+          {
+            "id": "1",
+            "name": "Panambur Beach",
+            "distance": "8 km away",
+            "travelTime": "15 mins drive",
+            "category": "Coastline & Water Sports",
+            "image": "/panambur.avif",
+            "link": "/places-to-visit/panambur-beach"
+          },
+          {
+            "id": "2",
+            "name": "Tannirbhavi Beach & Tree Park",
+            "distance": "6.5 km away",
+            "travelTime": "12 mins drive",
+            "category": "Pine Trees & Sunset Shore",
+            "image": "/uploads/1791892697693-img2--1-.heif",
+            "link": "/places-to-visit/tannirbhavi-beach"
+          },
+          {
+            "id": "3",
+            "name": "Kadri Manjunatha Temple",
+            "distance": "7 km away",
+            "travelTime": "15 mins drive",
+            "category": "Historic Heritage & Architecture",
+            "image": "/kadri.avif",
+            "link": "/places-to-visit/kadri-manjunatha-temple"
+          },
+          {
+            "id": "4",
+            "name": "Sultan Battery Watchtower",
+            "distance": "5 km away",
+            "travelTime": "10 mins drive",
+            "category": "Historical Monument & Ferry",
+            "image": "/uploads/1791892690040-sulthan2.heif",
+            "link": "/places-to-visit/sultan-battery"
+          }
+        ]
+      }
     },
     "netravati-river-view": {
       "hero": {
@@ -612,7 +741,7 @@
         "titleHighlight": "River",
         "category": "Rivers",
         "description": "Discover the beautiful Netravati River in coastal Karnataka, known for its scenic riverbanks, peaceful waters, lush surroundings, and its connection to the cultural life of Mangaluru.",
-        "backdropImage": "/uploads/1791890474989-untitled-design--7-.heif",
+        "backdropImage": "/uploads/1791892955903-netravati-river---palms11.heif",
         "location": "Ullal / Mangalore Riverbanks",
         "bestTime": "Oct to March • Sunrise & Sunset",
         "popularFor": "River Cruises & Estuary Sunset",
@@ -702,7 +831,50 @@
           "description": "Spot coastal egrets, kingfishers, and migratory river birds.",
           "icon": "car"
         }
-      ]
+      ],
+      "nearbyPlaces": {
+        "badge": "EXPLORE MORE",
+        "title": "Nearby Attractions Around Netravati River",
+        "description": "Combine your itinerary with these top-rated sightseeing destinations situated nearby.",
+        "places": [
+          {
+            "id": "1",
+            "name": "Panambur Beach",
+            "distance": "8 km away",
+            "travelTime": "15 mins drive",
+            "category": "Coastline & Water Sports",
+            "image": "/panambur.avif",
+            "link": "/places-to-visit/panambur-beach"
+          },
+          {
+            "id": "2",
+            "name": "Tannirbhavi Beach & Tree Park",
+            "distance": "6.5 km away",
+            "travelTime": "12 mins drive",
+            "category": "Pine Trees & Sunset Shore",
+            "image": "/uploads/1791892669229-img--1-.heif",
+            "link": "/places-to-visit/tannirbhavi-beach"
+          },
+          {
+            "id": "3",
+            "name": "Kadri Manjunatha Temple",
+            "distance": "7 km away",
+            "travelTime": "15 mins drive",
+            "category": "Historic Heritage & Architecture",
+            "image": "/kadri.avif",
+            "link": "/places-to-visit/kadri-manjunatha-temple"
+          },
+          {
+            "id": "4",
+            "name": "Sultan Battery Watchtower",
+            "distance": "5 km away",
+            "travelTime": "10 mins drive",
+            "category": "Historical Monument & Ferry",
+            "image": "/uploads/1791892681053-sulthan2.heif",
+            "link": "/places-to-visit/sultan-battery"
+          }
+        ]
+      }
     },
     "sultan-battery": {
       "hero": {
@@ -770,8 +942,8 @@
         },
         {
           "id": "3",
-          "image": "/ref-card-tannirbhavi.jpg",
-          "caption": "Ferry Boat Point to Tannirbhavi",
+          "image": "/uploads/1791892518091-5555.heif",
+          "caption": "Sultan Battery Historic Stone Entrance and Information Board",
           "tag": "Ferry"
         }
       ],
@@ -800,7 +972,50 @@
           "description": "Stroll down the paved riverfront path lined with street snack vendors.",
           "icon": "car"
         }
-      ]
+      ],
+      "nearbyPlaces": {
+        "badge": "EXPLORE MORE",
+        "title": "Nearby Attractions Around Sultan Bathery",
+        "description": "Combine your itinerary with these top-rated sightseeing destinations situated nearby.",
+        "places": [
+          {
+            "id": "1",
+            "name": "Panambur Beach",
+            "distance": "8 km away",
+            "travelTime": "15 mins drive",
+            "category": "Coastline & Water Sports",
+            "image": "/panambur.avif",
+            "link": "/places-to-visit/panambur-beach"
+          },
+          {
+            "id": "2",
+            "name": "Tannirbhavi Beach & Tree Park",
+            "distance": "6.5 km away",
+            "travelTime": "12 mins drive",
+            "category": "Pine Trees & Sunset Shore",
+            "image": "/uploads/1791892580337-img--1-.heif",
+            "link": "/places-to-visit/tannirbhavi-beach"
+          },
+          {
+            "id": "3",
+            "name": "Kadri Manjunatha Temple",
+            "distance": "7 km away",
+            "travelTime": "15 mins drive",
+            "category": "Historic Heritage & Architecture",
+            "image": "/kadri.avif",
+            "link": "/places-to-visit/kadri-manjunatha-temple"
+          },
+          {
+            "id": "4",
+            "name": "Sultan Battery Watchtower",
+            "distance": "5 km away",
+            "travelTime": "10 mins drive",
+            "category": "Historical Monument & Ferry",
+            "image": "/uploads/1791892570337-sulthan2.heif",
+            "link": "/places-to-visit/sultan-battery"
+          }
+        ]
+      }
     }
   }
 }
